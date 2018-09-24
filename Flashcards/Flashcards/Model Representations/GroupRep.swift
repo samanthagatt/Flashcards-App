@@ -10,6 +10,20 @@ import Foundation
 
 // Structs can't have recursive attributes since the compiler needs to know how much space to reserve for a given instance
 class GroupRep: Codable {
+    
+    // MARK: - Initializer
+    
+    init(title: String, dateCreated: Date, urlString: String, identifier: String = UUID().uuidString) {
+        self.title = title
+        self.dateCreated = dateCreated
+        self.dateUpdated = dateCreated
+        self.urlString = urlString
+        self.identifier = identifier
+    }
+    
+    
+    // MARK: - Properties
+    
     var title: String
     let dateCreated: Date
     var dateUpdated: Date?
@@ -21,6 +35,9 @@ class GroupRep: Codable {
     var groupReps: [GroupRep]?
 }
 
+
+// MARK: - GroupRep Equatable extension
+
 extension GroupRep: Equatable {
     static func == (lhs: GroupRep, rhs: GroupRep) -> Bool {
         return
@@ -29,6 +46,9 @@ extension GroupRep: Equatable {
                 lhs.parentGroup == rhs.parentGroup
     }
 }
+
+
+// MARK: - GroupRep and Group equatability
 
 func == (lhs: GroupRep, rhs: Group) -> Bool {
     return

@@ -9,6 +9,7 @@
 import Foundation
 
 struct SetRep: Codable, Equatable {
+    
     var title: String
     let dateCreated: Date
     var dateUpdated: Date?
@@ -17,6 +18,9 @@ struct SetRep: Codable, Equatable {
     var groupRep: GroupRep?
     var cardReps: [CardRep]?
 }
+
+
+// MARK: - SetRep and Set equatability
 
 func == (lhs: SetRep, rhs: Set) -> Bool {
     return

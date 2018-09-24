@@ -32,7 +32,8 @@ class GroupController {
     
     // MARK: - CRUD
     
-    func create(title: String, dateCreated: Date = Date(), parentGroup: Group? = nil, context: NSManagedObjectContext) {
+    func create(title: String, dateCreated: Date = Date(), parentGroup: Group? = nil, context: NSManagedObjectContext, completion: @escaping (Group?, Error?) -> Void) {
+        
         guard let userUID = Auth.auth().currentUser?.uid else { return }
         var url: URL
         
@@ -50,12 +51,31 @@ class GroupController {
                 .appendingPathExtension("json")
         }
         
+        let groupRep = GroupRep(title: title, dateCreated: dateCreated, urlString: url.absoluteString)
+        
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         
+        do {
+            request.httpBody = try JSONEncoder().encode(groupRep)
+        } catch {
+            NSLog("Error encoding group into data: \(error)")
+            completion(nil, error)
+            return
+        }
         
-        _ = Group(title: title, dateCreated: dateCreated, urlString: url.absoluteString, parentGroup: parentGroup, context: context)
-        saveToPersistentStore()
+        URLSession.shared.dataTask(with: request) { (_, _, error) in
+            
+            if let error = error {
+                NSLog("Error uploading encoded group: \(error)")
+                completion(nil, error)
+                return
+            }
+            
+            _ = Group(fromRep: groupRep)
+            // should I add this to a background context?
+            self.saveToPersistentStore()
+        }.resume()
     }
     
     func update() {
