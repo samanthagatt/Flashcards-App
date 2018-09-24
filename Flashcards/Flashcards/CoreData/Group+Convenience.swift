@@ -16,7 +16,7 @@ extension Group {
         self.title = title
         self.dateCreated = dateCreated
         self.dateUpdated = dateCreated
-        self.group = group
+        self.parentGroup = group
         self.sets = nil
         self.groups = nil
     }

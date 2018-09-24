@@ -16,7 +16,7 @@ class GroupRep: Codable {
     
     var sets: [SetRep]?
     var groups: [GroupRep]?
-    var group: GroupRep?
+    var parentGroup: GroupRep?
     
     
 }
@@ -26,6 +26,6 @@ extension GroupRep: Equatable {
         return
             lhs.sets == rhs.sets &&
                 lhs.groups == rhs.groups &&
-                lhs.group == rhs.group
+                lhs.parentGroup == rhs.parentGroup
     }
 }
