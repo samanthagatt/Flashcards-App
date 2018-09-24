@@ -13,7 +13,7 @@ class CardController {
     
     // MARK: - Initializer
     
-    init(set: Set) {
+    init(set: Set, dataLoader: NetworkDataLoader = URLSession.shared) {
         self.set = set
     }
     
@@ -26,7 +26,22 @@ class CardController {
     }
     
     
-    // MARK: - Functions
+    // MARK: - CRUD
+    
+    func create() {
+        
+    }
+    
+    func update() {
+        
+    }
+    
+    func delete() {
+        
+    }
+    
+    
+    // MARK: - Core Data
     
     func saveToPersistentStore(context: NSManagedObjectContext = CoreDataStack.moc) {
         context.performAndWait {

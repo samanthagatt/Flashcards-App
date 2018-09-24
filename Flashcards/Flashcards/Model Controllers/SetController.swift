@@ -13,7 +13,7 @@ class SetController {
     
     // MARK: - Initializer
     
-    init(group: Group? = nil) {
+    init(group: Group? = nil, dataLoader: NetworkDataLoader = URLSession.shared) {
         self.group = group
     }
     
@@ -26,7 +26,22 @@ class SetController {
     }
     
     
-    // MARK: - Functions
+    // MARK: - CRUD
+    
+    func create() {
+        
+    }
+    
+    func update() {
+        
+    }
+    
+    func delete() {
+        
+    }
+    
+    
+    // MARK: - Core Data
     
     func saveToPersistentStore(context: NSManagedObjectContext = CoreDataStack.moc) {
         context.performAndWait {

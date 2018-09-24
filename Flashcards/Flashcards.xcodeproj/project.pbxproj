@@ -23,6 +23,7 @@
 		220EDC4B21592B29006ABC95 /* Group+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC4A21592B29006ABC95 /* Group+Convenience.swift */; };
 		220EDC4D21592B33006ABC95 /* Set+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC4C21592B33006ABC95 /* Set+Convenience.swift */; };
 		220EDC4F21592B52006ABC95 /* Card+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC4E21592B52006ABC95 /* Card+Convenience.swift */; };
+		220EDC51215959CD006ABC95 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC50215959CD006ABC95 /* NetworkDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		220EDC4A21592B29006ABC95 /* Group+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+Convenience.swift"; sourceTree = "<group>"; };
 		220EDC4C21592B33006ABC95 /* Set+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+Convenience.swift"; sourceTree = "<group>"; };
 		220EDC4E21592B52006ABC95 /* Card+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+Convenience.swift"; sourceTree = "<group>"; };
+		220EDC50215959CD006ABC95 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,9 +78,10 @@
 		220EDC1E21569E9F006ABC95 /* Flashcards */ = {
 			isa = PBXGroup;
 			children = (
-				220EDC3821591966006ABC95 /* Model Representations */,
-				220EDC3921591974006ABC95 /* Model Controllers */,
 				220EDC3721591955006ABC95 /* CoreData */,
+				220EDC3821591966006ABC95 /* Model Representations */,
+				220EDC52215959D7006ABC95 /* Networking */,
+				220EDC3921591974006ABC95 /* Model Controllers */,
 				220EDC3321591911006ABC95 /* Storyboards */,
 				220EDC2621569EA1006ABC95 /* Assets.xcassets */,
 				220EDC1F21569E9F006ABC95 /* AppDelegate.swift */,
@@ -127,6 +130,14 @@
 				220EDC46215928BA006ABC95 /* CardController.swift */,
 			);
 			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		220EDC52215959D7006ABC95 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				220EDC50215959CD006ABC95 /* NetworkDataLoader.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +216,7 @@
 				220EDC4D21592B33006ABC95 /* Set+Convenience.swift in Sources */,
 				220EDC4B21592B29006ABC95 /* Group+Convenience.swift in Sources */,
 				220EDC432159249F006ABC95 /* GroupController.swift in Sources */,
+				220EDC51215959CD006ABC95 /* NetworkDataLoader.swift in Sources */,
 				220EDC3B21591997006ABC95 /* GroupRep.swift in Sources */,
 				220EDC49215929E4006ABC95 /* CoreDataStack.swift in Sources */,
 				220EDC3F215919A3006ABC95 /* CardRep.swift in Sources */,

@@ -13,7 +13,7 @@ class GroupController {
     
     // MARK: - Initializer
     
-    init(parentGroup: Group? = nil) {
+    init(parentGroup: Group? = nil, dataLoader: NetworkDataLoader = URLSession.shared) {
         self.parentGroup = parentGroup
     }
     
@@ -26,7 +26,22 @@ class GroupController {
     }
     
     
-    // MARK: - Functions
+    // MARK: - CRUD
+    
+    func create() {
+        
+    }
+    
+    func update() {
+        
+    }
+    
+    func delete() {
+        
+    }
+    
+    
+    // MARK: - Core Data
     
     func saveToPersistentStore(context: NSManagedObjectContext = CoreDataStack.moc) {
         context.performAndWait {
