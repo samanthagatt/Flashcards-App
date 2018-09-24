@@ -9,18 +9,22 @@
 import Foundation
 import CoreData
 
+let baseURL = URL(string: "https://samsflashcardsapp.firebaseio.com/")!
+
 class GroupController {
     
     // MARK: - Initializer
     
     init(parentGroup: Group? = nil, dataLoader: NetworkDataLoader = URLSession.shared) {
         self.parentGroup = parentGroup
+        self.dataLoader = dataLoader
     }
     
     
     // MARK: - Properties
     
     let parentGroup: Group?
+    let dataLoader: NetworkDataLoader
     var groups: [Group] {
         return loadGroupsFromPersistentStore()
     }
@@ -28,7 +32,8 @@ class GroupController {
     
     // MARK: - CRUD
     
-    func create() {
+    func create(title: String, dateCreated: Date = Date(), parentGroup: Group? = nil, context: NSManagedObjectContext) {
+        _ = Group(title: title, dateCreated: dateCreated, parentGroup: parentGroup, context: context)
         
     }
     
