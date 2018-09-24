@@ -12,6 +12,10 @@
 		220EDC2721569EA1006ABC95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 220EDC2621569EA1006ABC95 /* Assets.xcassets */; };
 		220EDC2A21569EA1006ABC95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220EDC2821569EA1006ABC95 /* LaunchScreen.storyboard */; };
 		220EDC3221590C11006ABC95 /* LoginAndSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220EDC3121590C11006ABC95 /* LoginAndSignUp.storyboard */; };
+		220EDC362159194C006ABC95 /* Flashcards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC342159194C006ABC95 /* Flashcards.xcdatamodeld */; };
+		220EDC3B21591997006ABC95 /* GroupRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC3A21591997006ABC95 /* GroupRep.swift */; };
+		220EDC3D2159199E006ABC95 /* SetRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC3C2159199E006ABC95 /* SetRep.swift */; };
+		220EDC3F215919A3006ABC95 /* CardRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC3E215919A3006ABC95 /* CardRep.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		220EDC2921569EA1006ABC95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		220EDC2B21569EA1006ABC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		220EDC3121590C11006ABC95 /* LoginAndSignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginAndSignUp.storyboard; sourceTree = "<group>"; };
+		220EDC352159194C006ABC95 /* Flashcards.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Flashcards.xcdatamodel; sourceTree = "<group>"; };
+		220EDC3A21591997006ABC95 /* GroupRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRep.swift; sourceTree = "<group>"; };
+		220EDC3C2159199E006ABC95 /* SetRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRep.swift; sourceTree = "<group>"; };
+		220EDC3E215919A3006ABC95 /* CardRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRep.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,50 @@
 		220EDC1E21569E9F006ABC95 /* Flashcards */ = {
 			isa = PBXGroup;
 			children = (
-				220EDC1F21569E9F006ABC95 /* AppDelegate.swift */,
-				220EDC2321569E9F006ABC95 /* Main.storyboard */,
-				220EDC3121590C11006ABC95 /* LoginAndSignUp.storyboard */,
+				220EDC3821591966006ABC95 /* Model Representations */,
+				220EDC3921591974006ABC95 /* Model Controllers */,
+				220EDC3721591955006ABC95 /* CoreData */,
+				220EDC3321591911006ABC95 /* Storyboards */,
 				220EDC2621569EA1006ABC95 /* Assets.xcassets */,
+				220EDC1F21569E9F006ABC95 /* AppDelegate.swift */,
 				220EDC2821569EA1006ABC95 /* LaunchScreen.storyboard */,
 				220EDC2B21569EA1006ABC95 /* Info.plist */,
 			);
 			path = Flashcards;
+			sourceTree = "<group>";
+		};
+		220EDC3321591911006ABC95 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				220EDC2321569E9F006ABC95 /* Main.storyboard */,
+				220EDC3121590C11006ABC95 /* LoginAndSignUp.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		220EDC3721591955006ABC95 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				220EDC342159194C006ABC95 /* Flashcards.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		220EDC3821591966006ABC95 /* Model Representations */ = {
+			isa = PBXGroup;
+			children = (
+				220EDC3A21591997006ABC95 /* GroupRep.swift */,
+				220EDC3C2159199E006ABC95 /* SetRep.swift */,
+				220EDC3E215919A3006ABC95 /* CardRep.swift */,
+			);
+			path = "Model Representations";
+			sourceTree = "<group>";
+		};
+		220EDC3921591974006ABC95 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Model Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +180,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				220EDC3D2159199E006ABC95 /* SetRep.swift in Sources */,
+				220EDC3B21591997006ABC95 /* GroupRep.swift in Sources */,
+				220EDC3F215919A3006ABC95 /* CardRep.swift in Sources */,
+				220EDC362159194C006ABC95 /* Flashcards.xcdatamodeld in Sources */,
 				220EDC2021569E9F006ABC95 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +384,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		220EDC342159194C006ABC95 /* Flashcards.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				220EDC352159194C006ABC95 /* Flashcards.xcdatamodel */,
+			);
+			currentVersion = 220EDC352159194C006ABC95 /* Flashcards.xcdatamodel */;
+			path = Flashcards.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 220EDC1421569E9F006ABC95 /* Project object */;
 }
