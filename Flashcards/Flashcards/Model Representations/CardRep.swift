@@ -16,3 +16,24 @@ struct CardRep: Codable, Equatable {
     
     var set: SetRep
 }
+
+func == (lhs: CardRep, rhs: Card) -> Bool {
+    return
+        lhs.front == rhs.front &&
+            lhs.back == rhs.back &&
+            lhs.dateCreated == rhs.dateCreated &&
+            lhs.dateUpdated == rhs.dateUpdated // &&
+//            lhs.set == rhs.set
+}
+
+func == (lhs: Card, rhs: CardRep) -> Bool {
+    return rhs == lhs
+}
+
+func != (lhs: CardRep, rhs: Card) -> Bool {
+    return !(rhs == lhs)
+}
+
+func != (lhs: Card, rhs: CardRep) -> Bool {
+    return rhs != lhs
+}

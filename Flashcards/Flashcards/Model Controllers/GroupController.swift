@@ -20,7 +20,6 @@ class GroupController {
     
     // MARK: - Properties
     
-    let setController = SetController()
     let parentGroup: Group?
     var groups: [Group] {
         return loadGroupsFromPersistentStore()

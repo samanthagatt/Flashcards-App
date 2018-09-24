@@ -20,7 +20,6 @@ class SetController {
     
     // MARK: - Properties
     
-    let cardController = CardController()
     let group: Group?
     var sets: [Set] {
         return loadSetsFromPersistentStore()

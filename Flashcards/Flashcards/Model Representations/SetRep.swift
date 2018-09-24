@@ -13,6 +13,27 @@ struct SetRep: Codable, Equatable {
     let dateCreated: Date
     var dateUpdated: Date?
     
+    var groupRep: GroupRep?
     var cardReps: [CardRep]?
-    var group: GroupRep
+}
+
+func == (lhs: SetRep, rhs: Set) -> Bool {
+    return
+        lhs.title == rhs.title &&
+            lhs.dateCreated == rhs.dateCreated &&
+            lhs.dateUpdated == rhs.dateUpdated // &&
+//            lhs.groupRep == rhs.group &&
+//            NSSet(array: lhs.cardReps) == rhs.cards
+}
+
+func == (lhs: Set, rhs: SetRep) -> Bool {
+    return rhs == lhs
+}
+
+func != (lhs: SetRep, rhs: Set) -> Bool {
+    return !(rhs == lhs)
+}
+
+func != (lhs: Set, rhs: SetRep) -> Bool {
+    return rhs != lhs
 }

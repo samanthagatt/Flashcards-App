@@ -14,9 +14,9 @@ class GroupRep: Codable {
     let dateCreated: Date
     var dateUpdated: Date?
     
-    var sets: [SetRep]?
-    var groups: [GroupRep]?
     var parentGroup: GroupRep?
+    var setReps: [SetRep]?
+    var groupReps: [GroupRep]?
     
     
 }
@@ -24,8 +24,30 @@ class GroupRep: Codable {
 extension GroupRep: Equatable {
     static func == (lhs: GroupRep, rhs: GroupRep) -> Bool {
         return
-            lhs.sets == rhs.sets &&
-                lhs.groups == rhs.groups &&
+            lhs.setReps == rhs.setReps &&
+                lhs.groupReps == rhs.groupReps &&
                 lhs.parentGroup == rhs.parentGroup
     }
+}
+
+func == (lhs: GroupRep, rhs: Group) -> Bool {
+    return
+        lhs.title == rhs.title &&
+        lhs.dateCreated == rhs.dateCreated &&
+        lhs.dateUpdated == rhs.dateUpdated // &&
+//        lhs.parentGroup == rhs.parentGroup &&
+//        NSSet(array: lhs.setReps) == rhs.sets &&
+//        NSSet(array: lhs.groupReps) == rhs.groups
+}
+
+func == (lhs: Group, rhs: GroupRep) -> Bool {
+    return rhs == lhs
+}
+
+func != (lhs: GroupRep, rhs: Group) -> Bool {
+    return !(rhs == lhs)
+}
+
+func != (lhs: Group, rhs: GroupRep) -> Bool {
+    return rhs != lhs
 }
