@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+struct SetRep: Codable, Equatable {
+    var title: String
+    let dateCreated: Date
+    var dateUpdated: Date?
+    
+    var cardReps: [CardRep]?
+    var group: GroupRep
+}

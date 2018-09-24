@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+struct CardRep: Codable, Equatable {
+    var front: String
+    var back: String?
+    let dateCreated: Date
+    var dateUpdated: Date?
+    
+    var set: SetRep
+}
