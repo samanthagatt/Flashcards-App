@@ -13,12 +13,12 @@ class GroupRep: Codable {
     var title: String
     let dateCreated: Date
     var dateUpdated: Date?
+    var urlString: String
+    var identifier: String
     
     var parentGroup: GroupRep?
     var setReps: [SetRep]?
     var groupReps: [GroupRep]?
-    
-    
 }
 
 extension GroupRep: Equatable {

@@ -12,6 +12,7 @@ struct SetRep: Codable, Equatable {
     var title: String
     let dateCreated: Date
     var dateUpdated: Date?
+    var identifier: String
     
     var groupRep: GroupRep?
     var cardReps: [CardRep]?

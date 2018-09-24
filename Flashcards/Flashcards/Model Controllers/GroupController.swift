@@ -8,10 +8,10 @@
 
 import Foundation
 import CoreData
-
-let baseURL = URL(string: "https://samsflashcardsapp.firebaseio.com/")!
+import FirebaseAuth
 
 class GroupController {
+    static let baseURL = URL(string: "https://samsflashcardsapp.firebaseio.com/")!
     
     // MARK: - Initializer
     
@@ -33,8 +33,29 @@ class GroupController {
     // MARK: - CRUD
     
     func create(title: String, dateCreated: Date = Date(), parentGroup: Group? = nil, context: NSManagedObjectContext) {
-        _ = Group(title: title, dateCreated: dateCreated, parentGroup: parentGroup, context: context)
+        guard let userUID = Auth.auth().currentUser?.uid else { return }
+        var url: URL
         
+        if let parentGroup = parentGroup,
+            let parentURLString = parentGroup.urlString,
+            let parentURL = URL(string: parentURLString) {
+           
+            url = parentURL
+                .appendingPathComponent(title)
+                .appendingPathExtension("json")
+        } else {
+            url = GroupController.baseURL
+                .appendingPathComponent(userUID)
+                .appendingPathComponent(title)
+                .appendingPathExtension("json")
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        
+        
+        _ = Group(title: title, dateCreated: dateCreated, urlString: url.absoluteString, parentGroup: parentGroup, context: context)
+        saveToPersistentStore()
     }
     
     func update() {
@@ -71,7 +92,7 @@ class GroupController {
         do {
             return try context.fetch(fetchRequest)
         } catch {
-            NSLog("Error fetching tasks: \(error)")
+            NSLog("Error fetching group: \(error)")
             return []
         }
     }
