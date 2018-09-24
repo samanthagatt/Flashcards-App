@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Structs can't have recursive attributes since the compiler needs to know how much space to reserve for a given instance
 class GroupRep: Codable {
     var title: String
     let dateCreated: Date

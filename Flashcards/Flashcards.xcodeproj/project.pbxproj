@@ -16,6 +16,13 @@
 		220EDC3B21591997006ABC95 /* GroupRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC3A21591997006ABC95 /* GroupRep.swift */; };
 		220EDC3D2159199E006ABC95 /* SetRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC3C2159199E006ABC95 /* SetRep.swift */; };
 		220EDC3F215919A3006ABC95 /* CardRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC3E215919A3006ABC95 /* CardRep.swift */; };
+		220EDC432159249F006ABC95 /* GroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC422159249E006ABC95 /* GroupController.swift */; };
+		220EDC4521592882006ABC95 /* SetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC4421592882006ABC95 /* SetController.swift */; };
+		220EDC47215928BA006ABC95 /* CardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC46215928BA006ABC95 /* CardController.swift */; };
+		220EDC49215929E4006ABC95 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC48215929E4006ABC95 /* CoreDataStack.swift */; };
+		220EDC4B21592B29006ABC95 /* Group+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC4A21592B29006ABC95 /* Group+Convenience.swift */; };
+		220EDC4D21592B33006ABC95 /* Set+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC4C21592B33006ABC95 /* Set+Convenience.swift */; };
+		220EDC4F21592B52006ABC95 /* Card+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC4E21592B52006ABC95 /* Card+Convenience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +37,13 @@
 		220EDC3A21591997006ABC95 /* GroupRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRep.swift; sourceTree = "<group>"; };
 		220EDC3C2159199E006ABC95 /* SetRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRep.swift; sourceTree = "<group>"; };
 		220EDC3E215919A3006ABC95 /* CardRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRep.swift; sourceTree = "<group>"; };
+		220EDC422159249E006ABC95 /* GroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupController.swift; sourceTree = "<group>"; };
+		220EDC4421592882006ABC95 /* SetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetController.swift; sourceTree = "<group>"; };
+		220EDC46215928BA006ABC95 /* CardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardController.swift; sourceTree = "<group>"; };
+		220EDC48215929E4006ABC95 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		220EDC4A21592B29006ABC95 /* Group+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+Convenience.swift"; sourceTree = "<group>"; };
+		220EDC4C21592B33006ABC95 /* Set+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+Convenience.swift"; sourceTree = "<group>"; };
+		220EDC4E21592B52006ABC95 /* Card+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+Convenience.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +101,10 @@
 			isa = PBXGroup;
 			children = (
 				220EDC342159194C006ABC95 /* Flashcards.xcdatamodeld */,
+				220EDC48215929E4006ABC95 /* CoreDataStack.swift */,
+				220EDC4A21592B29006ABC95 /* Group+Convenience.swift */,
+				220EDC4C21592B33006ABC95 /* Set+Convenience.swift */,
+				220EDC4E21592B52006ABC95 /* Card+Convenience.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -104,6 +122,9 @@
 		220EDC3921591974006ABC95 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				220EDC422159249E006ABC95 /* GroupController.swift */,
+				220EDC4421592882006ABC95 /* SetController.swift */,
+				220EDC46215928BA006ABC95 /* CardController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -181,9 +202,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				220EDC3D2159199E006ABC95 /* SetRep.swift in Sources */,
+				220EDC4D21592B33006ABC95 /* Set+Convenience.swift in Sources */,
+				220EDC4B21592B29006ABC95 /* Group+Convenience.swift in Sources */,
+				220EDC432159249F006ABC95 /* GroupController.swift in Sources */,
 				220EDC3B21591997006ABC95 /* GroupRep.swift in Sources */,
+				220EDC49215929E4006ABC95 /* CoreDataStack.swift in Sources */,
 				220EDC3F215919A3006ABC95 /* CardRep.swift in Sources */,
+				220EDC4F21592B52006ABC95 /* Card+Convenience.swift in Sources */,
 				220EDC362159194C006ABC95 /* Flashcards.xcdatamodeld in Sources */,
+				220EDC47215928BA006ABC95 /* CardController.swift in Sources */,
+				220EDC4521592882006ABC95 /* SetController.swift in Sources */,
 				220EDC2021569E9F006ABC95 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

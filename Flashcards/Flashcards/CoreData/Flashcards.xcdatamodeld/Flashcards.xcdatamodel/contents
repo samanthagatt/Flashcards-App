@@ -3,28 +3,28 @@
     <entity name="Card" representedClassName="Card" syncable="YES" codeGenerationType="class">
         <attribute name="back" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="dateUpdated" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="front" attributeType="String" syncable="YES"/>
         <relationship name="set" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Set" inverseName="cards" inverseEntity="Set" syncable="YES"/>
     </entity>
     <entity name="Group" representedClassName="Group" syncable="YES" codeGenerationType="class">
         <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="dateUpdated" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" attributeType="String" defaultValueString="New Group" syncable="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="groups" inverseEntity="Group" syncable="YES"/>
-        <relationship name="groups" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="group" inverseEntity="Group" syncable="YES"/>
-        <relationship name="sets" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Set" inverseName="group" inverseEntity="Set" syncable="YES"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="group" inverseEntity="Group" syncable="YES"/>
+        <relationship name="sets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Set" inverseName="group" inverseEntity="Set" syncable="YES"/>
     </entity>
     <entity name="Set" representedClassName="Set" syncable="YES" codeGenerationType="class">
-        <attribute name="dateCreated" attributeType="String" syncable="YES"/>
-        <attribute name="dateUpdated" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" attributeType="String" defaultValueString="New Set" syncable="YES"/>
-        <relationship name="cards" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Card" inverseName="set" inverseEntity="Card" syncable="YES"/>
+        <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="set" inverseEntity="Card" syncable="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="sets" inverseEntity="Group" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Card" positionX="-9" positionY="36" width="128" height="120"/>
         <element name="Group" positionX="-54" positionY="-9" width="128" height="135"/>
         <element name="Set" positionX="-36" positionY="9" width="128" height="120"/>
-        <element name="Card" positionX="-9" positionY="36" width="128" height="120"/>
     </elements>
 </model>
