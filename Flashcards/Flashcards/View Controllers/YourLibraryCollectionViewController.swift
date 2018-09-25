@@ -9,6 +9,13 @@
 import UIKit
 import CoreData
 
+// MARK: - Collection cell enum
+
+enum CollectionCellID: String {
+    case group = "GroupCell"
+    case set = "SetCell"
+}
+
 class YourLibraryCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate {
     
     // MARK: - Properties
@@ -113,7 +120,14 @@ class YourLibraryCollectionViewController: UICollectionViewController, NSFetched
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "", for: indexPath)
+        let identifier: String
+        if indexPath.section == 0 {
+            identifier = CollectionCellID.group.rawValue
+        } else {
+            identifier = CollectionCellID.set.rawValue
+        }
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         return cell
     }
     
@@ -122,13 +136,17 @@ class YourLibraryCollectionViewController: UICollectionViewController, NSFetched
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let indextPath = collectionView.indexPathsForSelectedItems?.first else { return }
+        // Should probably make a protocol for view controllers that have a parentGroup property so I don't have to do the switch case block
+
         switch segue.identifier {
         case "ShowGroupDetail":
             guard let destinationVC = segue.destination as? GroupCollectionViewController else { return }
             // Not sure if this will work since I'm using two frc's (one for each section)
             destinationVC.parentGroup = groupFRC.object(at: indextPath)
         case "ShowSetDetail":
-            return
+            guard let destinationVC = segue.destination as? SetCollectionViewController else { return }
+            // Not sure if this will work since I'm using two frc's (one for each section)
+            destinationVC.parentGroup = groupFRC.object(at: indextPath)
         default:
             return
         }

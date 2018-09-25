@@ -1,5 +1,5 @@
 //
-//  GroupCollectionViewController.swift
+//  SetCollectionViewController.swift
 //  Flashcards
 //
 //  Created by Samantha Gatt on 9/25/18.
@@ -9,24 +9,14 @@
 import UIKit
 import CoreData
 
-class GroupCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate {
+class SetCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate {
     
     // MARK: - Properties
     
     var parentGroup: Group!
     let groupController = GroupController()
-    let setController = SetController()
-    lazy var groupFRC: NSFetchedResultsController<Group> = {
-        let fetchRequest: NSFetchRequest<Group> = Group.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "ANY parentGroup", parentGroup)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
-        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.moc, sectionNameKeyPath: nil, cacheName: nil)
-        frc.delegate = self
-        try! frc.performFetch()
-        return frc
-    }()
-    lazy var setFRC: NSFetchedResultsController<Set> = {
-        let fetchRequest: NSFetchRequest<Set> = Set.fetchRequest()
+    lazy var cardFRC: NSFetchedResultsController<Card> = {
+        let fetchRequest: NSFetchRequest<Card> = Card.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "ANY parentGroup", parentGroup)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.moc, sectionNameKeyPath: nil, cacheName: nil)
@@ -96,52 +86,13 @@ class GroupCollectionViewController: UICollectionViewController, NSFetchedResult
     
     // MARK: - Collection view delegate and data source
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // Come back and fix
-        return 2
-    }
-    
-    // Have to figure out section titles later
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // Come back and fix
-        switch section {
-        case 0:
-            return groupFRC.fetchedObjects?.count ?? 0
-        default:
-            return setFRC.fetchedObjects?.count ?? 0
-        }
+        return cardFRC.fetchedObjects?.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let identifier: String
-        if indexPath.section == 0 {
-            identifier = CollectionCellID.group.rawValue
-        } else {
-            identifier = CollectionCellID.set.rawValue
-        }
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath)
         return cell
-    }
-    
-    
-    // MARK: - Prepare for segue
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let indextPath = collectionView.indexPathsForSelectedItems?.first else { return }
-        // Should probably make a protocol for view controllers that have a parentGroup property so I don't have to do the switch case block
-        switch segue.identifier {
-        case "ShowGroupDetail":
-            guard let destinationVC = segue.destination as? GroupCollectionViewController else { return }
-            // Not sure if this will work since I'm using two frc's (one for each section)
-            destinationVC.parentGroup = groupFRC.object(at: indextPath)
-        case "ShowSetDetail":
-            guard let destinationVC = segue.destination as? SetCollectionViewController else { return }
-            // Not sure if this will work since I'm using two frc's (one for each section)
-            destinationVC.parentGroup = groupFRC.object(at: indextPath)
-        default:
-            return
-        }
     }
 }
