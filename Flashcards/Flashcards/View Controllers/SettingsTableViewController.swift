@@ -38,7 +38,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     func presentUhOhAlert() {
-        let alert = UIAlertController(title: "Uh Oh!", message: "Looks like something went wrong while trying to sign out", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Uh Oh!", message: "It looks like something went wrong while trying to sign out", preferredStyle: .alert)
         let okayAction = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
         alert.addAction(okayAction)
         self.present(alert, animated: true, completion: nil)

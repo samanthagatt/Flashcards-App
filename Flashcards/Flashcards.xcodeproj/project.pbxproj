@@ -32,6 +32,7 @@
 		220EDC61215A99CD006ABC95 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC60215A99CD006ABC95 /* SignUpViewController.swift */; };
 		220EDC63215AA69B006ABC95 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220EDC62215AA69B006ABC95 /* Settings.storyboard */; };
 		220EDC65215AA83C006ABC95 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC64215AA83C006ABC95 /* SettingsTableViewController.swift */; };
+		220EDC67215AB0A4006ABC95 /* YourLibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC66215AB0A4006ABC95 /* YourLibraryCollectionViewController.swift */; };
 		8056EF3DA093F5C883E78784 /* Pods_Flashcards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AB8F3F22409280FCCEA15A /* Pods_Flashcards.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		220EDC60215A99CD006ABC95 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		220EDC62215AA69B006ABC95 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		220EDC64215AA83C006ABC95 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		220EDC66215AB0A4006ABC95 /* YourLibraryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourLibraryCollectionViewController.swift; sourceTree = "<group>"; };
 		90AB8F3F22409280FCCEA15A /* Pods_Flashcards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flashcards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2C7E74E99AC9317367C38DF /* Pods-Flashcards.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flashcards.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flashcards/Pods-Flashcards.release.xcconfig"; sourceTree = "<group>"; };
 		C6DD4F0E37DB3BE61EB7754D /* Pods-Flashcards.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flashcards.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flashcards/Pods-Flashcards.debug.xcconfig"; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				220EDC5E215A9922006ABC95 /* LoginViewController.swift */,
 				220EDC60215A99CD006ABC95 /* SignUpViewController.swift */,
 				220EDC64215AA83C006ABC95 /* SettingsTableViewController.swift */,
+				220EDC66215AB0A4006ABC95 /* YourLibraryCollectionViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				220EDC47215928BA006ABC95 /* CardController.swift in Sources */,
 				220EDC65215AA83C006ABC95 /* SettingsTableViewController.swift in Sources */,
 				220EDC4521592882006ABC95 /* SetController.swift in Sources */,
+				220EDC67215AB0A4006ABC95 /* YourLibraryCollectionViewController.swift in Sources */,
 				220EDC2021569E9F006ABC95 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
