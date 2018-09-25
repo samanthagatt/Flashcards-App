@@ -45,7 +45,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     
-    // MARK: - Table View Data Source
+    // MARK: - TableView Delegate/DataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
@@ -63,12 +63,8 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 1:
+        if tableView.cellForRow(at: indexPath)?.reuseIdentifier == "SignOutCell" {
             presentSignOutAlert()
-            return
-        default:
-            return
         }
     }
 }
