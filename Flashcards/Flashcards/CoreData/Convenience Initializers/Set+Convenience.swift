@@ -19,7 +19,7 @@ extension Set {
         self.identifier = identifier
     }
     
-    convenience init?(fromRep setRep: SetRep, context: NSManagedObjectContext = CoreDataStack.moc) {
+    convenience init(fromRep setRep: SetRep, context: NSManagedObjectContext = CoreDataStack.moc) {
         self.init(title: setRep.title, dateCreated: setRep.dateCreated, identifier: setRep.identifier, context: context)
     }
 }

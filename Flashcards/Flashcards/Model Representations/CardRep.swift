@@ -13,10 +13,10 @@ struct CardRep: Codable, Equatable {
     var front: String
     var back: String?
     let dateCreated: Date
-    var dateUpdated: Date?
+    var dateUpdated: Date
     var identifier: String
     
-    var setRep: SetRep
+    var parentSetRep: SetRep
 }
 
 
@@ -28,7 +28,7 @@ func == (lhs: CardRep, rhs: Card) -> Bool {
             lhs.back == rhs.back &&
             lhs.dateCreated == rhs.dateCreated &&
             lhs.dateUpdated == rhs.dateUpdated // &&
-//            lhs.set == rhs.set
+//            lhs.parentSetRep == rhs.parentSet
 }
 
 func == (lhs: Card, rhs: CardRep) -> Bool {

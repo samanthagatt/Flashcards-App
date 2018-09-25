@@ -20,7 +20,7 @@ extension Group {
         self.identifier = identifier
     }
     
-    convenience init?(fromRep groupRep: GroupRep, context: NSManagedObjectContext = CoreDataStack.moc) {
+    convenience init(fromRep groupRep: GroupRep, context: NSManagedObjectContext = CoreDataStack.moc) {
         
         self.init(title: groupRep.title, dateCreated: groupRep.dateCreated, urlString: groupRep.urlString, identifier: groupRep.identifier, context: context)
     }

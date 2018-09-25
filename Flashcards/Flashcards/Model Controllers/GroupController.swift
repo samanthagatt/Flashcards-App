@@ -26,13 +26,13 @@ class GroupController {
     let parentGroup: Group?
     let dataLoader: NetworkDataLoader
     var groups: [Group] {
-        return loadGroupsFromPersistentStore()
+        return loadGroupsFromPersistentStore(context: CoreDataStack.moc)
     }
     
     
     // MARK: - CRUD
     
-    func create(title: String, dateCreated: Date = Date(), parentGroup: Group? = nil, context: NSManagedObjectContext, completion: @escaping (Group?, Error?) -> Void) {
+    func create(title: String, dateCreated: Date = Date(), parentGroup: Group?, context: NSManagedObjectContext) {
         
         guard let userUID = Auth.auth().currentUser?.uid else { return }
         var url: URL
@@ -51,45 +51,28 @@ class GroupController {
                 .appendingPathExtension("json")
         }
         
-        let groupRep = GroupRep(title: title, dateCreated: dateCreated, urlString: url.absoluteString)
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "PUT"
-        
-        do {
-            request.httpBody = try JSONEncoder().encode(groupRep)
-        } catch {
-            NSLog("Error encoding group into data: \(error)")
-            completion(nil, error)
-            return
-        }
-        
-        URLSession.shared.dataTask(with: request) { (_, _, error) in
-            
-            if let error = error {
-                NSLog("Error uploading encoded group: \(error)")
-                completion(nil, error)
-                return
-            }
-            
-            _ = Group(fromRep: groupRep)
-            // should I add this to a background context?
-            self.saveToPersistentStore()
-        }.resume()
+        let group = Group(title: title, dateCreated: dateCreated, urlString: url.absoluteString, context: context)
+        put(group: group)
+        saveToPersistentStore(context: context)
     }
     
-    func update() {
-        
+    func updateTitle(group: Group, title: String, context: NSManagedObjectContext) {
+        group.title = title
+        group.dateUpdated = Date()
+        put(group: group)
+        saveToPersistentStore(context: context)
     }
     
-    func delete() {
-        
+    func delete(group: Group, context: NSManagedObjectContext) {
+        deleteFromServer(group: group)
+        context.delete(group)
+        saveToPersistentStore(context: context)
     }
     
     
     // MARK: - Core Data
     
-    func saveToPersistentStore(context: NSManagedObjectContext = CoreDataStack.moc) {
+    func saveToPersistentStore(context: NSManagedObjectContext) {
         context.performAndWait {
             do {
                 try context.save()
@@ -101,7 +84,7 @@ class GroupController {
     }
     
     // probably move this to view controllers as fetched results controller
-    func loadGroupsFromPersistentStore(context: NSManagedObjectContext = CoreDataStack.moc) -> [Group] {
+    func loadGroupsFromPersistentStore(context: NSManagedObjectContext) -> [Group] {
         let fetchRequest: NSFetchRequest<Group> = Group.fetchRequest()
         if let parentGroup = self.parentGroup {
             fetchRequest.predicate = NSPredicate(format: "ANY parentGroup = %@", parentGroup)
@@ -112,8 +95,64 @@ class GroupController {
         do {
             return try context.fetch(fetchRequest)
         } catch {
-            NSLog("Error fetching group: \(error)")
+            NSLog("Error fetching groups: \(error)")
             return []
         }
+    }
+    
+    func loadSingleGroup(id: String, context: NSManagedObjectContext) -> Group? {
+        let fetchRequest: NSFetchRequest<Group> = Group.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "identifier %@", id)
+        
+        do {
+            return try context.fetch(fetchRequest).first
+        } catch {
+            NSLog("Error fetching group: \(error)")
+            return nil
+        }
+    }
+    
+    
+    // MARK: - Networking
+    
+    func put(group: Group, completion: @escaping (Error?) -> Void = { _ in }) {
+        guard let url = group.urlString,
+            let requestURL = URL(string: url) else { completion(NSError()); return }
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "PUT"
+        
+        do {
+            request.httpBody = try JSONEncoder().encode(group)
+        } catch {
+            NSLog("Error encoding group: \(error)")
+            completion(error)
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, _, error) in
+            if let error = error {
+                NSLog("Error PUTting data: \(error)")
+                completion(error)
+                return
+            }
+            completion(nil)
+        }.resume()
+    }
+
+    func deleteFromServer(group: Group, completion: @escaping (Error?) -> Void = { _ in }) {
+        guard let url = group.urlString,
+            let requestURL = URL(string: url) else { completion(NSError()); return }
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "DELETE"
+        
+        URLSession.shared.dataTask(with: request) { (_, _, error) in
+            if let error = error {
+                NSLog("Error deleting group: \(error)")
+                completion(error)
+                return
+            }
+            completion(nil)
+        }.resume()
     }
 }
