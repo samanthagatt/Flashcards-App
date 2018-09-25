@@ -1,5 +1,5 @@
 //
-//  YourLibraryCollectionViewController.swift
+//  GroupCollectionViewController.swift
 //  Flashcards
 //
 //  Created by Samantha Gatt on 9/25/18.
@@ -9,15 +9,16 @@
 import UIKit
 import CoreData
 
-class YourLibraryCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate {
+class GroupCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate {
     
     // MARK: - Properties
     
+    var parentGroup: Group!
     let groupController = GroupController()
     let setController = SetController()
     lazy var groupFRC: NSFetchedResultsController<Group> = {
         let fetchRequest: NSFetchRequest<Group> = Group.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "ANY parentGroup == nil")
+        fetchRequest.predicate = NSPredicate(format: "ANY parentGroup", parentGroup)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.moc, sectionNameKeyPath: nil, cacheName: nil)
         frc.delegate = self
@@ -26,7 +27,7 @@ class YourLibraryCollectionViewController: UICollectionViewController, NSFetched
     }()
     lazy var setFRC: NSFetchedResultsController<Set> = {
         let fetchRequest: NSFetchRequest<Set> = Set.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "ANY parentGroup == nil")
+        fetchRequest.predicate = NSPredicate(format: "ANY parentGroup", parentGroup)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.moc, sectionNameKeyPath: nil, cacheName: nil)
         frc.delegate = self
@@ -115,22 +116,5 @@ class YourLibraryCollectionViewController: UICollectionViewController, NSFetched
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "", for: indexPath)
         return cell
-    }
-    
-    
-    // MARK: - Prepare for segue
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let indextPath = collectionView.indexPathsForSelectedItems?.first else { return }
-        switch segue.identifier {
-        case "ShowGroupDetail":
-            guard let destinationVC = segue.destination as? GroupCollectionViewController else { return }
-            // Not sure if this will work since I'm using two frc's (one for each section)
-            destinationVC.parentGroup = groupFRC.object(at: indextPath)
-        case "ShowSetDetail":
-            return
-        default:
-            return
-        }
     }
 }
