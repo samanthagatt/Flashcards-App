@@ -45,7 +45,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     
-    // MARK: - TableView Delegate/DataSource
+    // MARK: - Table view delegate and data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2

@@ -25,9 +25,6 @@ class GroupController {
     
     let parentGroup: Group?
     let dataLoader: NetworkDataLoader
-    var groups: [Group] {
-        return loadGroupsFromPersistentStore(context: CoreDataStack.moc)
-    }
     
     
     // MARK: - CRUD
@@ -80,23 +77,6 @@ class GroupController {
             catch {
                 NSLog("Error saving entry: \(error)")
             }
-        }
-    }
-    
-    // probably move this to view controllers as fetched results controller
-    func loadGroupsFromPersistentStore(context: NSManagedObjectContext) -> [Group] {
-        let fetchRequest: NSFetchRequest<Group> = Group.fetchRequest()
-        if let parentGroup = self.parentGroup {
-            fetchRequest.predicate = NSPredicate(format: "ANY parentGroup = %@", parentGroup)
-        } else {
-            fetchRequest.predicate = NSPredicate(format: "ANY parentGroup == nil")
-        }
-        
-        do {
-            return try context.fetch(fetchRequest)
-        } catch {
-            NSLog("Error fetching groups: \(error)")
-            return []
         }
     }
     
