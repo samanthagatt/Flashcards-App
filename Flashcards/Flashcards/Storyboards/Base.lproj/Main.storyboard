@@ -9,6 +9,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Settings-->
+        <scene sceneID="K6m-zl-Z30">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="CH4-kA-eKH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oft-ZA-1RK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1073" y="775"/>
+        </scene>
         <!--Your Library-->
         <scene sceneID="V2a-sb-3VU">
             <objects>
@@ -121,7 +129,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Your Library" id="tjh-wr-b3b">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="settings" id="Ueu-ah-Mdb"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="settings" id="Ueu-ah-Mdb">
+                            <connections>
+                                <segue destination="CH4-kA-eKH" kind="presentation" id="iqO-QG-jI7"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="tlD-YM-Zgm"/>
                     </navigationItem>
                 </collectionViewController>
