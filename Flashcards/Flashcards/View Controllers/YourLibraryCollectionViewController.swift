@@ -16,6 +16,9 @@ enum CollectionCellID: String {
     case set = "SetCell"
 }
 
+
+// MARK: - Your Library collection view controller
+
 class YourLibraryCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate {
     
     // MARK: - Properties
@@ -24,7 +27,7 @@ class YourLibraryCollectionViewController: UICollectionViewController, NSFetched
     let setController = SetController()
     lazy var groupFRC: NSFetchedResultsController<Group> = {
         let fetchRequest: NSFetchRequest<Group> = Group.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "ANY parentGroup == nil")
+        // fetchRequest.predicate = NSPredicate(format: "ANY parentGroup == nil")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.moc, sectionNameKeyPath: nil, cacheName: nil)
         frc.delegate = self
@@ -40,6 +43,40 @@ class YourLibraryCollectionViewController: UICollectionViewController, NSFetched
         try! frc.performFetch()
         return frc
     }()
+    
+    
+    // MARK: - Actions
+    
+    @IBAction func create(_ sender: Any) {
+        // Come back later and create my own controller that conforms to UIAlertController or add an extension?
+        let alert = UIAlertController(title: "Create", message: nil, preferredStyle: .alert)
+        let segmentedControl = UISegmentedControl(items: ["Group", "Set"])
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        alert.view.addSubview(segmentedControl)
+        var titleTextField: UITextField!
+        alert.addTextField { (textField) in
+            textField.placeholder = "Title"
+            titleTextField = textField
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let createAction = UIAlertAction(title: "Create", style: .default) { (_) in
+            // Come back and do error handling
+            guard let title = titleTextField.text else { return }
+            
+            switch segmentedControl.selectedSegmentIndex {
+            case 0:
+                self.groupController.create(title: title, parentGroup: nil, context: CoreDataStack.moc)
+            case 1:
+                self.setController.create()
+            default:
+                return
+            }
+        }
+        alert.addAction(cancelAction)
+        alert.addAction(createAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     
     // MARK: - Collection view fetched results controller delegate

@@ -33,22 +33,24 @@ class GroupController {
         
         guard let userUID = Auth.auth().currentUser?.uid else { return }
         var url: URL
-        
+        let uuidString = UUID().uuidString
         if let parentGroup = parentGroup,
             let parentURLString = parentGroup.urlString,
             let parentURL = URL(string: parentURLString) {
            
             url = parentURL
-                .appendingPathComponent(title)
+                .appendingPathComponent("groups")
+                .appendingPathComponent(uuidString)
                 .appendingPathExtension("json")
         } else {
             url = GroupController.baseURL
                 .appendingPathComponent(userUID)
-                .appendingPathComponent(title)
+                .appendingPathComponent("groups")
+                .appendingPathComponent(uuidString)
                 .appendingPathExtension("json")
         }
         
-        let group = Group(title: title, dateCreated: dateCreated, urlString: url.absoluteString, context: context)
+        let group = Group(title: title, dateCreated: dateCreated, urlString: url.absoluteString, identifier: uuidString, context: context)
         put(group: group)
         saveToPersistentStore(context: context)
     }
