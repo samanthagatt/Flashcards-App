@@ -22,7 +22,7 @@ extension Card: Encodable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        try container.encode(front, forKey: .front)
+        try container.encodeIfPresent(front, forKey: .front)
         try container.encodeIfPresent(back, forKey: .back)
         try container.encode(dateCreated, forKey: .dateCreated)
         try container.encode(dateUpdated, forKey: .dateUpdated)

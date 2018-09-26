@@ -15,23 +15,21 @@ class GroupController {
     
     // MARK: - Initializer
     
-    init(parentGroup: Group? = nil, dataLoader: NetworkDataLoader = URLSession.shared) {
-        self.parentGroup = parentGroup
+    init(dataLoader: NetworkDataLoader = URLSession.shared) {
         self.dataLoader = dataLoader
     }
     
     
     // MARK: - Properties
     
-    let parentGroup: Group?
     let dataLoader: NetworkDataLoader
     
     
     // MARK: - CRUD
     
-    func create(title: String, dateCreated: Date = Date(), parentGroupID: String, context: NSManagedObjectContext) {
+    func create(title: String, parentGroupID: String, context: NSManagedObjectContext) {
         
-        let group = Group(title: title, dateCreated: dateCreated, parentGroupID: parentGroupID, context: context)
+        let group = Group(title: title, parentGroupID: parentGroupID, context: context)
         put(group: group)
         saveToPersistentStore(context: context)
     }

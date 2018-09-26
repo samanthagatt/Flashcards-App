@@ -68,7 +68,7 @@ class YourLibraryCollectionViewController: UICollectionViewController, NSFetched
             case 0:
                 self.groupController.create(title: title, parentGroupID: "noParentGroup", context: CoreDataStack.moc)
             case 1:
-                self.setController.create()
+                self.setController.create(title: title, parentGroupID: "noParentGroup", context: CoreDataStack.moc)
             default:
                 return
             }

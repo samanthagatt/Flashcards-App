@@ -4,7 +4,7 @@
         <attribute name="back" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="front" attributeType="String" syncable="YES"/>
+        <attribute name="front" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifier" attributeType="String" syncable="YES"/>
         <attribute name="parentSetID" attributeType="String" syncable="YES"/>
     </entity>

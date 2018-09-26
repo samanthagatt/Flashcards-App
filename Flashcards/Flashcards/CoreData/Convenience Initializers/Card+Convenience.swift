@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 extension Card {
-    convenience init(front: String, back: String?, dateCreated: Date = Date(), identifier: String = UUID().uuidString, parentSetID: String, context: NSManagedObjectContext = CoreDataStack.moc) {
+    convenience init(front: String? = nil, back: String? = nil, dateCreated: Date = Date(), identifier: String = UUID().uuidString, parentSetID: String, context: NSManagedObjectContext = CoreDataStack.moc) {
         
         self.init(context: context)
         self.front = front
