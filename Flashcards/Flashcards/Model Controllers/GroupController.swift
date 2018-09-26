@@ -100,14 +100,14 @@ class GroupController {
             completion(error)
         }
         
-        URLSession.shared.dataTask(with: request) { (_, _, error) in
+        dataLoader.uploadData(to: request) { (_, error) in
             if let error = error {
                 NSLog("Error PUTting data: \(error)")
                 completion(error)
                 return
             }
             completion(nil)
-        }.resume()
+        }
     }
 
     func deleteFromServer(group: Group, completion: @escaping (Error?) -> Void = { _ in }) {
@@ -126,13 +126,13 @@ class GroupController {
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         
-        URLSession.shared.dataTask(with: request) { (_, _, error) in
+        dataLoader.uploadData(to: request) { (_, error) in
             if let error = error {
                 NSLog("Error deleting group: \(error)")
                 completion(error)
                 return
             }
             completion(nil)
-        }.resume()
+        }
     }
 }
