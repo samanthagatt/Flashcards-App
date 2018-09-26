@@ -26,7 +26,7 @@ protocol OrganizerViewController {
 
 // MARK: - Your Library collection view controller
 
-class GroupCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate, OrganizerViewController {
+class GroupCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate, OrganizerViewController, CreateOrganizerAlertControllerDelegate {
     
     // MARK: - Properties
     
@@ -46,33 +46,13 @@ class GroupCollectionViewController: UICollectionViewController, NSFetchedResult
     // MARK: - Actions
     
     @IBAction func create(_ sender: Any) {
-        // Come back later and create my own controller that conforms to UIAlertController or add an extension?
-        let alert = UIAlertController(title: "Create", message: nil, preferredStyle: .alert)
-        let segmentedControl = UISegmentedControl(items: ["Group", "Set"])
-        segmentedControl.selectedSegmentIndex = 0
-        alert.view.addSubview(segmentedControl)
-        var titleTextField: UITextField!
-        alert.addTextField { (textField) in
-            textField.placeholder = "Title"
-            titleTextField = textField
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let createAction = UIAlertAction(title: "Create", style: .default) { (_) in
-            // Come back and do error handling
-            guard let title = titleTextField.text else { return }
-            
-            switch segmentedControl.selectedSegmentIndex {
-            case 0:
-                self.organizerController.create(type: .group, title: title, parentGroupID: self.organizerID ?? "noParentGroup", context: CoreDataStack.moc)
-            case 1:
-                self.organizerController.create(type: .set, title: title, parentGroupID: "noParentGroup", context: CoreDataStack.moc)
-            default:
-                return
-            }
-        }
-        alert.addAction(cancelAction)
-        alert.addAction(createAction)
+        let storyboard = UIStoryboard(name: "CreateOrganizerAlert", bundle: nil)
+        guard let alert = storyboard.instantiateInitialViewController() as? CreateOrganizerAlertController else { return }
+        alert.providesPresentationContextTransitionStyle = true
+        alert.definesPresentationContext = true
+        alert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        alert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        alert.delegate = self
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -161,14 +141,21 @@ class GroupCollectionViewController: UICollectionViewController, NSFetchedResult
     }
     
     
+    // MARK: - Alert controller delegate
+    
+    func createOrganizer(type: OrganizerType, title: String) {
+        self.organizerController.create(type: type, title: title, parentGroupID: self.organizerID ?? "noParentGroup", context: CoreDataStack.moc)
+    }
+    
+    
     // MARK: - Prepare for segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard var organizerDestVC = segue.destination as? OrganizerViewController,
             let collectionDestVC = segue.destination as? UICollectionViewController,
-            let indextPath = collectionView.indexPathsForSelectedItems?.first else { return }
+            let indexPath = collectionView.indexPathsForSelectedItems?.first else { return }
         
-        let organizer = fetchedResultsController.object(at: indextPath)
+        let organizer = fetchedResultsController.object(at: indexPath)
         organizerDestVC.organizerID = organizer.identifier
         collectionDestVC.title = organizer.title
     }

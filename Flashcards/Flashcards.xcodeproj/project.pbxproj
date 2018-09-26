@@ -31,7 +31,8 @@
 		220EDC67215AB0A4006ABC95 /* GroupCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC66215AB0A4006ABC95 /* GroupCollectionViewController.swift */; };
 		220EDC6B215ACCB7006ABC95 /* SetCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC6A215ACCB7006ABC95 /* SetCollectionViewController.swift */; };
 		220EDC6D215BC0CA006ABC95 /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC6C215BC0CA006ABC95 /* MockDataLoader.swift */; };
-		220EDC6F215BCC76006ABC95 /* CreateGroupOrSetAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220EDC6E215BCC76006ABC95 /* CreateGroupOrSetAlert.storyboard */; };
+		220EDC6F215BCC76006ABC95 /* CreateOrganizerAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220EDC6E215BCC76006ABC95 /* CreateOrganizerAlert.storyboard */; };
+		220EDC71215BF6B1006ABC95 /* CreateOrganizerAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC70215BF6B1006ABC95 /* CreateOrganizerAlertController.swift */; };
 		8056EF3DA093F5C883E78784 /* Pods_Flashcards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AB8F3F22409280FCCEA15A /* Pods_Flashcards.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,7 +63,8 @@
 		220EDC66215AB0A4006ABC95 /* GroupCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewController.swift; sourceTree = "<group>"; };
 		220EDC6A215ACCB7006ABC95 /* SetCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCollectionViewController.swift; sourceTree = "<group>"; };
 		220EDC6C215BC0CA006ABC95 /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
-		220EDC6E215BCC76006ABC95 /* CreateGroupOrSetAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateGroupOrSetAlert.storyboard; sourceTree = "<group>"; };
+		220EDC6E215BCC76006ABC95 /* CreateOrganizerAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateOrganizerAlert.storyboard; sourceTree = "<group>"; };
+		220EDC70215BF6B1006ABC95 /* CreateOrganizerAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrganizerAlertController.swift; sourceTree = "<group>"; };
 		90AB8F3F22409280FCCEA15A /* Pods_Flashcards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flashcards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2C7E74E99AC9317367C38DF /* Pods-Flashcards.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flashcards.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flashcards/Pods-Flashcards.release.xcconfig"; sourceTree = "<group>"; };
 		C6DD4F0E37DB3BE61EB7754D /* Pods-Flashcards.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flashcards.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flashcards/Pods-Flashcards.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,7 +124,7 @@
 				220EDC3121590C11006ABC95 /* LoginAndSignUp.storyboard */,
 				220EDC2321569E9F006ABC95 /* Main.storyboard */,
 				220EDC62215AA69B006ABC95 /* Settings.storyboard */,
-				220EDC6E215BCC76006ABC95 /* CreateGroupOrSetAlert.storyboard */,
+				220EDC6E215BCC76006ABC95 /* CreateOrganizerAlert.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -189,6 +191,7 @@
 				220EDC5E215A9922006ABC95 /* LoginViewController.swift */,
 				220EDC60215A99CD006ABC95 /* SignUpViewController.swift */,
 				220EDC64215AA83C006ABC95 /* SettingsTableViewController.swift */,
+				220EDC70215BF6B1006ABC95 /* CreateOrganizerAlertController.swift */,
 				220EDC66215AB0A4006ABC95 /* GroupCollectionViewController.swift */,
 				220EDC6A215ACCB7006ABC95 /* SetCollectionViewController.swift */,
 			);
@@ -274,7 +277,7 @@
 			files = (
 				220EDC2A21569EA1006ABC95 /* LaunchScreen.storyboard in Resources */,
 				220EDC2721569EA1006ABC95 /* Assets.xcassets in Resources */,
-				220EDC6F215BCC76006ABC95 /* CreateGroupOrSetAlert.storyboard in Resources */,
+				220EDC6F215BCC76006ABC95 /* CreateOrganizerAlert.storyboard in Resources */,
 				220EDC542159684F006ABC95 /* GoogleService-Info.plist in Resources */,
 				220EDC63215AA69B006ABC95 /* Settings.storyboard in Resources */,
 				220EDC3221590C11006ABC95 /* LoginAndSignUp.storyboard in Resources */,
@@ -353,6 +356,7 @@
 				220EDC3F215919A3006ABC95 /* CardRep.swift in Sources */,
 				220EDC5F215A9922006ABC95 /* LoginViewController.swift in Sources */,
 				220EDC4F21592B52006ABC95 /* Card+Convenience.swift in Sources */,
+				220EDC71215BF6B1006ABC95 /* CreateOrganizerAlertController.swift in Sources */,
 				220EDC362159194C006ABC95 /* Flashcards.xcdatamodeld in Sources */,
 				220EDC47215928BA006ABC95 /* CardController.swift in Sources */,
 				220EDC65215AA83C006ABC95 /* SettingsTableViewController.swift in Sources */,
