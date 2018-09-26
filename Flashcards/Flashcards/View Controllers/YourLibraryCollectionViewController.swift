@@ -151,6 +151,8 @@ class YourLibraryCollectionViewController: UICollectionViewController, NSFetched
         switch section {
         case 0:
             return groupFRC.fetchedObjects?.count ?? 0
+        case 1:
+            return setFRC.fetchedObjects?.count ?? 0
         default:
             return setFRC.fetchedObjects?.count ?? 0
         }
@@ -173,8 +175,6 @@ class YourLibraryCollectionViewController: UICollectionViewController, NSFetched
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let indextPath = collectionView.indexPathsForSelectedItems?.first else { return }
-        // Should probably make a protocol for view controllers that have a parentGroup property so I don't have to do the switch case block
-
         switch segue.identifier {
         case "ShowGroupDetail":
             guard let destinationVC = segue.destination as? GroupCollectionViewController else { return }
@@ -182,8 +182,9 @@ class YourLibraryCollectionViewController: UICollectionViewController, NSFetched
             destinationVC.parentGroupID = groupFRC.object(at: indextPath).identifier
         case "ShowSetDetail":
             guard let destinationVC = segue.destination as? SetCollectionViewController else { return }
-            // Not sure if this will work since I'm using two frc's (one for each section)
-            destinationVC.parentGroupID = groupFRC.object(at: indextPath).identifier
+            var setIndexPath = indextPath
+            setIndexPath.section = 0
+            destinationVC.parentGroupID = setFRC.object(at: setIndexPath).identifier
         default:
             return
         }

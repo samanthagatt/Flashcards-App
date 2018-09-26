@@ -83,7 +83,7 @@ class SetController {
         
         let url = GroupController.baseURL
             .appendingPathComponent(userUID)
-            .appendingPathComponent("groups")
+            .appendingPathComponent("sets")
             .appendingPathComponent(parentGroupID)
             .appendingPathComponent(identifier)
             .appendingPathExtension("json")

@@ -17,7 +17,7 @@ class SetCollectionViewController: UICollectionViewController, NSFetchedResultsC
     let groupController = GroupController()
     lazy var cardFRC: NSFetchedResultsController<Card> = {
         let fetchRequest: NSFetchRequest<Card> = Card.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "parentGroupID", parentGroupID)
+        fetchRequest.predicate = NSPredicate(format: "parentSetID == %@", parentGroupID)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.moc, sectionNameKeyPath: nil, cacheName: nil)
         frc.delegate = self
