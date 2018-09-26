@@ -55,4 +55,18 @@ class MockDataLoader: NetworkDataLoader {
             completion(self.data, self.error)
         }
     }
+    
+    func deleteData(with url: URL, completion: @escaping (Data?, Error?) -> Void) {
+        self.url = url
+        DispatchQueue.global().async {
+            completion(self.data, self.error)
+        }
+    }
+    
+    func deleteData(with request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
+        self.request = request
+        DispatchQueue.global().async {
+            completion(self.data, self.error)
+        }
+    }
 }

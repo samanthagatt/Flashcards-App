@@ -1,5 +1,5 @@
 //
-//  GroupRep.swift
+//  OrganizerRep.swift
 //  Flashcards
 //
 //  Created by Samantha Gatt on 9/24/18.
@@ -8,12 +8,18 @@
 
 import Foundation
 
+enum OrganizerType: String {
+    case group
+    case set
+}
+
 // Structs can't have recursive attributes since the compiler needs to know how much space to reserve for a given instance
-struct GroupRep: Codable, Equatable {
+struct OrganizerRep: Codable, Equatable {
     
     // MARK: - Initializer
     
-    init(title: String, dateCreated: Date, identifier: String = UUID().uuidString, parentGroupID: String) {
+    init(type: OrganizerType, title: String, dateCreated: Date, identifier: String = UUID().uuidString, parentGroupID: String) {
+        self.type = type.rawValue
         self.title = title
         self.dateCreated = dateCreated
         self.dateUpdated = dateCreated
@@ -24,6 +30,7 @@ struct GroupRep: Codable, Equatable {
     
     // MARK: - Properties
     
+    let type: String
     var title: String
     let dateCreated: Date
     var dateUpdated: Date
@@ -34,21 +41,21 @@ struct GroupRep: Codable, Equatable {
 
 // MARK: - GroupRep and Group equatability
 
-func == (lhs: GroupRep, rhs: Group) -> Bool {
+func == (lhs: OrganizerRep, rhs: Organizer) -> Bool {
     return lhs.title == rhs.title &&
         lhs.dateCreated == rhs.dateCreated &&
         lhs.dateUpdated == rhs.dateUpdated &&
         lhs.identifier == rhs.identifier
 }
 
-func == (lhs: Group, rhs: GroupRep) -> Bool {
+func == (lhs: Organizer, rhs: OrganizerRep) -> Bool {
     return rhs == lhs
 }
 
-func != (lhs: GroupRep, rhs: Group) -> Bool {
+func != (lhs: OrganizerRep, rhs: Organizer) -> Bool {
     return !(rhs == lhs)
 }
 
-func != (lhs: Group, rhs: GroupRep) -> Bool {
+func != (lhs: Organizer, rhs: OrganizerRep) -> Bool {
     return rhs != lhs
 }

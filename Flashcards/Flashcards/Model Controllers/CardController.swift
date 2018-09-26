@@ -82,7 +82,7 @@ class CardController {
             let parentSetID = card.parentSetID,
             let identifier = card.identifier else { completion(NSError()); return }
         
-        let url = GroupController.baseURL
+        let url = OrganizerController.baseURL
             .appendingPathComponent(userUID)
             .appendingPathComponent("groups")
             .appendingPathComponent(parentSetID)
@@ -116,7 +116,7 @@ class CardController {
             let parentSetID = card.parentSetID,
             let identifier = card.identifier else { completion(NSError()); return }
         
-        let url = GroupController.baseURL
+        let url = OrganizerController.baseURL
             .appendingPathComponent(userUID)
             .appendingPathComponent("groups")
             .appendingPathComponent(parentSetID)
@@ -126,7 +126,7 @@ class CardController {
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         
-        dataLoader.uploadData(to: request) { (_, error) in
+        dataLoader.deleteData(with: request) { (_, error) in
             if let error = error {
                 NSLog("Error deleting group: \(error)")
                 completion(error)

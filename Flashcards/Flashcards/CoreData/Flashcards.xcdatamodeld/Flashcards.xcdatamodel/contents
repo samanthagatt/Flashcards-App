@@ -8,23 +8,16 @@
         <attribute name="identifier" attributeType="String" syncable="YES"/>
         <attribute name="parentSetID" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Group" representedClassName="Group" syncable="YES" codeGenerationType="class">
+    <entity name="Organizer" representedClassName="Organizer" syncable="YES" codeGenerationType="class">
         <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="identifier" attributeType="String" syncable="YES"/>
         <attribute name="parentGroupID" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" defaultValueString="New Group" syncable="YES"/>
-    </entity>
-    <entity name="Set" representedClassName="Set" syncable="YES" codeGenerationType="class">
-        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="identifier" attributeType="String" syncable="YES"/>
-        <attribute name="parentGroupID" attributeType="String" syncable="YES"/>
-        <attribute name="title" attributeType="String" defaultValueString="New Set" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Card" positionX="-9" positionY="36" width="128" height="135"/>
-        <element name="Group" positionX="-54" positionY="-9" width="128" height="120"/>
-        <element name="Set" positionX="-36" positionY="9" width="128" height="120"/>
+        <element name="Organizer" positionX="-54" positionY="-9" width="128" height="135"/>
     </elements>
 </model>

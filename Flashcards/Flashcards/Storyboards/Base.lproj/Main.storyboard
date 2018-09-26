@@ -20,7 +20,7 @@
         <!--Your Library-->
         <scene sceneID="V2a-sb-3VU">
             <objects>
-                <collectionViewController id="7mF-HD-hMs" customClass="YourLibraryCollectionViewController" customModule="Flashcards" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="7mF-HD-hMs" customClass="GroupCollectionViewController" customModule="Flashcards" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Uxz-Ef-qOr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -130,6 +130,7 @@
         <!--Group Title-->
         <scene sceneID="UO5-ij-Ywn">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FeS-UI-Qcu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <collectionViewController id="tHh-uW-akO" customClass="GroupCollectionViewController" customModule="Flashcards" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="FLd-R7-zez">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -228,7 +229,6 @@
                         </barButtonItem>
                     </navigationItem>
                 </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FeS-UI-Qcu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1900" y="-77"/>
         </scene>
@@ -317,6 +317,6 @@
         <image name="settings" width="58" height="51"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HXQ-WJ-dqt"/>
+        <segue reference="OTe-EQ-Cuf"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -13,27 +13,22 @@
 		220EDC2A21569EA1006ABC95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220EDC2821569EA1006ABC95 /* LaunchScreen.storyboard */; };
 		220EDC3221590C11006ABC95 /* LoginAndSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220EDC3121590C11006ABC95 /* LoginAndSignUp.storyboard */; };
 		220EDC362159194C006ABC95 /* Flashcards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC342159194C006ABC95 /* Flashcards.xcdatamodeld */; };
-		220EDC3B21591997006ABC95 /* GroupRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC3A21591997006ABC95 /* GroupRep.swift */; };
-		220EDC3D2159199E006ABC95 /* SetRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC3C2159199E006ABC95 /* SetRep.swift */; };
+		220EDC3B21591997006ABC95 /* OrganizerRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC3A21591997006ABC95 /* OrganizerRep.swift */; };
 		220EDC3F215919A3006ABC95 /* CardRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC3E215919A3006ABC95 /* CardRep.swift */; };
-		220EDC432159249F006ABC95 /* GroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC422159249E006ABC95 /* GroupController.swift */; };
-		220EDC4521592882006ABC95 /* SetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC4421592882006ABC95 /* SetController.swift */; };
+		220EDC432159249F006ABC95 /* OrganizerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC422159249E006ABC95 /* OrganizerController.swift */; };
 		220EDC47215928BA006ABC95 /* CardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC46215928BA006ABC95 /* CardController.swift */; };
 		220EDC49215929E4006ABC95 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC48215929E4006ABC95 /* CoreDataStack.swift */; };
-		220EDC4B21592B29006ABC95 /* Group+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC4A21592B29006ABC95 /* Group+Convenience.swift */; };
-		220EDC4D21592B33006ABC95 /* Set+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC4C21592B33006ABC95 /* Set+Convenience.swift */; };
+		220EDC4B21592B29006ABC95 /* Organizer+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC4A21592B29006ABC95 /* Organizer+Convenience.swift */; };
 		220EDC4F21592B52006ABC95 /* Card+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC4E21592B52006ABC95 /* Card+Convenience.swift */; };
 		220EDC51215959CD006ABC95 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC50215959CD006ABC95 /* NetworkDataLoader.swift */; };
 		220EDC542159684F006ABC95 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 220EDC532159684F006ABC95 /* GoogleService-Info.plist */; };
-		220EDC58215A72EB006ABC95 /* Group+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC57215A72EB006ABC95 /* Group+Encodable.swift */; };
-		220EDC5A215A72F3006ABC95 /* Set+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC59215A72F3006ABC95 /* Set+Encodable.swift */; };
+		220EDC58215A72EB006ABC95 /* Organizer+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC57215A72EB006ABC95 /* Organizer+Encodable.swift */; };
 		220EDC5C215A72FB006ABC95 /* Card+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC5B215A72FB006ABC95 /* Card+Encodable.swift */; };
 		220EDC5F215A9922006ABC95 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC5E215A9922006ABC95 /* LoginViewController.swift */; };
 		220EDC61215A99CD006ABC95 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC60215A99CD006ABC95 /* SignUpViewController.swift */; };
 		220EDC63215AA69B006ABC95 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220EDC62215AA69B006ABC95 /* Settings.storyboard */; };
 		220EDC65215AA83C006ABC95 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC64215AA83C006ABC95 /* SettingsTableViewController.swift */; };
-		220EDC67215AB0A4006ABC95 /* YourLibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC66215AB0A4006ABC95 /* YourLibraryCollectionViewController.swift */; };
-		220EDC69215AC784006ABC95 /* GroupCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC68215AC784006ABC95 /* GroupCollectionViewController.swift */; };
+		220EDC67215AB0A4006ABC95 /* GroupCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC66215AB0A4006ABC95 /* GroupCollectionViewController.swift */; };
 		220EDC6B215ACCB7006ABC95 /* SetCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC6A215ACCB7006ABC95 /* SetCollectionViewController.swift */; };
 		220EDC6D215BC0CA006ABC95 /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC6C215BC0CA006ABC95 /* MockDataLoader.swift */; };
 		220EDC6F215BCC76006ABC95 /* CreateGroupOrSetAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220EDC6E215BCC76006ABC95 /* CreateGroupOrSetAlert.storyboard */; };
@@ -49,27 +44,22 @@
 		220EDC2B21569EA1006ABC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		220EDC3121590C11006ABC95 /* LoginAndSignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginAndSignUp.storyboard; sourceTree = "<group>"; };
 		220EDC352159194C006ABC95 /* Flashcards.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Flashcards.xcdatamodel; sourceTree = "<group>"; };
-		220EDC3A21591997006ABC95 /* GroupRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRep.swift; sourceTree = "<group>"; };
-		220EDC3C2159199E006ABC95 /* SetRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRep.swift; sourceTree = "<group>"; };
+		220EDC3A21591997006ABC95 /* OrganizerRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizerRep.swift; sourceTree = "<group>"; };
 		220EDC3E215919A3006ABC95 /* CardRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRep.swift; sourceTree = "<group>"; };
-		220EDC422159249E006ABC95 /* GroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupController.swift; sourceTree = "<group>"; };
-		220EDC4421592882006ABC95 /* SetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetController.swift; sourceTree = "<group>"; };
+		220EDC422159249E006ABC95 /* OrganizerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizerController.swift; sourceTree = "<group>"; };
 		220EDC46215928BA006ABC95 /* CardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardController.swift; sourceTree = "<group>"; };
 		220EDC48215929E4006ABC95 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		220EDC4A21592B29006ABC95 /* Group+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+Convenience.swift"; sourceTree = "<group>"; };
-		220EDC4C21592B33006ABC95 /* Set+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+Convenience.swift"; sourceTree = "<group>"; };
+		220EDC4A21592B29006ABC95 /* Organizer+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Organizer+Convenience.swift"; sourceTree = "<group>"; };
 		220EDC4E21592B52006ABC95 /* Card+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+Convenience.swift"; sourceTree = "<group>"; };
 		220EDC50215959CD006ABC95 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		220EDC532159684F006ABC95 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		220EDC57215A72EB006ABC95 /* Group+Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+Encodable.swift"; sourceTree = "<group>"; };
-		220EDC59215A72F3006ABC95 /* Set+Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+Encodable.swift"; sourceTree = "<group>"; };
+		220EDC57215A72EB006ABC95 /* Organizer+Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Organizer+Encodable.swift"; sourceTree = "<group>"; };
 		220EDC5B215A72FB006ABC95 /* Card+Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+Encodable.swift"; sourceTree = "<group>"; };
 		220EDC5E215A9922006ABC95 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		220EDC60215A99CD006ABC95 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		220EDC62215AA69B006ABC95 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		220EDC64215AA83C006ABC95 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		220EDC66215AB0A4006ABC95 /* YourLibraryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourLibraryCollectionViewController.swift; sourceTree = "<group>"; };
-		220EDC68215AC784006ABC95 /* GroupCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewController.swift; sourceTree = "<group>"; };
+		220EDC66215AB0A4006ABC95 /* GroupCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewController.swift; sourceTree = "<group>"; };
 		220EDC6A215ACCB7006ABC95 /* SetCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCollectionViewController.swift; sourceTree = "<group>"; };
 		220EDC6C215BC0CA006ABC95 /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
 		220EDC6E215BCC76006ABC95 /* CreateGroupOrSetAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateGroupOrSetAlert.storyboard; sourceTree = "<group>"; };
@@ -151,8 +141,7 @@
 		220EDC3821591966006ABC95 /* Model Representations */ = {
 			isa = PBXGroup;
 			children = (
-				220EDC3A21591997006ABC95 /* GroupRep.swift */,
-				220EDC3C2159199E006ABC95 /* SetRep.swift */,
+				220EDC3A21591997006ABC95 /* OrganizerRep.swift */,
 				220EDC3E215919A3006ABC95 /* CardRep.swift */,
 			);
 			path = "Model Representations";
@@ -161,8 +150,7 @@
 		220EDC3921591974006ABC95 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				220EDC422159249E006ABC95 /* GroupController.swift */,
-				220EDC4421592882006ABC95 /* SetController.swift */,
+				220EDC422159249E006ABC95 /* OrganizerController.swift */,
 				220EDC46215928BA006ABC95 /* CardController.swift */,
 			);
 			path = "Model Controllers";
@@ -180,8 +168,7 @@
 		220EDC55215A72C4006ABC95 /* Convenience Initializers */ = {
 			isa = PBXGroup;
 			children = (
-				220EDC4A21592B29006ABC95 /* Group+Convenience.swift */,
-				220EDC4C21592B33006ABC95 /* Set+Convenience.swift */,
+				220EDC4A21592B29006ABC95 /* Organizer+Convenience.swift */,
 				220EDC4E21592B52006ABC95 /* Card+Convenience.swift */,
 			);
 			path = "Convenience Initializers";
@@ -190,8 +177,7 @@
 		220EDC56215A72DD006ABC95 /* Encodable */ = {
 			isa = PBXGroup;
 			children = (
-				220EDC57215A72EB006ABC95 /* Group+Encodable.swift */,
-				220EDC59215A72F3006ABC95 /* Set+Encodable.swift */,
+				220EDC57215A72EB006ABC95 /* Organizer+Encodable.swift */,
 				220EDC5B215A72FB006ABC95 /* Card+Encodable.swift */,
 			);
 			path = Encodable;
@@ -203,8 +189,7 @@
 				220EDC5E215A9922006ABC95 /* LoginViewController.swift */,
 				220EDC60215A99CD006ABC95 /* SignUpViewController.swift */,
 				220EDC64215AA83C006ABC95 /* SettingsTableViewController.swift */,
-				220EDC66215AB0A4006ABC95 /* YourLibraryCollectionViewController.swift */,
-				220EDC68215AC784006ABC95 /* GroupCollectionViewController.swift */,
+				220EDC66215AB0A4006ABC95 /* GroupCollectionViewController.swift */,
 				220EDC6A215ACCB7006ABC95 /* SetCollectionViewController.swift */,
 			);
 			path = "View Controllers";
@@ -355,28 +340,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				220EDC3D2159199E006ABC95 /* SetRep.swift in Sources */,
 				220EDC5C215A72FB006ABC95 /* Card+Encodable.swift in Sources */,
-				220EDC58215A72EB006ABC95 /* Group+Encodable.swift in Sources */,
-				220EDC4D21592B33006ABC95 /* Set+Convenience.swift in Sources */,
-				220EDC4B21592B29006ABC95 /* Group+Convenience.swift in Sources */,
-				220EDC432159249F006ABC95 /* GroupController.swift in Sources */,
-				220EDC69215AC784006ABC95 /* GroupCollectionViewController.swift in Sources */,
+				220EDC58215A72EB006ABC95 /* Organizer+Encodable.swift in Sources */,
+				220EDC4B21592B29006ABC95 /* Organizer+Convenience.swift in Sources */,
+				220EDC432159249F006ABC95 /* OrganizerController.swift in Sources */,
 				220EDC61215A99CD006ABC95 /* SignUpViewController.swift in Sources */,
 				220EDC51215959CD006ABC95 /* NetworkDataLoader.swift in Sources */,
 				220EDC6D215BC0CA006ABC95 /* MockDataLoader.swift in Sources */,
-				220EDC3B21591997006ABC95 /* GroupRep.swift in Sources */,
+				220EDC3B21591997006ABC95 /* OrganizerRep.swift in Sources */,
 				220EDC49215929E4006ABC95 /* CoreDataStack.swift in Sources */,
 				220EDC6B215ACCB7006ABC95 /* SetCollectionViewController.swift in Sources */,
 				220EDC3F215919A3006ABC95 /* CardRep.swift in Sources */,
-				220EDC5A215A72F3006ABC95 /* Set+Encodable.swift in Sources */,
 				220EDC5F215A9922006ABC95 /* LoginViewController.swift in Sources */,
 				220EDC4F21592B52006ABC95 /* Card+Convenience.swift in Sources */,
 				220EDC362159194C006ABC95 /* Flashcards.xcdatamodeld in Sources */,
 				220EDC47215928BA006ABC95 /* CardController.swift in Sources */,
 				220EDC65215AA83C006ABC95 /* SettingsTableViewController.swift in Sources */,
-				220EDC4521592882006ABC95 /* SetController.swift in Sources */,
-				220EDC67215AB0A4006ABC95 /* YourLibraryCollectionViewController.swift in Sources */,
+				220EDC67215AB0A4006ABC95 /* GroupCollectionViewController.swift in Sources */,
 				220EDC2021569E9F006ABC95 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

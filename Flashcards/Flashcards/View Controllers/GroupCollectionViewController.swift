@@ -9,32 +9,39 @@
 import UIKit
 import CoreData
 
-class GroupCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate {
+// MARK: - Collection cell enum
+
+enum CollectionCellID: String {
+    case group = "GroupCell"
+    case set = "SetCell"
+}
+
+
+// MARK: - OrganizerViewController protocol
+
+protocol OrganizerViewController {
+    var organizerID: String? { get set }
+}
+
+
+// MARK: - Your Library collection view controller
+
+class GroupCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate, OrganizerViewController {
     
     // MARK: - Properties
     
-    var parentGroupID: String!
-    let groupController = GroupController()
-    let setController = SetController()
-    lazy var groupFRC: NSFetchedResultsController<Group> = {
-        let fetchRequest: NSFetchRequest<Group> = Group.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "parentGroupID == %@", parentGroupID)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
-        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.moc, sectionNameKeyPath: nil, cacheName: nil)
+    var organizerID: String?
+    let organizerController = OrganizerController()
+    lazy var fetchedResultsController: NSFetchedResultsController<Organizer> = {
+        let fetchRequest: NSFetchRequest<Organizer> = Organizer.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "parentGroupID == %@", organizerID ?? "noParentGroup")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "type", ascending: true), NSSortDescriptor(key: "dateCreated", ascending: false)]
+        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.moc, sectionNameKeyPath: "type", cacheName: nil)
         frc.delegate = self
         try! frc.performFetch()
         return frc
     }()
-    lazy var setFRC: NSFetchedResultsController<Set> = {
-        let fetchRequest: NSFetchRequest<Set> = Set.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "parentGroupID == %@", parentGroupID)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
-        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.moc, sectionNameKeyPath: nil, cacheName: nil)
-        frc.delegate = self
-        try! frc.performFetch()
-        return frc
-    }()
-    
+
     
     // MARK: - Actions
     
@@ -57,9 +64,9 @@ class GroupCollectionViewController: UICollectionViewController, NSFetchedResult
             
             switch segmentedControl.selectedSegmentIndex {
             case 0:
-                self.groupController.create(title: title, parentGroupID: self.parentGroupID, context: CoreDataStack.moc)
+                self.organizerController.create(type: .group, title: title, parentGroupID: self.organizerID ?? "noParentGroup", context: CoreDataStack.moc)
             case 1:
-                self.setController.create(title: title, parentGroupID: self.parentGroupID, context: CoreDataStack.moc)
+                self.organizerController.create(type: .set, title: title, parentGroupID: "noParentGroup", context: CoreDataStack.moc)
             default:
                 return
             }
@@ -132,19 +139,13 @@ class GroupCollectionViewController: UICollectionViewController, NSFetchedResult
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // Come back and fix
-        return 2
+        return fetchedResultsController.sections?.count ?? 1
     }
     
     // Have to figure out section titles later
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // Come back and fix
-        switch section {
-        case 0:
-            return groupFRC.fetchedObjects?.count ?? 0
-        default:
-            return setFRC.fetchedObjects?.count ?? 0
-        }
+        return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -163,19 +164,12 @@ class GroupCollectionViewController: UICollectionViewController, NSFetchedResult
     // MARK: - Prepare for segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let indextPath = collectionView.indexPathsForSelectedItems?.first else { return }
-        // Should probably make a protocol for view controllers that have a parentGroup property so I don't have to do the switch case block
-        switch segue.identifier {
-        case "ShowGroupDetail":
-            guard let destinationVC = segue.destination as? GroupCollectionViewController else { return }
-            // Not sure if this will work since I'm using two frc's (one for each section)
-            destinationVC.parentGroupID = groupFRC.object(at: indextPath).identifier
-        case "ShowSetDetail":
-            guard let destinationVC = segue.destination as? SetCollectionViewController else { return }
-            // Not sure if this will work since I'm using two frc's (one for each section)
-            destinationVC.parentGroupID = groupFRC.object(at: indextPath).identifier
-        default:
-            return
-        }
+        guard var organizerDestVC = segue.destination as? OrganizerViewController,
+            let collectionDestVC = segue.destination as? UICollectionViewController,
+            let indextPath = collectionView.indexPathsForSelectedItems?.first else { return }
+        
+        let organizer = fetchedResultsController.object(at: indextPath)
+        organizerDestVC.organizerID = organizer.identifier
+        collectionDestVC.title = organizer.title
     }
 }

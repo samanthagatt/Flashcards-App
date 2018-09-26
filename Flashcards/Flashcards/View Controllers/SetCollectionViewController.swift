@@ -9,15 +9,16 @@
 import UIKit
 import CoreData
 
-class SetCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate {
+class SetCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate, OrganizerViewController {
     
     // MARK: - Properties
     
-    var parentGroupID: String!
-    let groupController = GroupController()
+    var organizerID: String?
+    let organizerController = OrganizerController()
     lazy var cardFRC: NSFetchedResultsController<Card> = {
         let fetchRequest: NSFetchRequest<Card> = Card.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "parentSetID == %@", parentGroupID)
+        // Is there a better way to handle the optional organizerID?
+        fetchRequest.predicate = NSPredicate(format: "parentSetID == %@", organizerID!)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.moc, sectionNameKeyPath: nil, cacheName: nil)
         frc.delegate = self

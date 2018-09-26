@@ -11,6 +11,14 @@ import FirebaseAuth
 
 class SignUpViewController: UIViewController {
     
+    // MARK: - ViewDidLoad
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        passwordTextField.isSecureTextEntry = true
+    }
+    
+    
     // MARK: - Outlets
     
     @IBOutlet weak var usernameTextField: UITextField!

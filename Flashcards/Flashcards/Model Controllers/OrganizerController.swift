@@ -1,5 +1,5 @@
 //
-//  SetController.swift
+//  OrganizerController.swift
 //  Flashcards
 //
 //  Created by Samantha Gatt on 9/24/18.
@@ -10,7 +10,8 @@ import Foundation
 import CoreData
 import FirebaseAuth
 
-class SetController {
+class OrganizerController {
+    static let baseURL = URL(string: "https://samsflashcardsapp.firebaseio.com/")!
     
     // MARK: - Initializer
     
@@ -26,23 +27,23 @@ class SetController {
     
     // MARK: - CRUD
     
-    func create(title: String, dateCreated: Date = Date(), parentGroupID: String, context: NSManagedObjectContext) {
+    func create(type: OrganizerType, title: String, parentGroupID: String, context: NSManagedObjectContext) {
         
-        let set = Set(title: title, dateCreated: dateCreated, parentGroupID: parentGroupID, context: context)
-        put(set: set)
+        let organizer = Organizer(type: type, title: title, parentGroupID: parentGroupID, context: context)
+        put(organizer: organizer)
         saveToPersistentStore(context: context)
     }
     
-    func updateTitle(set: Set, title: String, context: NSManagedObjectContext) {
-        set.title = title
-        set.dateUpdated = Date()
-        put(set: set)
+    func updateTitle(organizer: Organizer, title: String, context: NSManagedObjectContext) {
+        organizer.title = title
+        organizer.dateUpdated = Date()
+        put(organizer: organizer)
         saveToPersistentStore(context: context)
     }
     
-    func delete(set: Set, context: NSManagedObjectContext) {
-        deleteFromServer(set: set)
-        context.delete(set)
+    func delete(organizer: Organizer, context: NSManagedObjectContext) {
+        deleteFromServer(organizer: organizer)
+        context.delete(organizer)
         saveToPersistentStore(context: context)
     }
     
@@ -60,8 +61,8 @@ class SetController {
         }
     }
     
-    func loadSingleSet(id: String, context: NSManagedObjectContext) -> Set? {
-        let fetchRequest: NSFetchRequest<Set> = Set.fetchRequest()
+    func loadSingleOrganizer(id: String, context: NSManagedObjectContext) -> Organizer? {
+        let fetchRequest: NSFetchRequest<Organizer> = Organizer.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "identifier %@", id)
         
         do {
@@ -75,25 +76,32 @@ class SetController {
     
     // MARK: - Networking
     
-    func put(set: Set, completion: @escaping (Error?) -> Void = { _ in }) {
+    func put(organizer: Organizer, completion: @escaping (Error?) -> Void = { _ in }) {
+        
+        var pathComponent: String?
+        if organizer.type == OrganizerType.group.rawValue {
+            pathComponent = "groups"
+        } else if organizer.type == OrganizerType.set.rawValue {
+            pathComponent = "sets"
+        }
         
         guard let userUID = Auth.auth().currentUser?.uid,
-            let parentGroupID = set.parentGroupID,
-            let identifier = set.identifier else { completion(NSError()); return }
+            let parentGroupID = organizer.parentGroupID,
+            let identifier = organizer.identifier,
+            let path = pathComponent else { completion(NSError()); return }
         
-        let url = GroupController.baseURL
+        let url = OrganizerController.baseURL
             .appendingPathComponent(userUID)
-            .appendingPathComponent("sets")
+            .appendingPathComponent(path)
             .appendingPathComponent(parentGroupID)
             .appendingPathComponent(identifier)
             .appendingPathExtension("json")
-        
         
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         
         do {
-            request.httpBody = try JSONEncoder().encode(set)
+            request.httpBody = try JSONEncoder().encode(organizer)
         } catch {
             NSLog("Error encoding group: \(error)")
             completion(error)
@@ -108,16 +116,24 @@ class SetController {
             completion(nil)
         }
     }
-    
-    func deleteFromServer(set: Set, completion: @escaping (Error?) -> Void = { _ in }) {
+
+    func deleteFromServer(organizer: Organizer, completion: @escaping (Error?) -> Void = { _ in }) {
+        
+        var pathComponent: String?
+        if organizer.type == OrganizerType.group.rawValue {
+            pathComponent = "groups"
+        } else if organizer.type == OrganizerType.set.rawValue {
+            pathComponent = "sets"
+        }
         
         guard let userUID = Auth.auth().currentUser?.uid,
-            let parentGroupID = set.parentGroupID,
-            let identifier = set.identifier else { completion(NSError()); return }
+            let parentGroupID = organizer.parentGroupID,
+            let identifier = organizer.identifier,
+            let path = pathComponent else { completion(NSError()); return }
         
-        let url = GroupController.baseURL
+        let url = OrganizerController.baseURL
             .appendingPathComponent(userUID)
-            .appendingPathComponent("groups")
+            .appendingPathComponent(path)
             .appendingPathComponent(parentGroupID)
             .appendingPathComponent(identifier)
             .appendingPathExtension("json")
@@ -125,7 +141,7 @@ class SetController {
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         
-        dataLoader.uploadData(to: request) { (_, error) in
+        dataLoader.deleteData(with: request) { (_, error) in
             if let error = error {
                 NSLog("Error deleting group: \(error)")
                 completion(error)

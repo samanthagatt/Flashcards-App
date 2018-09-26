@@ -1,5 +1,5 @@
 //
-//  Group+Encodable.swift
+//  Organizer+Encodable.swift
 //  Flashcards
 //
 //  Created by Samantha Gatt on 9/25/18.
@@ -8,9 +8,10 @@
 
 import Foundation
 
-extension Group: Encodable {
+extension Organizer: Encodable {
     
     enum CodingKeys: String, CodingKey {
+        case type
         case title
         case dateCreated
         case dateUpdated
@@ -22,6 +23,7 @@ extension Group: Encodable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
+        try container.encode(type, forKey: .type)
         try container.encode(title, forKey: .title)
         try container.encode(dateCreated, forKey: .dateCreated)
         try container.encode(dateUpdated, forKey: .dateUpdated)
