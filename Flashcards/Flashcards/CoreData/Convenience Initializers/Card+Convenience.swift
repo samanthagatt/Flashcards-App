@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 extension Card {
-    convenience init(front: String, back: String?, dateCreated: Date = Date(), identifier: String = UUID().uuidString, context: NSManagedObjectContext = CoreDataStack.moc) {
+    convenience init(front: String, back: String?, dateCreated: Date = Date(), identifier: String = UUID().uuidString, parentSetID: String, context: NSManagedObjectContext = CoreDataStack.moc) {
         
         self.init(context: context)
         self.front = front
@@ -18,9 +18,10 @@ extension Card {
         self.dateCreated = dateCreated
         self.dateUpdated = dateCreated
         self.identifier = identifier
+        self.parentSetID = parentSetID
     }
     
     convenience init(fromRep cardRep: CardRep, context: NSManagedObjectContext = CoreDataStack.moc) {
-        self.init(front: cardRep.front, back: cardRep.back, dateCreated: cardRep.dateCreated, identifier: cardRep.identifier, context: context)
+        self.init(front: cardRep.front, back: cardRep.back, dateCreated: cardRep.dateCreated, identifier: cardRep.identifier, parentSetID: cardRep.parentSetID, context: context)
     }
 }

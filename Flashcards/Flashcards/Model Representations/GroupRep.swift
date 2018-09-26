@@ -9,16 +9,16 @@
 import Foundation
 
 // Structs can't have recursive attributes since the compiler needs to know how much space to reserve for a given instance
-class GroupRep: Codable {
+struct GroupRep: Codable, Equatable {
     
     // MARK: - Initializer
     
-    init(title: String, dateCreated: Date, urlString: String, identifier: String = UUID().uuidString) {
+    init(title: String, dateCreated: Date, identifier: String = UUID().uuidString, parentGroupID: String) {
         self.title = title
         self.dateCreated = dateCreated
         self.dateUpdated = dateCreated
-        self.urlString = urlString
         self.identifier = identifier
+        self.parentGroupID = parentGroupID
     }
     
     
@@ -27,37 +27,18 @@ class GroupRep: Codable {
     var title: String
     let dateCreated: Date
     var dateUpdated: Date
-    var urlString: String
     var identifier: String
-    
-    var parentGroupRep: GroupRep?
-    var setReps: [SetRep]?
-    var groupReps: [GroupRep]?
-}
-
-
-// MARK: - GroupRep Equatable extension
-
-extension GroupRep: Equatable {
-    static func == (lhs: GroupRep, rhs: GroupRep) -> Bool {
-        return
-            lhs.setReps == rhs.setReps &&
-                lhs.groupReps == rhs.groupReps &&
-                lhs.parentGroupRep == rhs.parentGroupRep
-    }
+    var parentGroupID: String
 }
 
 
 // MARK: - GroupRep and Group equatability
 
 func == (lhs: GroupRep, rhs: Group) -> Bool {
-    return
-        lhs.title == rhs.title &&
+    return lhs.title == rhs.title &&
         lhs.dateCreated == rhs.dateCreated &&
-        lhs.dateUpdated == rhs.dateUpdated // &&
-//        lhs.parentGroupRep == rhs.parentGroup &&
-//        NSSet(array: lhs.setReps) == rhs.sets &&
-//        NSSet(array: lhs.groupReps) == rhs.groups
+        lhs.dateUpdated == rhs.dateUpdated &&
+        lhs.identifier == rhs.identifier
 }
 
 func == (lhs: Group, rhs: GroupRep) -> Bool {

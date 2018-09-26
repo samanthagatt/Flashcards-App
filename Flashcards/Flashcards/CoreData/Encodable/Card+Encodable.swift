@@ -16,7 +16,7 @@ extension Card: Encodable {
         case dateCreated
         case dateUpdated
         case identifier
-        case parentSet
+        case parentSetID
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -27,6 +27,6 @@ extension Card: Encodable {
         try container.encode(dateCreated, forKey: .dateCreated)
         try container.encode(dateUpdated, forKey: .dateUpdated)
         try container.encode(identifier, forKey: .identifier)
-        try container.encode(parentSet, forKey: .parentSet)
+        try container.encode(parentSetID, forKey: .parentSetID)
     }
 }

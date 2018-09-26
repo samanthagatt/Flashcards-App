@@ -10,16 +10,17 @@ import Foundation
 import CoreData
 
 extension Set {
-    convenience init(title: String, dateCreated: Date = Date(), identifier: String = UUID().uuidString, context: NSManagedObjectContext = CoreDataStack.moc) {
+    convenience init(title: String, dateCreated: Date = Date(), identifier: String = UUID().uuidString, parentGroupID: String, context: NSManagedObjectContext = CoreDataStack.moc) {
         
         self.init(context: context)
         self.title = title
         self.dateCreated = dateCreated
         self.dateUpdated = dateCreated
         self.identifier = identifier
+        self.parentGroupID = parentGroupID
     }
     
     convenience init(fromRep setRep: SetRep, context: NSManagedObjectContext = CoreDataStack.moc) {
-        self.init(title: setRep.title, dateCreated: setRep.dateCreated, identifier: setRep.identifier, context: context)
+        self.init(title: setRep.title, dateCreated: setRep.dateCreated, identifier: setRep.identifier, parentGroupID: setRep.parentGroupID, context: context)
     }
 }

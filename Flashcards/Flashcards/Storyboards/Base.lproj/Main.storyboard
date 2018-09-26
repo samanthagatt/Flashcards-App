@@ -130,7 +130,7 @@
         <!--Group Title-->
         <scene sceneID="UO5-ij-Ywn">
             <objects>
-                <collectionViewController id="tHh-uW-akO" sceneMemberID="viewController">
+                <collectionViewController id="tHh-uW-akO" customClass="GroupCollectionViewController" customModule="Flashcards" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="FLd-R7-zez">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -221,7 +221,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Group Title" id="ZBl-KG-nGM">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="WYe-N0-OHJ"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="WYe-N0-OHJ">
+                            <connections>
+                                <action selector="create:" destination="tHh-uW-akO" id="gIx-Yv-xeP"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FeS-UI-Qcu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -231,7 +235,7 @@
         <!--Set Title-->
         <scene sceneID="LIE-Vs-Ijn">
             <objects>
-                <collectionViewController id="vwk-SE-ruI" sceneMemberID="viewController">
+                <collectionViewController id="vwk-SE-ruI" customClass="SetCollectionViewController" customModule="Flashcards" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="tMO-cR-2Qt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -312,6 +316,6 @@
         <image name="settings" width="58" height="51"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OTe-EQ-Cuf"/>
+        <segue reference="HXQ-WJ-dqt"/>
     </inferredMetricsTieBreakers>
 </document>

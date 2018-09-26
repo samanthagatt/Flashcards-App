@@ -10,18 +10,18 @@ import Foundation
 import CoreData
 
 extension Group {
-    convenience init(title: String, dateCreated: Date = Date(), urlString: String, identifier: String = UUID().uuidString, context: NSManagedObjectContext = CoreDataStack.moc) {
+    convenience init(title: String, dateCreated: Date = Date(), identifier: String = UUID().uuidString, parentGroupID: String, context: NSManagedObjectContext = CoreDataStack.moc) {
         
         self.init(context: context)
         self.title = title
         self.dateCreated = dateCreated
         self.dateUpdated = dateCreated
-        self.urlString = urlString
         self.identifier = identifier
+        self.parentGroupID = parentGroupID
     }
     
     convenience init(fromRep groupRep: GroupRep, context: NSManagedObjectContext = CoreDataStack.moc) {
         
-        self.init(title: groupRep.title, dateCreated: groupRep.dateCreated, urlString: groupRep.urlString, identifier: groupRep.identifier, context: context)
+        self.init(title: groupRep.title, dateCreated: groupRep.dateCreated, identifier: groupRep.identifier, parentGroupID: groupRep.parentGroupID, context: context)
     }
 }

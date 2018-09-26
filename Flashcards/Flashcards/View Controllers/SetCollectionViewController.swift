@@ -13,11 +13,11 @@ class SetCollectionViewController: UICollectionViewController, NSFetchedResultsC
     
     // MARK: - Properties
     
-    var parentGroup: Group!
+    var parentGroupID: String!
     let groupController = GroupController()
     lazy var cardFRC: NSFetchedResultsController<Card> = {
         let fetchRequest: NSFetchRequest<Card> = Card.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "ANY parentGroup", parentGroup)
+        fetchRequest.predicate = NSPredicate(format: "parentGroupID", parentGroupID)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.moc, sectionNameKeyPath: nil, cacheName: nil)
         frc.delegate = self

@@ -15,8 +15,7 @@ extension Set: Encodable {
         case dateCreated
         case dateUpdated
         case identifier
-        case parentGroup
-        case cards
+        case parentGroupID
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -26,17 +25,6 @@ extension Set: Encodable {
         try container.encode(dateCreated, forKey: .dateCreated)
         try container.encode(dateUpdated, forKey: .dateUpdated)
         try container.encode(identifier, forKey: .identifier)
-        try container.encodeIfPresent(parentGroup, forKey: .parentGroup)
-        
-        var arrayOfCards: [Card] = []
-        if let cards = cards {
-            for card in cards {
-                guard let childCard = card as? Card else { continue }
-                arrayOfCards.append(childCard)
-            }
-        }
-        if arrayOfCards != [] {
-            try container.encode(arrayOfCards, forKey: .cards)
-        }
+        try container.encode(parentGroupID, forKey: .parentGroupID)
     }
 }

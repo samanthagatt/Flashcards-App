@@ -29,28 +29,9 @@ class GroupController {
     
     // MARK: - CRUD
     
-    func create(title: String, dateCreated: Date = Date(), parentGroup: Group?, context: NSManagedObjectContext) {
+    func create(title: String, dateCreated: Date = Date(), parentGroupID: String, context: NSManagedObjectContext) {
         
-        guard let userUID = Auth.auth().currentUser?.uid else { return }
-        var url: URL
-        let uuidString = UUID().uuidString
-        if let parentGroup = parentGroup,
-            let parentURLString = parentGroup.urlString,
-            let parentURL = URL(string: parentURLString) {
-           
-            url = parentURL
-                .appendingPathComponent("groups")
-                .appendingPathComponent(uuidString)
-                .appendingPathExtension("json")
-        } else {
-            url = GroupController.baseURL
-                .appendingPathComponent(userUID)
-                .appendingPathComponent("groups")
-                .appendingPathComponent(uuidString)
-                .appendingPathExtension("json")
-        }
-        
-        let group = Group(title: title, dateCreated: dateCreated, urlString: url.absoluteString, identifier: uuidString, context: context)
+        let group = Group(title: title, dateCreated: dateCreated, parentGroupID: parentGroupID, context: context)
         put(group: group)
         saveToPersistentStore(context: context)
     }
@@ -98,10 +79,20 @@ class GroupController {
     // MARK: - Networking
     
     func put(group: Group, completion: @escaping (Error?) -> Void = { _ in }) {
-        guard let url = group.urlString,
-            let requestURL = URL(string: url) else { completion(NSError()); return }
         
-        var request = URLRequest(url: requestURL)
+        guard let userUID = Auth.auth().currentUser?.uid,
+            let parentGroupID = group.parentGroupID,
+            let identifier = group.identifier else { completion(NSError()); return }
+        
+        let url = GroupController.baseURL
+            .appendingPathComponent(userUID)
+            .appendingPathComponent("groups")
+            .appendingPathComponent(parentGroupID)
+            .appendingPathComponent(identifier)
+            .appendingPathExtension("json")
+        
+        
+        var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         
         do {
@@ -122,10 +113,19 @@ class GroupController {
     }
 
     func deleteFromServer(group: Group, completion: @escaping (Error?) -> Void = { _ in }) {
-        guard let url = group.urlString,
-            let requestURL = URL(string: url) else { completion(NSError()); return }
         
-        var request = URLRequest(url: requestURL)
+        guard let userUID = Auth.auth().currentUser?.uid,
+            let parentGroupID = group.parentGroupID,
+            let identifier = group.identifier else { completion(NSError()); return }
+        
+        let url = GroupController.baseURL
+            .appendingPathComponent(userUID)
+            .appendingPathComponent("groups")
+            .appendingPathComponent(parentGroupID)
+            .appendingPathComponent(identifier)
+            .appendingPathExtension("json")
+        
+        var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         
         URLSession.shared.dataTask(with: request) { (_, _, error) in

@@ -27,7 +27,7 @@ class YourLibraryCollectionViewController: UICollectionViewController, NSFetched
     let setController = SetController()
     lazy var groupFRC: NSFetchedResultsController<Group> = {
         let fetchRequest: NSFetchRequest<Group> = Group.fetchRequest()
-        // fetchRequest.predicate = NSPredicate(format: "ANY parentGroup == nil")
+        fetchRequest.predicate = NSPredicate(format: "parentGroupID == %@", "noParentGroup")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.moc, sectionNameKeyPath: nil, cacheName: nil)
         frc.delegate = self
@@ -36,7 +36,7 @@ class YourLibraryCollectionViewController: UICollectionViewController, NSFetched
     }()
     lazy var setFRC: NSFetchedResultsController<Set> = {
         let fetchRequest: NSFetchRequest<Set> = Set.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "ANY parentGroup == nil")
+        fetchRequest.predicate = NSPredicate(format: "parentGroupID == %@", "noParentGroup")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.moc, sectionNameKeyPath: nil, cacheName: nil)
         frc.delegate = self
@@ -51,7 +51,7 @@ class YourLibraryCollectionViewController: UICollectionViewController, NSFetched
         // Come back later and create my own controller that conforms to UIAlertController or add an extension?
         let alert = UIAlertController(title: "Create", message: nil, preferredStyle: .alert)
         let segmentedControl = UISegmentedControl(items: ["Group", "Set"])
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.selectedSegmentIndex = 0
         alert.view.addSubview(segmentedControl)
         var titleTextField: UITextField!
         alert.addTextField { (textField) in
@@ -66,7 +66,7 @@ class YourLibraryCollectionViewController: UICollectionViewController, NSFetched
             
             switch segmentedControl.selectedSegmentIndex {
             case 0:
-                self.groupController.create(title: title, parentGroup: nil, context: CoreDataStack.moc)
+                self.groupController.create(title: title, parentGroupID: "noParentGroup", context: CoreDataStack.moc)
             case 1:
                 self.setController.create()
             default:
@@ -179,11 +179,11 @@ class YourLibraryCollectionViewController: UICollectionViewController, NSFetched
         case "ShowGroupDetail":
             guard let destinationVC = segue.destination as? GroupCollectionViewController else { return }
             // Not sure if this will work since I'm using two frc's (one for each section)
-            destinationVC.parentGroup = groupFRC.object(at: indextPath)
+            destinationVC.parentGroupID = groupFRC.object(at: indextPath).identifier
         case "ShowSetDetail":
             guard let destinationVC = segue.destination as? SetCollectionViewController else { return }
             // Not sure if this will work since I'm using two frc's (one for each section)
-            destinationVC.parentGroup = groupFRC.object(at: indextPath)
+            destinationVC.parentGroupID = groupFRC.object(at: indextPath).identifier
         default:
             return
         }
