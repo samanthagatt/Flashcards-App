@@ -20,7 +20,7 @@ enum CollectionCellID: String {
 // MARK: - OrganizerViewController protocol
 
 protocol OrganizerViewController {
-    var organizerID: String? { get set }
+    var parentOrganizer: Organizer? { get set }
 }
 
 
@@ -28,13 +28,22 @@ protocol OrganizerViewController {
 
 class GroupCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate, OrganizerViewController, CreateOrganizerAlertControllerDelegate {
     
+    // MARK: - ViewWillAppear
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        organizerController.fetchOrganizers(in: parentOrganizer)
+    }
+    
+    
     // MARK: - Properties
     
-    var organizerID: String?
+    var parentOrganizer: Organizer?
     let organizerController = OrganizerController()
     lazy var fetchedResultsController: NSFetchedResultsController<Organizer> = {
         let fetchRequest: NSFetchRequest<Organizer> = Organizer.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "parentGroupID == %@", organizerID ?? "noParentGroup")
+        fetchRequest.predicate = NSPredicate(format: "parentGroupID == %@", parentOrganizer?.identifier! ?? "noParentGroup")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "type", ascending: true), NSSortDescriptor(key: "dateCreated", ascending: false)]
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.moc, sectionNameKeyPath: "type", cacheName: nil)
         frc.delegate = self
@@ -144,7 +153,7 @@ class GroupCollectionViewController: UICollectionViewController, NSFetchedResult
     // MARK: - Alert controller delegate
     
     func createOrganizer(type: OrganizerType, title: String) {
-        self.organizerController.create(type: type, title: title, parentGroupID: self.organizerID ?? "noParentGroup", context: CoreDataStack.moc)
+        self.organizerController.create(type: type, title: title, parentGroupID: self.parentOrganizer?.identifier ?? "noParentGroup", context: CoreDataStack.moc)
     }
     
     
@@ -156,7 +165,7 @@ class GroupCollectionViewController: UICollectionViewController, NSFetchedResult
             let indexPath = collectionView.indexPathsForSelectedItems?.first else { return }
         
         let organizer = fetchedResultsController.object(at: indexPath)
-        organizerDestVC.organizerID = organizer.identifier
+        organizerDestVC.parentOrganizer = organizer
         collectionDestVC.title = organizer.title
     }
 }

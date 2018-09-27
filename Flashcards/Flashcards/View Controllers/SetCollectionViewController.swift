@@ -13,12 +13,12 @@ class SetCollectionViewController: UICollectionViewController, NSFetchedResultsC
     
     // MARK: - Properties
     
-    var organizerID: String?
+    var parentOrganizer: Organizer?
     let organizerController = OrganizerController()
     lazy var cardFRC: NSFetchedResultsController<Card> = {
         let fetchRequest: NSFetchRequest<Card> = Card.fetchRequest()
         // Is there a better way to handle the optional organizerID?
-        fetchRequest.predicate = NSPredicate(format: "parentSetID == %@", organizerID!)
+        fetchRequest.predicate = NSPredicate(format: "parentSetID == %@", parentOrganizer!.identifier!)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.moc, sectionNameKeyPath: nil, cacheName: nil)
         frc.delegate = self

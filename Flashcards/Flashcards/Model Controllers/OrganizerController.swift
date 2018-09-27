@@ -63,7 +63,7 @@ class OrganizerController {
     
     func loadSingleOrganizer(id: String, context: NSManagedObjectContext) -> Organizer? {
         let fetchRequest: NSFetchRequest<Organizer> = Organizer.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "identifier %@", id)
+        fetchRequest.predicate = NSPredicate(format: "identifier == %@", id)
         
         do {
             return try context.fetch(fetchRequest).first
@@ -73,29 +73,88 @@ class OrganizerController {
         }
     }
     
+    func update(_ organizer: Organizer, from organizerRep: OrganizerRep) {
+        organizer.title = organizerRep.title
+        organizer.parentGroupID = organizerRep.parentGroupID
+    }
+    
+    func updateOrganizers(from organizerReps: [OrganizerRep], context: NSManagedObjectContext) throws {
+        context.performAndWait {
+            for organizerRep in organizerReps {
+                let organizer = loadSingleOrganizer(id: organizerRep.identifier, context: context)
+                if let organizer = organizer {
+                    if organizer != organizerRep {
+                        self.update(organizer, from: organizerRep)
+                    }
+                } else {
+                    _ = Organizer(fromRep: organizerRep, context: context)
+                }
+            saveToPersistentStore(context: context)
+        }
+    }
+    }
+    
     
     // MARK: - Networking
     
+    func createURL(for organizer: Organizer?, isParent: Bool = false) -> URL? {
+        
+        guard let userUID = Auth.auth().currentUser?.uid else { return nil }
+        
+        if isParent {
+            let url = OrganizerController.baseURL
+                .appendingPathComponent("users")
+                .appendingPathComponent(userUID)
+                .appendingPathComponent(organizer?.identifier ?? "noParentGroup")
+                .appendingPathExtension("json")
+            return url
+            
+        } else {
+            guard let parentGroupID = organizer?.parentGroupID,
+                let identifier = organizer?.identifier else { return nil }
+            
+            let url = OrganizerController.baseURL
+                .appendingPathComponent("users")
+                .appendingPathComponent(userUID)
+                .appendingPathComponent(parentGroupID)
+                .appendingPathComponent(identifier)
+                .appendingPathExtension("json")
+            return url
+        }
+    }
+    
+    func fetchOrganizers(in organizer: Organizer?, completion: @escaping (Error?) -> Void = { _ in }) {
+        
+        guard let url = createURL(for: organizer, isParent: true) else { completion(NSError()); return }
+        
+        dataLoader.loadData(from: url) { (data, error) in
+            
+            if let error = error {
+                NSLog("Error fetching entries: \(error)")
+                completion(error)
+                return
+            }
+            
+            guard let data = data else {
+                completion(error)
+                return
+            }
+            
+            do {
+                let organizers = try JSONDecoder().decode([String: OrganizerRep].self, from: data).compactMap { $0.value }
+                let backgroundContext = CoreDataStack.shared.container.newBackgroundContext()
+                try self.updateOrganizers(from: organizers, context: backgroundContext)
+                completion(nil)
+            } catch {
+                completion(error)
+                return
+            }
+        }
+    }
+    
     func put(organizer: Organizer, completion: @escaping (Error?) -> Void = { _ in }) {
         
-        var pathComponent: String?
-        if organizer.type == OrganizerType.group.rawValue {
-            pathComponent = "groups"
-        } else if organizer.type == OrganizerType.set.rawValue {
-            pathComponent = "sets"
-        }
-        
-        guard let userUID = Auth.auth().currentUser?.uid,
-            let parentGroupID = organizer.parentGroupID,
-            let identifier = organizer.identifier,
-            let path = pathComponent else { completion(NSError()); return }
-        
-        let url = OrganizerController.baseURL
-            .appendingPathComponent(userUID)
-            .appendingPathComponent(path)
-            .appendingPathComponent(parentGroupID)
-            .appendingPathComponent(identifier)
-            .appendingPathExtension("json")
+        guard let url = createURL(for: organizer) else { completion(NSError()); return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -119,24 +178,7 @@ class OrganizerController {
 
     func deleteFromServer(organizer: Organizer, completion: @escaping (Error?) -> Void = { _ in }) {
         
-        var pathComponent: String?
-        if organizer.type == OrganizerType.group.rawValue {
-            pathComponent = "groups"
-        } else if organizer.type == OrganizerType.set.rawValue {
-            pathComponent = "sets"
-        }
-        
-        guard let userUID = Auth.auth().currentUser?.uid,
-            let parentGroupID = organizer.parentGroupID,
-            let identifier = organizer.identifier,
-            let path = pathComponent else { completion(NSError()); return }
-        
-        let url = OrganizerController.baseURL
-            .appendingPathComponent(userUID)
-            .appendingPathComponent(path)
-            .appendingPathComponent(parentGroupID)
-            .appendingPathComponent(identifier)
-            .appendingPathExtension("json")
+        guard let url = createURL(for: organizer) else { completion(NSError()); return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
