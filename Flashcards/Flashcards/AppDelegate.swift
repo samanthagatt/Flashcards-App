@@ -33,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
         }
         
+        Appearance.setUpColoredTheme()
+        
         return true
     }
 }

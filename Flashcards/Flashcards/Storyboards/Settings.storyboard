@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -86,6 +87,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALh-zF-GxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-447.19999999999999" y="-20.239880059970016"/>
+        </scene>
+        <!--Create Organizer Alert Controller-->
+        <scene sceneID="TFf-cV-dcZ">
+            <objects>
+                <viewController id="l0o-5K-b3e" customClass="CreateOrganizerAlertController" customModule="Flashcards" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Etq-Dm-Hd0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ez-Fw-tFW">
+                                <rect key="frame" x="62.5" y="277.5" width="250" height="112.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="sze-zj-4Ps">
+                                        <rect key="frame" x="0.0" y="16" width="250" height="96.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcq-YZ-0Wl">
+                                                <rect key="frame" x="72.5" y="0.0" width="105" height="38.5"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="28"/>
+                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lm5-jt-ojr">
+                                                <rect key="frame" x="94" y="61.5" width="62" height="35"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" red="0.55461273129999999" green="0.80065308550000003" blue="0.58587016530000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancel:" destination="l0o-5K-b3e" eventType="touchUpInside" id="ye8-RC-MzC"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="sze-zj-4Ps" secondAttribute="trailing" id="7Cl-Nt-1NS"/>
+                                    <constraint firstItem="sze-zj-4Ps" firstAttribute="top" secondItem="9Ez-Fw-tFW" secondAttribute="top" constant="16" id="HfT-BA-WdT"/>
+                                    <constraint firstAttribute="bottom" secondItem="sze-zj-4Ps" secondAttribute="bottom" id="XjF-bI-DH4"/>
+                                    <constraint firstItem="sze-zj-4Ps" firstAttribute="leading" secondItem="9Ez-Fw-tFW" secondAttribute="leading" id="hlR-KX-juf"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9Ez-Fw-tFW" firstAttribute="width" secondItem="Etq-Dm-Hd0" secondAttribute="width" multiplier="2/3" id="E5a-AK-btW"/>
+                            <constraint firstItem="9Ez-Fw-tFW" firstAttribute="centerX" secondItem="Etq-Dm-Hd0" secondAttribute="centerX" id="SAo-5a-Q3J"/>
+                            <constraint firstItem="9Ez-Fw-tFW" firstAttribute="centerY" secondItem="Etq-Dm-Hd0" secondAttribute="centerY" id="adC-zt-vo9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wmh-J3-VdV"/>
+                    </view>
+                    <connections>
+                        <outlet property="alertView" destination="9Ez-Fw-tFW" id="rcf-eW-Iyv"/>
+                        <outlet property="cancelButton" destination="lm5-jt-ojr" id="qaI-K2-DCd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zth-YQ-aIN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34" y="716"/>
         </scene>
     </scenes>
 </document>

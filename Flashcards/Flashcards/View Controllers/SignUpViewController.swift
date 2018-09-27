@@ -15,6 +15,14 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let greenColor = UIColor(red: 141.0/255.0, green: 204.0/255.0, blue: 149.0/255.0, alpha: 1.0)
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.view.bounds
+        gradientLayer.colors = [greenColor.cgColor, UIColor.white.cgColor]
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
+        
         passwordTextField.isSecureTextEntry = true
     }
     
@@ -24,6 +32,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signUpButton: UIButton!
     
     
     // MARK: - Actions
@@ -53,9 +62,5 @@ class SignUpViewController: UIViewController {
                 self.dismiss(animated: true, completion: nil)
             }
         }
-    }
-    
-    @IBAction func goBack(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
     }
 }

@@ -20,6 +20,12 @@ class CardDetailViewController: UIViewController {
         cardView.layer.shadowRadius = 5.0
         
         textView.text = card?.front
+        
+        let greenColor = UIColor(red: 141.0/255.0, green: 204.0/255.0, blue: 149.0/255.0, alpha: 1.0)
+        flipButton.layer.borderColor = greenColor.cgColor
+        flipButton.layer.borderWidth = 4.0
+        flipButton.layer.cornerRadius = flipButton.frame.height / 2
+        flipButton.clipsToBounds = true
     }
     
     
@@ -34,26 +40,21 @@ class CardDetailViewController: UIViewController {
     
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var flipButton: UIButton!
     
     
     // MARK: - Actions
     
     @IBAction func save(_ sender: Any) {
         saveCard()
+        textView.resignFirstResponder()
     }
     
     @IBAction func flip(_ sender: Any) {
         guard let card = card else { return }
         if textView.text != card.front && textView.text != card.back {
-            let alert = UIAlertController(title: "Uh Oh!", message: "Looks like you haven't saved your changes", preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            let saveAction = UIAlertAction(title: "Save", style: .default) { (_) in
-                self.saveCard()
-                self.flipCard(card)
-            }
-            alert.addAction(cancelAction)
-            alert.addAction(saveAction)
-            self.present(alert, animated: true, completion: nil)
+            self.saveCard()
+            self.flipCard(card)
         } else {
             flipCard(card)
         }
@@ -79,11 +80,13 @@ class CardDetailViewController: UIViewController {
                 self.textView.text = card.back
             })
             isFront = false
+            flipButton.setTitle("Flip to front", for: .normal)
         } else if textView.text == card.back {
             UIView.transition(with: cardView, duration: 1.0, options: [.transitionFlipFromRight], animations: {
                 self.textView.text = card.front
             })
             isFront = true
+            flipButton.setTitle("Flip to back", for: .normal)
         }
         textView.resignFirstResponder()
     }

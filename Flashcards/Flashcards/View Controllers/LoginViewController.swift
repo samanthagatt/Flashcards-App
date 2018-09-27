@@ -15,6 +15,27 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let greenColor = UIColor(red: 141.0/255.0, green: 204.0/255.0, blue: 149.0/255.0, alpha: 1.0)
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.view.bounds
+        gradientLayer.colors = [greenColor.cgColor, UIColor.white.cgColor]
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
+        
+        let emailTextFieldBottomBorder = UIView(frame: CGRect(x: 0, y: emailTextField.frame.size.height, width: emailTextField.frame.size.width, height: 2))
+        emailTextFieldBottomBorder.backgroundColor = UIColor.lightGray
+        emailTextField.addSubview(emailTextFieldBottomBorder)
+        
+        let passwordTextFieldBottomBorder = UIView(frame: CGRect(x: 0, y: passwordTextField.frame.size.height, width: passwordTextField.frame.size.width, height: 2))
+        passwordTextFieldBottomBorder.backgroundColor = UIColor.lightGray
+        passwordTextField.addSubview(passwordTextFieldBottomBorder)
+        
+        loginButton.layer.borderColor = greenColor.cgColor
+        loginButton.layer.borderWidth = 2.0
+        loginButton.layer.cornerRadius = loginButton.frame.height / 2
+        loginButton.clipsToBounds = true
+        
         passwordTextField.isSecureTextEntry = true
     }
     
@@ -23,6 +44,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     
     
     // MARK: - Actions
@@ -42,9 +64,7 @@ class LoginViewController: UIViewController {
                 print("Error logging in")
             }
         }
-    }
-    
-    @IBAction func goBack(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        
+        passwordTextField.text = ""
     }
 }

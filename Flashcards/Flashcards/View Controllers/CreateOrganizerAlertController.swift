@@ -31,7 +31,7 @@ class CreateOrganizerAlertController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         view.layoutIfNeeded()
-        
+                
         let cancelButtonTopBorder = UIView(frame: CGRect(x: 0, y: 0, width: cancelButton.frame.size.width, height: 1))
         cancelButtonTopBorder.backgroundColor = UIColor.lightGray
         let createButtonTopBorder = UIView(frame: CGRect(x: 0, y: 0, width: createButton.frame.size.width, height: 1))

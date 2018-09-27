@@ -6,7 +6,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,64 +18,67 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ny-Yy-vxD">
-                                <rect key="frame" x="62.5" y="151.5" width="250" height="364"/>
+                                <rect key="frame" x="62.5" y="117" width="250" height="433"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IXe-kW-6UM">
-                                        <rect key="frame" x="0.0" y="16" width="250" height="348"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="IXe-kW-6UM">
+                                        <rect key="frame" x="0.0" y="16" width="250" height="417"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKJ-uz-aey">
-                                                <rect key="frame" x="42.5" y="0.0" width="165.5" height="33.5"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="40" y="0.0" width="170.5" height="38.5"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="28"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qf9-DY-dwT">
-                                                <rect key="frame" x="72.5" y="41.5" width="105" height="29"/>
+                                                <rect key="frame" x="62.5" y="61.5" width="125" height="31"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="125" id="Mz9-DB-KKV"/>
+                                                    <constraint firstAttribute="height" constant="30" id="ads-sF-EXs"/>
+                                                </constraints>
                                                 <segments>
                                                     <segment title="Group"/>
                                                     <segment title="Set"/>
                                                 </segments>
+                                                <color key="tintColor" red="0.55461273129999999" green="0.80065308550000003" blue="0.58587016530000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="switchImage:" destination="IXw-VP-g2p" eventType="valueChanged" id="s4R-NS-7J0"/>
                                                 </connections>
                                             </segmentedControl>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group" translatesAutoresizingMaskIntoConstraints="NO" id="4E5-lg-DMH">
-                                                <rect key="frame" x="16" y="77.5" width="218" height="166.5"/>
+                                                <rect key="frame" x="16" y="114.5" width="218" height="166.5"/>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JmA-Fz-0KP">
-                                                <rect key="frame" x="16" y="252" width="218" height="30"/>
+                                                <rect key="frame" x="16" y="304" width="218" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3t-NM-lGR">
-                                                <rect key="frame" x="5" y="290" width="240" height="10"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="10" id="FL1-Ck-1FG"/>
-                                                </constraints>
-                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="A2X-90-Ymb">
-                                                <rect key="frame" x="0.0" y="308" width="250" height="40"/>
+                                                <rect key="frame" x="0.0" y="357" width="250" height="60"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hPm-PT-nU4">
-                                                        <rect key="frame" x="0.0" y="0.0" width="125" height="40"/>
-                                                        <state key="normal" title="Cancel"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="125" height="60"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                                        <state key="normal" title="Cancel">
+                                                            <color key="titleColor" red="0.55461273129999999" green="0.80065308550000003" blue="0.58587016530000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
                                                         <connections>
                                                             <action selector="cancel:" destination="IXw-VP-g2p" eventType="touchUpInside" id="zBZ-5d-wET"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zP-h8-5ww">
-                                                        <rect key="frame" x="125" y="0.0" width="125" height="40"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                        <state key="normal" title="Create"/>
+                                                        <rect key="frame" x="125" y="0.0" width="125" height="60"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="19"/>
+                                                        <state key="normal" title="Create">
+                                                            <color key="titleColor" red="0.55461273129999999" green="0.80065308550000003" blue="0.58587016530000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
                                                         <connections>
                                                             <action selector="create:" destination="IXw-VP-g2p" eventType="touchUpInside" id="Vjs-Lp-ise"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="fE2-3j-xqc"/>
+                                                    <constraint firstAttribute="height" constant="60" id="fE2-3j-xqc"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
