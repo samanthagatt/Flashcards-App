@@ -90,8 +90,8 @@ class OrganizerController {
                     _ = Organizer(fromRep: organizerRep, context: context)
                 }
             saveToPersistentStore(context: context)
+            }
         }
-    }
     }
     
     

@@ -11,6 +11,14 @@ import CoreData
 
 class SetCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate, OrganizerViewController {
     
+    // MARK: - ViewWillAppear
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        cardController.fetchCards(in: parentOrganizer)
+    }
+    
     // MARK: - Properties
     
     var parentOrganizer: Organizer?

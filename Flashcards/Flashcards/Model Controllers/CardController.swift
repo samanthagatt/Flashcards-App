@@ -67,7 +67,7 @@ class CardController {
     
     func loadSingleCard(id: String, context: NSManagedObjectContext) -> Card? {
         let fetchRequest: NSFetchRequest<Card> = Card.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "identifier %@", id)
+        fetchRequest.predicate = NSPredicate(format: "identifier == %@", id)
         
         do {
             return try context.fetch(fetchRequest).first
@@ -77,25 +77,87 @@ class CardController {
         }
     }
     
+    func update(_ card: Card, from cardRep: CardRep) {
+        card.front = cardRep.front
+        card.back = cardRep.back
+        card.parentSetID = cardRep.parentSetID
+    }
+    
+    func updateCards(from cardReps: [CardRep], context: NSManagedObjectContext) throws {
+        context.performAndWait {
+            for cardRep in cardReps {
+                let card = loadSingleCard(id: cardRep.identifier, context: context)
+                if let card = card {
+                    if card != cardRep {
+                        self.update(card, from: cardRep)
+                    }
+                } else {
+                    _ = Card(fromRep: cardRep, context: context)
+                }
+                saveToPersistentStore(context: context)
+            }
+        }
+    }
+    
     
     // MARK: - Networking
     
-    func createURL(for card: Card?) -> URL? {
+    func createURL(for card: Card? = nil, from parentSet: Organizer? = nil) -> URL? {
         
         guard let userUID = Auth.auth().currentUser?.uid else { return nil }
         
-        guard let parentSetID = card?.parentSetID,
-            let identifier = card?.identifier else { return nil }
-        
-        let url = OrganizerController.baseURL
-            .appendingPathComponent("users")
-            .appendingPathComponent(userUID)
-            .appendingPathComponent("cards")
-            .appendingPathComponent(parentSetID)
-            .appendingPathComponent(identifier)
-            .appendingPathExtension("json")
+        if parentSet == nil {
+            guard let parentSetID = card?.parentSetID,
+                let identifier = card?.identifier else { return nil }
+            
+            let url = OrganizerController.baseURL
+                .appendingPathComponent("users")
+                .appendingPathComponent(userUID)
+                .appendingPathComponent("cards")
+                .appendingPathComponent(parentSetID)
+                .appendingPathComponent(identifier)
+                .appendingPathExtension("json")
+            
+            return url
+        } else {
+            guard let setID = parentSet?.identifier else { return nil }
+            let url = OrganizerController.baseURL
+                .appendingPathComponent("users")
+                .appendingPathComponent(userUID)
+                .appendingPathComponent("cards")
+                .appendingPathComponent(setID)
+                .appendingPathExtension("json")
+            return url
+        }
+    }
     
-        return url
+    func fetchCards(in set: Organizer?, completion: @escaping (Error?) -> Void = { _ in }) {
+        
+        guard let url = createURL(from: set) else { completion(NSError()); return }
+        
+        dataLoader.loadData(from: url) { (data, error) in
+            
+            if let error = error {
+                NSLog("Error fetching entries: \(error)")
+                completion(error)
+                return
+            }
+            
+            guard let data = data else {
+                completion(error)
+                return
+            }
+            
+            do {
+                let cardReps = try JSONDecoder().decode([String: CardRep].self, from: data).compactMap { $0.value }
+                let backgroundContext = CoreDataStack.shared.container.newBackgroundContext()
+                try self.updateCards(from: cardReps, context: backgroundContext)
+                completion(nil)
+            } catch {
+                completion(error)
+                return
+            }
+        }
     }
     
     func put(card: Card, completion: @escaping (Error?) -> Void = { _ in }) {
