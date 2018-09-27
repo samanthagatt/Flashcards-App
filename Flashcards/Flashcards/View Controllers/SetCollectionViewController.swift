@@ -38,15 +38,8 @@ class SetCollectionViewController: UICollectionViewController, NSFetchedResultsC
     // MARK: - Actions
     
     @IBAction func createCard(_ sender: Any) {
-        let alert = UIAlertController(title: "Create a new card?", message: nil, preferredStyle: .alert)
-        let createAction = UIAlertAction(title: "Create", style: .default) { (_) in
-            guard let identifier = self.parentOrganizer?.identifier else { return }
-            self.cardController.create(parentSetID: identifier, context: CoreDataStack.moc)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addAction(createAction)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil)
+        guard let identifier = self.parentOrganizer?.identifier else { return }
+        cardController.create(parentSetID: identifier, context: CoreDataStack.moc)
     }
     
     

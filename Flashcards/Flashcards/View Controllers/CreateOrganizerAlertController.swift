@@ -32,10 +32,15 @@ class CreateOrganizerAlertController: UIViewController {
         super.viewDidLayoutSubviews()
         view.layoutIfNeeded()
         
-        cancelButton.layer.borderWidth = 1
-        cancelButton.layer.borderColor = UIColor.lightGray.cgColor
-        createButton.layer.borderWidth = 1
-        createButton.layer.borderColor = UIColor.lightGray.cgColor
+        let cancelButtonTopBorder = UIView(frame: CGRect(x: 0, y: 0, width: cancelButton.frame.size.width, height: 1))
+        cancelButtonTopBorder.backgroundColor = UIColor.lightGray
+        let createButtonTopBorder = UIView(frame: CGRect(x: 0, y: 0, width: createButton.frame.size.width, height: 1))
+        createButtonTopBorder.backgroundColor = UIColor.lightGray
+        let createButtonLeftBorder = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: createButton.frame.size.height))
+        createButtonLeftBorder.backgroundColor = UIColor.lightGray
+        cancelButton.addSubview(cancelButtonTopBorder)
+        createButton.addSubview(createButtonTopBorder)
+        createButton.addSubview(createButtonLeftBorder)
     }
     
     
