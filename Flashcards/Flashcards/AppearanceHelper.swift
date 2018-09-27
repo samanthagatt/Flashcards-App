@@ -27,5 +27,7 @@ enum Appearance {
         
         UITextField.appearance().tintColor = greenColor
         UITextView.appearance().tintColor = greenColor
+        UITextField.appearance().textColor = UIColor.darkGray
+        UITextView.appearance().textColor = UIColor.darkGray
     }
 }

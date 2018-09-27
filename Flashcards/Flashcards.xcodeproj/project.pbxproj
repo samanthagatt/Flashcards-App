@@ -27,7 +27,7 @@
 		220EDC5F215A9922006ABC95 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC5E215A9922006ABC95 /* LoginViewController.swift */; };
 		220EDC61215A99CD006ABC95 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC60215A99CD006ABC95 /* SignUpViewController.swift */; };
 		220EDC63215AA69B006ABC95 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220EDC62215AA69B006ABC95 /* Settings.storyboard */; };
-		220EDC65215AA83C006ABC95 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC64215AA83C006ABC95 /* SettingsTableViewController.swift */; };
+		220EDC65215AA83C006ABC95 /* SettingsAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC64215AA83C006ABC95 /* SettingsAlertController.swift */; };
 		220EDC67215AB0A4006ABC95 /* GroupCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC66215AB0A4006ABC95 /* GroupCollectionViewController.swift */; };
 		220EDC6B215ACCB7006ABC95 /* SetCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC6A215ACCB7006ABC95 /* SetCollectionViewController.swift */; };
 		220EDC6D215BC0CA006ABC95 /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC6C215BC0CA006ABC95 /* MockDataLoader.swift */; };
@@ -67,7 +67,7 @@
 		220EDC5E215A9922006ABC95 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		220EDC60215A99CD006ABC95 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		220EDC62215AA69B006ABC95 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
-		220EDC64215AA83C006ABC95 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		220EDC64215AA83C006ABC95 /* SettingsAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAlertController.swift; sourceTree = "<group>"; };
 		220EDC66215AB0A4006ABC95 /* GroupCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewController.swift; sourceTree = "<group>"; };
 		220EDC6A215ACCB7006ABC95 /* SetCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCollectionViewController.swift; sourceTree = "<group>"; };
 		220EDC6C215BC0CA006ABC95 /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
@@ -208,7 +208,7 @@
 				228FFCC8215D62D800D82889 /* AuthenticationViewController.swift */,
 				220EDC5E215A9922006ABC95 /* LoginViewController.swift */,
 				220EDC60215A99CD006ABC95 /* SignUpViewController.swift */,
-				220EDC64215AA83C006ABC95 /* SettingsTableViewController.swift */,
+				220EDC64215AA83C006ABC95 /* SettingsAlertController.swift */,
 				220EDC70215BF6B1006ABC95 /* CreateOrganizerAlertController.swift */,
 				220EDC66215AB0A4006ABC95 /* GroupCollectionViewController.swift */,
 				220EDC6A215ACCB7006ABC95 /* SetCollectionViewController.swift */,
@@ -398,7 +398,7 @@
 				220EDC71215BF6B1006ABC95 /* CreateOrganizerAlertController.swift in Sources */,
 				220EDC362159194C006ABC95 /* Flashcards.xcdatamodeld in Sources */,
 				220EDC47215928BA006ABC95 /* CardController.swift in Sources */,
-				220EDC65215AA83C006ABC95 /* SettingsTableViewController.swift in Sources */,
+				220EDC65215AA83C006ABC95 /* SettingsAlertController.swift in Sources */,
 				228FFCC7215D58C900D82889 /* AppearanceHelper.swift in Sources */,
 				220EDC67215AB0A4006ABC95 /* GroupCollectionViewController.swift in Sources */,
 				220EDC2021569E9F006ABC95 /* AppDelegate.swift in Sources */,

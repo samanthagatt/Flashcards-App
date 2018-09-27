@@ -29,7 +29,23 @@ class AuthenticationViewController: UIViewController {
         signupButton.clipsToBounds = true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        animateView()
+    }
+    
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var flashcardsLabel: UILabel!
     
+    
+    func animateView() {
+        
+        flashcardsLabel.frame.origin.y = flashcardsLabel.frame.origin.y - flashcardsLabel.frame.height - 125
+        
+        UIView.animate(withDuration: 1.0, animations: { () -> Void in
+            self.flashcardsLabel.frame.origin.y = self.flashcardsLabel.frame.origin.y + self.flashcardsLabel.frame.height + 125
+        })
+    }
 }

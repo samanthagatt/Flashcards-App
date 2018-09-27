@@ -44,16 +44,25 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flashcards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9x-UE-1W6">
+                                <rect key="frame" x="72.5" y="145" width="230" height="61.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="45"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ITu-OS-sfR" firstAttribute="trailing" secondItem="9TM-J7-3mf" secondAttribute="trailing" constant="16" id="KtR-Tk-hsx"/>
+                            <constraint firstItem="t9x-UE-1W6" firstAttribute="top" secondItem="ITu-OS-sfR" secondAttribute="top" constant="125" id="T83-Rz-Leq"/>
                             <constraint firstItem="9TM-J7-3mf" firstAttribute="leading" secondItem="ITu-OS-sfR" secondAttribute="leading" constant="16" id="afp-cz-XJf"/>
                             <constraint firstItem="ITu-OS-sfR" firstAttribute="bottom" secondItem="9TM-J7-3mf" secondAttribute="bottom" constant="45" id="ceQ-P8-TIB"/>
+                            <constraint firstItem="t9x-UE-1W6" firstAttribute="centerX" secondItem="lPe-aF-f5v" secondAttribute="centerX" id="u8v-BH-Aq2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ITu-OS-sfR"/>
                     </view>
                     <connections>
+                        <outlet property="flashcardsLabel" destination="t9x-UE-1W6" id="F7f-pN-IoH"/>
                         <outlet property="loginButton" destination="DwC-ON-Ya9" id="oWv-VD-ao6"/>
                         <outlet property="signupButton" destination="wUX-BK-WTh" id="bmd-Sx-0tf"/>
                     </connections>
@@ -202,7 +211,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="OtV-Sa-Bjx"/>
-        <segue reference="dIv-4I-mqC"/>
+        <segue reference="TXm-Hn-jUX"/>
+        <segue reference="cCB-Jg-Jj6"/>
     </inferredMetricsTieBreakers>
 </document>

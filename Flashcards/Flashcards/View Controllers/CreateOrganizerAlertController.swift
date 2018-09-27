@@ -90,7 +90,7 @@ class CreateOrganizerAlertController: UIViewController {
         alertView.alpha = 0;
         self.alertView.frame.origin.y = self.alertView.frame.origin.y + 50
         UIView.animate(withDuration: 0.4, animations: { () -> Void in
-            self.alertView.alpha = 1.0;
+            self.alertView.alpha = 1.0
             self.alertView.frame.origin.y = self.alertView.frame.origin.y - 50
         })
     }

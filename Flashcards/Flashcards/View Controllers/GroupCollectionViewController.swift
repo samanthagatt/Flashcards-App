@@ -55,6 +55,16 @@ class GroupCollectionViewController: UICollectionViewController, NSFetchedResult
 
     
     // MARK: - Actions
+    @IBAction func showSettings(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+        guard let alert = storyboard.instantiateInitialViewController() as? SettingsAlertController else { return }
+        alert.providesPresentationContextTransitionStyle = true
+        alert.definesPresentationContext = true
+        alert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        alert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        alert.delegate = self
+        self.present(alert, animated: true, completion: nil)
+    }
     
     @IBAction func create(_ sender: Any) {
         let storyboard = UIStoryboard(name: "CreateOrganizerAlert", bundle: nil)

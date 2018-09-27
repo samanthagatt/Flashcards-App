@@ -23,7 +23,7 @@ class CardDetailViewController: UIViewController {
         
         let greenColor = UIColor(red: 141.0/255.0, green: 204.0/255.0, blue: 149.0/255.0, alpha: 1.0)
         flipButton.layer.borderColor = greenColor.cgColor
-        flipButton.layer.borderWidth = 4.0
+        flipButton.layer.borderWidth = 3.0
         flipButton.layer.cornerRadius = flipButton.frame.height / 2
         flipButton.clipsToBounds = true
     }
