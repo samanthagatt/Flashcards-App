@@ -33,6 +33,7 @@
 		220EDC6D215BC0CA006ABC95 /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC6C215BC0CA006ABC95 /* MockDataLoader.swift */; };
 		220EDC6F215BCC76006ABC95 /* CreateOrganizerAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220EDC6E215BCC76006ABC95 /* CreateOrganizerAlert.storyboard */; };
 		220EDC71215BF6B1006ABC95 /* CreateOrganizerAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC70215BF6B1006ABC95 /* CreateOrganizerAlertController.swift */; };
+		220EDC75215C8466006ABC95 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC74215C8466006ABC95 /* CardCollectionViewCell.swift */; };
 		8056EF3DA093F5C883E78784 /* Pods_Flashcards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AB8F3F22409280FCCEA15A /* Pods_Flashcards.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		220EDC6C215BC0CA006ABC95 /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
 		220EDC6E215BCC76006ABC95 /* CreateOrganizerAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateOrganizerAlert.storyboard; sourceTree = "<group>"; };
 		220EDC70215BF6B1006ABC95 /* CreateOrganizerAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrganizerAlertController.swift; sourceTree = "<group>"; };
+		220EDC74215C8466006ABC95 /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		90AB8F3F22409280FCCEA15A /* Pods_Flashcards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flashcards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2C7E74E99AC9317367C38DF /* Pods-Flashcards.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flashcards.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flashcards/Pods-Flashcards.release.xcconfig"; sourceTree = "<group>"; };
 		C6DD4F0E37DB3BE61EB7754D /* Pods-Flashcards.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flashcards.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flashcards/Pods-Flashcards.debug.xcconfig"; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				220EDC70215BF6B1006ABC95 /* CreateOrganizerAlertController.swift */,
 				220EDC66215AB0A4006ABC95 /* GroupCollectionViewController.swift */,
 				220EDC6A215ACCB7006ABC95 /* SetCollectionViewController.swift */,
+				220EDC74215C8466006ABC95 /* CardCollectionViewCell.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				220EDC51215959CD006ABC95 /* NetworkDataLoader.swift in Sources */,
 				220EDC6D215BC0CA006ABC95 /* MockDataLoader.swift in Sources */,
 				220EDC3B21591997006ABC95 /* OrganizerRep.swift in Sources */,
+				220EDC75215C8466006ABC95 /* CardCollectionViewCell.swift in Sources */,
 				220EDC49215929E4006ABC95 /* CoreDataStack.swift in Sources */,
 				220EDC6B215ACCB7006ABC95 /* SetCollectionViewController.swift in Sources */,
 				220EDC3F215919A3006ABC95 /* CardRep.swift in Sources */,

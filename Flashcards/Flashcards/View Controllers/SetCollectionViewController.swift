@@ -14,8 +14,8 @@ class SetCollectionViewController: UICollectionViewController, NSFetchedResultsC
     // MARK: - Properties
     
     var parentOrganizer: Organizer?
-    let organizerController = OrganizerController()
-    lazy var cardFRC: NSFetchedResultsController<Card> = {
+    let cardController = CardController()
+    lazy var fetchedResultsController: NSFetchedResultsController<Card> = {
         let fetchRequest: NSFetchRequest<Card> = Card.fetchRequest()
         // Is there a better way to handle the optional organizerID?
         fetchRequest.predicate = NSPredicate(format: "parentSetID == %@", parentOrganizer!.identifier!)
@@ -25,6 +25,21 @@ class SetCollectionViewController: UICollectionViewController, NSFetchedResultsC
         try! frc.performFetch()
         return frc
     }()
+    
+    
+    // MARK: - Actions
+    
+    @IBAction func createCard(_ sender: Any) {
+        let alert = UIAlertController(title: "Create a new card?", message: nil, preferredStyle: .alert)
+        let createAction = UIAlertAction(title: "Create", style: .default) { (_) in
+            guard let identifier = self.parentOrganizer?.identifier else { return }
+            self.cardController.create(parentSetID: identifier, context: CoreDataStack.moc)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(createAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     
     // MARK: - Collection view fetched results controller delegate
@@ -88,12 +103,15 @@ class SetCollectionViewController: UICollectionViewController, NSFetchedResultsC
     // MARK: - Collection view delegate and data source
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // Come back and fix
-        return cardFRC.fetchedObjects?.count ?? 0
+        return fetchedResultsController.fetchedObjects?.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCollectionViewCell
+        
+        let card = fetchedResultsController.object(at: indexPath)
+        cell.card = card
+        
         return cell
     }
 }

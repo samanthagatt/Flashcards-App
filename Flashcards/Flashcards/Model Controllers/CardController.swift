@@ -26,9 +26,9 @@ class CardController {
     
     // MARK: - CRUD
     
-    func create(title: String, dateCreated: Date = Date(), parentGroupID: String, context: NSManagedObjectContext) {
+    func create(front: String? = nil, back: String? = nil, dateCreated: Date = Date(), parentSetID: String, context: NSManagedObjectContext) {
         
-        let card = Card(parentSetID: parentGroupID, context: context)
+        let card = Card(front: front, back: back, parentSetID: parentSetID, context: context)
         put(card: card)
         saveToPersistentStore(context: context)
     }
@@ -76,19 +76,26 @@ class CardController {
     
     // MARK: - Networking
     
-    func put(card: Card, completion: @escaping (Error?) -> Void = { _ in }) {
+    func createURL(for card: Card?) -> URL? {
         
-        guard let userUID = Auth.auth().currentUser?.uid,
-            let parentSetID = card.parentSetID,
-            let identifier = card.identifier else { completion(NSError()); return }
+        guard let userUID = Auth.auth().currentUser?.uid else { return nil }
+        
+        guard let parentSetID = card?.parentSetID,
+            let identifier = card?.identifier else { return nil }
         
         let url = OrganizerController.baseURL
+            .appendingPathComponent("users")
             .appendingPathComponent(userUID)
-            .appendingPathComponent("groups")
             .appendingPathComponent(parentSetID)
             .appendingPathComponent(identifier)
             .appendingPathExtension("json")
+    
+        return url
+    }
+    
+    func put(card: Card, completion: @escaping (Error?) -> Void = { _ in }) {
         
+        guard let url = createURL(for: card) else { completion(NSError()); return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -112,16 +119,7 @@ class CardController {
     
     func deleteFromServer(card: Card, completion: @escaping (Error?) -> Void = { _ in }) {
         
-        guard let userUID = Auth.auth().currentUser?.uid,
-            let parentSetID = card.parentSetID,
-            let identifier = card.identifier else { completion(NSError()); return }
-        
-        let url = OrganizerController.baseURL
-            .appendingPathComponent(userUID)
-            .appendingPathComponent("groups")
-            .appendingPathComponent(parentSetID)
-            .appendingPathComponent(identifier)
-            .appendingPathExtension("json")
+        guard let url = createURL(for: card) else { completion(NSError()); return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
