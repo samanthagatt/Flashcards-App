@@ -139,9 +139,13 @@ class GroupCollectionViewController: UICollectionViewController, NSFetchedResult
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let identifier: String
-        if indexPath.section == 0 {
+        guard let typeString = fetchedResultsController.object(at: indexPath).type,
+            let type = OrganizerType(rawValue: typeString) else { return UICollectionViewCell() }
+        
+        switch type {
+        case .group:
             identifier = CollectionCellID.group.rawValue
-        } else {
+        case .set:
             identifier = CollectionCellID.set.rawValue
         }
         

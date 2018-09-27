@@ -114,4 +114,14 @@ class SetCollectionViewController: UICollectionViewController, NSFetchedResultsC
         
         return cell
     }
+    
+    
+    // MARK: - Prepare for segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destinationVC = segue.destination as? CardDetailViewController,
+            let indexPath = collectionView.indexPathsForSelectedItems?.first else { return }
+        
+        destinationVC.card = fetchedResultsController.object(at: indexPath)
+    }
 }

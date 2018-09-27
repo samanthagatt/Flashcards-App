@@ -26,16 +26,20 @@ class CardController {
     
     // MARK: - CRUD
     
-    func create(front: String? = nil, back: String? = nil, dateCreated: Date = Date(), parentSetID: String, context: NSManagedObjectContext) {
+    func create(front: String = "", back: String = "", dateCreated: Date = Date(), parentSetID: String, context: NSManagedObjectContext) {
         
         let card = Card(front: front, back: back, parentSetID: parentSetID, context: context)
         put(card: card)
         saveToPersistentStore(context: context)
     }
     
-    func update(card: Card, front: String?, back: String?, context: NSManagedObjectContext) {
-        card.front = front
-        card.back = back
+    func update(card: Card, front: String? = nil, back: String? = nil, context: NSManagedObjectContext) {
+        if let front = front {
+            card.front = front
+        }
+        if let back = back {
+            card.back = back
+        }
         card.dateUpdated = Date()
         put(card: card)
         saveToPersistentStore(context: context)
@@ -86,6 +90,7 @@ class CardController {
         let url = OrganizerController.baseURL
             .appendingPathComponent("users")
             .appendingPathComponent(userUID)
+            .appendingPathComponent("cards")
             .appendingPathComponent(parentSetID)
             .appendingPathComponent(identifier)
             .appendingPathExtension("json")

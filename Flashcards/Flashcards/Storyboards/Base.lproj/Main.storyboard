@@ -310,10 +310,10 @@
                                                     <rect key="frame" x="16" y="16" width="268" height="168"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYG-Y1-gJm">
-                                                            <rect key="frame" x="18" y="0.0" width="232.5" height="139.5"/>
+                                                            <rect key="frame" x="15.5" y="0.0" width="237" height="142"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Front text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jnb-Uz-2Yr">
-                                                                    <rect key="frame" x="16" y="16" width="200.5" height="107.5"/>
+                                                                    <rect key="frame" x="16" y="16" width="205" height="110"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -329,9 +329,9 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WI1-as-hKq">
-                                                            <rect key="frame" x="116" y="147.5" width="36" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
+                                                            <rect key="frame" x="118" y="150" width="32.5" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" white="0.57394903273809517" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -381,7 +381,7 @@
         <!--Card Details-->
         <scene sceneID="51D-Wc-T0j">
             <objects>
-                <viewController id="H95-wD-OTO" sceneMemberID="viewController">
+                <viewController id="H95-wD-OTO" customClass="CardDetailViewController" customModule="Flashcards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cxD-94-8Rs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -389,38 +389,55 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckF-yd-dPo">
                                 <rect key="frame" x="37.5" y="243.5" width="300" height="180"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="front or back text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apl-xg-inA">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Hello" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="e3p-km-Y01">
                                         <rect key="frame" x="16" y="16" width="268" height="148"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="apl-xg-inA" firstAttribute="top" secondItem="ckF-yd-dPo" secondAttribute="top" constant="16" id="5sX-b0-hbH"/>
-                                    <constraint firstItem="apl-xg-inA" firstAttribute="leading" secondItem="ckF-yd-dPo" secondAttribute="leading" constant="16" id="EyE-a8-6wL"/>
-                                    <constraint firstAttribute="trailing" secondItem="apl-xg-inA" secondAttribute="trailing" constant="16" id="dus-t5-23O"/>
-                                    <constraint firstAttribute="bottom" secondItem="apl-xg-inA" secondAttribute="bottom" constant="16" id="hMc-QL-x5E"/>
+                                    <constraint firstAttribute="trailing" secondItem="e3p-km-Y01" secondAttribute="trailing" constant="16" id="9Lp-92-BAC"/>
+                                    <constraint firstItem="e3p-km-Y01" firstAttribute="top" secondItem="ckF-yd-dPo" secondAttribute="top" constant="16" id="CWe-TS-5hF"/>
+                                    <constraint firstAttribute="bottom" secondItem="e3p-km-Y01" secondAttribute="bottom" constant="16" id="L2h-5I-6Md"/>
+                                    <constraint firstItem="e3p-km-Y01" firstAttribute="leading" secondItem="ckF-yd-dPo" secondAttribute="leading" constant="16" id="c90-Eg-n37"/>
                                     <constraint firstAttribute="width" secondItem="ckF-yd-dPo" secondAttribute="height" multiplier="5:3" id="zDO-l1-JuW"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kN3-4b-SE8">
+                                <rect key="frame" x="172.5" y="455.5" width="30" height="30"/>
+                                <state key="normal" title="Flip"/>
+                                <connections>
+                                    <action selector="flip:" destination="H95-wD-OTO" eventType="touchUpInside" id="ods-H7-S2e"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="kN3-4b-SE8" firstAttribute="centerX" secondItem="cxD-94-8Rs" secondAttribute="centerX" id="8NW-SR-v48"/>
                             <constraint firstItem="ckF-yd-dPo" firstAttribute="centerY" secondItem="cxD-94-8Rs" secondAttribute="centerY" id="NvC-7s-aNl"/>
                             <constraint firstItem="ckF-yd-dPo" firstAttribute="width" secondItem="LwH-OC-ey2" secondAttribute="width" multiplier="4/5" id="Zme-9V-SIP"/>
+                            <constraint firstItem="kN3-4b-SE8" firstAttribute="top" secondItem="ckF-yd-dPo" secondAttribute="bottom" constant="32" id="iJE-bB-NpM"/>
                             <constraint firstItem="ckF-yd-dPo" firstAttribute="centerX" secondItem="cxD-94-8Rs" secondAttribute="centerX" id="jy3-Tp-ORY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LwH-OC-ey2"/>
                     </view>
                     <navigationItem key="navigationItem" title="Card Details" id="bqp-Ud-OcK">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="6Gy-m7-g8e"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="6Gy-m7-g8e">
+                            <connections>
+                                <action selector="save:" destination="H95-wD-OTO" id="PNH-io-WXd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cardView" destination="ckF-yd-dPo" id="DCB-RX-Hgg"/>
+                        <outlet property="textView" destination="e3p-km-Y01" id="Dwm-EW-5Cu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JnE-bH-vHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2764" y="744"/>
+            <point key="canvasLocation" x="2764" y="743.47826086956525"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lfD-pU-Gnv">

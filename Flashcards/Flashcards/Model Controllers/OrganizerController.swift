@@ -105,6 +105,7 @@ class OrganizerController {
             let url = OrganizerController.baseURL
                 .appendingPathComponent("users")
                 .appendingPathComponent(userUID)
+                .appendingPathComponent("organizers")
                 .appendingPathComponent(organizer?.identifier ?? "noParentGroup")
                 .appendingPathExtension("json")
             return url
@@ -116,6 +117,7 @@ class OrganizerController {
             let url = OrganizerController.baseURL
                 .appendingPathComponent("users")
                 .appendingPathComponent(userUID)
+                .appendingPathComponent("organizers")
                 .appendingPathComponent(parentGroupID)
                 .appendingPathComponent(identifier)
                 .appendingPathExtension("json")
