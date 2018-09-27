@@ -49,24 +49,14 @@ class CardDetailViewController: UIViewController {
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             let saveAction = UIAlertAction(title: "Save", style: .default) { (_) in
                 self.saveCard()
+                self.flipCard(card)
             }
             alert.addAction(cancelAction)
             alert.addAction(saveAction)
             self.present(alert, animated: true, completion: nil)
-        } else if isFront {
-            UIView.transition(with: cardView, duration: 1.0, options: [.transitionFlipFromRight], animations: {
-                self.textView.text = card.back
-            })
-            isFront = false
-        } else if textView.text == card.back {
-            UIView.transition(with: cardView, duration: 1.0, options: [.transitionFlipFromRight], animations: {
-                self.textView.text = card.front
-            })
-            isFront = true
+        } else {
+            flipCard(card)
         }
-        
-        
-        
     }
     
     
@@ -81,5 +71,20 @@ class CardDetailViewController: UIViewController {
         } else if !isFront {
             cardController.update(card: card, back: text, context: CoreDataStack.moc)
         }
+    }
+    
+    func flipCard(_ card: Card) {
+        if isFront {
+            UIView.transition(with: cardView, duration: 1.0, options: [.transitionFlipFromRight], animations: {
+                self.textView.text = card.back
+            })
+            isFront = false
+        } else if textView.text == card.back {
+            UIView.transition(with: cardView, duration: 1.0, options: [.transitionFlipFromRight], animations: {
+                self.textView.text = card.front
+            })
+            isFront = true
+        }
+        textView.resignFirstResponder()
     }
 }

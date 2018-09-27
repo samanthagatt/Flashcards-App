@@ -33,7 +33,7 @@
                             <inset key="sectionInset" minX="16" minY="16" maxX="16" maxY="16"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="GroupCell" id="Hg8-vJ-JKh">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="NoParentGroupCell" id="Hg8-vJ-JKh" customClass="NoParentGroupCollectionViewCell" customModule="Flashcards" customModuleProvider="target">
                                 <rect key="frame" x="16" y="16" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -78,10 +78,11 @@
                                     <constraint firstItem="SMm-dZ-7nM" firstAttribute="leading" secondItem="Hg8-vJ-JKh" secondAttribute="leading" id="inO-Kn-dyE"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="titleLabel" destination="ivm-fO-L8P" id="Mq7-K6-Qmo"/>
                                     <segue destination="tHh-uW-akO" kind="show" identifier="ShowGroupDetail" id="pVz-QT-ovD"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="SetCell" id="jlk-dQ-HA8">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="NoParentSetCell" id="jlk-dQ-HA8" customClass="NoParentSetCollectionViewCell" customModule="Flashcards" customModuleProvider="target">
                                 <rect key="frame" x="137.5" y="16" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -126,6 +127,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Wkj-CC-lkP" secondAttribute="trailing" id="pPw-b6-pAQ"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="titleLabel" destination="y3u-bh-Ve2" id="jvA-ut-Ka6"/>
                                     <segue destination="vwk-SE-ruI" kind="show" identifier="ShowSetDetail" id="OTe-EQ-Cuf"/>
                                 </connections>
                             </collectionViewCell>
@@ -167,7 +169,7 @@
                             <inset key="sectionInset" minX="16" minY="16" maxX="16" maxY="16"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="GroupCell" id="rGO-4j-hvu">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="GroupCell" id="rGO-4j-hvu" customClass="GroupCollectionViewCell" customModule="Flashcards" customModuleProvider="target">
                                 <rect key="frame" x="16" y="16" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -212,10 +214,11 @@
                                     <constraint firstItem="WCr-69-6Sf" firstAttribute="leading" secondItem="rGO-4j-hvu" secondAttribute="leading" id="d42-32-Wra"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="titleLabel" destination="u25-dR-gRF" id="xuL-qN-TXK"/>
                                     <segue destination="tHh-uW-akO" kind="show" identifier="ShowGroupDetail" id="Z6J-gm-CCz"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="SetCell" id="ZKj-pD-drM">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="SetCell" id="ZKj-pD-drM" customClass="SetCollectionViewCell" customModule="Flashcards" customModuleProvider="target">
                                 <rect key="frame" x="137.5" y="16" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -260,6 +263,7 @@
                                     <constraint firstAttribute="trailing" secondItem="3zB-GU-cXS" secondAttribute="trailing" id="dGl-eO-9pZ"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="titleLabel" destination="q3n-64-1QQ" id="yZR-xh-hOf"/>
                                     <segue destination="vwk-SE-ruI" kind="show" identifier="ShowSetDetail" id="HXQ-WJ-dqt"/>
                                 </connections>
                             </collectionViewCell>
@@ -464,6 +468,6 @@
         <image name="settings" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OTe-EQ-Cuf"/>
+        <segue reference="HXQ-WJ-dqt"/>
     </inferredMetricsTieBreakers>
 </document>

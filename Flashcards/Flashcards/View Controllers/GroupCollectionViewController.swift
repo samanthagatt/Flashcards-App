@@ -12,6 +12,8 @@ import CoreData
 // MARK: - Collection cell enum
 
 enum CollectionCellID: String {
+    case noParentGroup = "NoParentGroupCell"
+    case noParentSet = "NoParentSetCell"
     case group = "GroupCell"
     case set = "SetCell"
 }
@@ -144,12 +146,21 @@ class GroupCollectionViewController: UICollectionViewController, NSFetchedResult
         
         switch type {
         case .group:
-            identifier = CollectionCellID.group.rawValue
+            if parentOrganizer == nil {
+                identifier = CollectionCellID.noParentGroup.rawValue
+            } else {
+                identifier = CollectionCellID.group.rawValue
+            }
         case .set:
-            identifier = CollectionCellID.set.rawValue
+            if parentOrganizer == nil {
+                identifier = CollectionCellID.noParentSet.rawValue
+            } else {
+                identifier = CollectionCellID.set.rawValue
+            }
         }
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrganizerCell
+        cell.organizer = fetchedResultsController.object(at: indexPath)
         return cell
     }
     
