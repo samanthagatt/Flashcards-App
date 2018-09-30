@@ -78,8 +78,28 @@ class OrganizerController {
         organizer.parentGroupID = organizerRep.parentGroupID
     }
     
-    func updateOrganizers(from organizerReps: [OrganizerRep], context: NSManagedObjectContext) throws {
+    func deleteOrganizersNotInNetworkFetch(_ notArray: [String], in parentID: String, context: NSManagedObjectContext) {
+        let fetchRequest: NSFetchRequest<Organizer> = Organizer.fetchRequest()
+        let notArrayPredicate = NSPredicate(format: "NOT identifier IN %@", notArray)
+        let inParentPredicate = NSPredicate(format: "parentGroupID == %@", parentID)
+        let andPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [notArrayPredicate, inParentPredicate])
+        fetchRequest.predicate = andPredicate
+        
+        var toBeDeletedArray: [Organizer] = []
+        do {
+            toBeDeletedArray = try context.fetch(fetchRequest)
+        } catch {
+            NSLog("Error fetching organizers to delete: \(error)")
+        }
+        
+        for organizer in toBeDeletedArray {
+            context.delete(organizer)
+        }
+    }
+    
+    func updateOrganizers(from organizerReps: [OrganizerRep], in parentID: String, context: NSManagedObjectContext) throws {
         context.performAndWait {
+            var arrayOfIDs: [String] = []
             for organizerRep in organizerReps {
                 let organizer = loadSingleOrganizer(id: organizerRep.identifier, context: context)
                 if let organizer = organizer {
@@ -89,8 +109,10 @@ class OrganizerController {
                 } else {
                     _ = Organizer(fromRep: organizerRep, context: context)
                 }
-            saveToPersistentStore(context: context)
+                arrayOfIDs.append(organizerRep.identifier)
             }
+            deleteOrganizersNotInNetworkFetch(arrayOfIDs, in: parentID, context: context)
+            saveToPersistentStore(context: context)
         }
     }
     
@@ -145,7 +167,7 @@ class OrganizerController {
             do {
                 let organizers = try JSONDecoder().decode([String: OrganizerRep].self, from: data).compactMap { $0.value }
                 let backgroundContext = CoreDataStack.shared.container.newBackgroundContext()
-                try self.updateOrganizers(from: organizers, context: backgroundContext)
+                try self.updateOrganizers(from: organizers, in: organizer?.identifier ?? "noParentGroup", context: backgroundContext)
                 completion(nil)
             } catch {
                 completion(error)
