@@ -440,6 +440,7 @@
                     <connections>
                         <outlet property="cardView" destination="ckF-yd-dPo" id="DCB-RX-Hgg"/>
                         <outlet property="flipButton" destination="kN3-4b-SE8" id="7Ey-5u-oia"/>
+                        <outlet property="saveButton" destination="6Gy-m7-g8e" id="0Jn-zs-X15"/>
                         <outlet property="textView" destination="e3p-km-Y01" id="Dwm-EW-5Cu"/>
                     </connections>
                 </viewController>
@@ -467,9 +468,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="group" width="256" height="256"/>
-        <image name="set" width="512" height="512"/>
-        <image name="settings" width="32" height="32"/>
+        <image name="group" width="409.60000610351562" height="409.60000610351562"/>
+        <image name="set" width="409.60000610351562" height="409.60000610351562"/>
+        <image name="settings" width="25.600000381469727" height="25.600000381469727"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="OTe-EQ-Cuf"/>

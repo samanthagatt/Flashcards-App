@@ -8,10 +8,12 @@
 
 import UIKit
 
-class CardDetailViewController: UIViewController {
+class CardDetailViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        saveButton.isEnabled = false
         
         cardView.layer.cornerRadius = 10.0
         cardView.layer.shadowOffset = CGSize.zero
@@ -19,6 +21,7 @@ class CardDetailViewController: UIViewController {
         cardView.layer.shadowColor = UIColor.black.cgColor
         cardView.layer.shadowRadius = 5.0
         
+        textView.delegate = self
         textView.text = card?.front
         
         let greenColor = UIColor(red: 141.0/255.0, green: 204.0/255.0, blue: 149.0/255.0, alpha: 1.0)
@@ -41,6 +44,7 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var flipButton: UIButton!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     
     // MARK: - Actions
@@ -48,6 +52,7 @@ class CardDetailViewController: UIViewController {
     @IBAction func save(_ sender: Any) {
         saveCard()
         textView.resignFirstResponder()
+        saveButton.isEnabled = false
     }
     
     @IBAction func flip(_ sender: Any) {
@@ -89,5 +94,12 @@ class CardDetailViewController: UIViewController {
             flipButton.setTitle("Flip to back", for: .normal)
         }
         textView.resignFirstResponder()
+    }
+    
+    
+    // MARK: - UITextViewDelegate
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        saveButton.isEnabled = true
     }
 }

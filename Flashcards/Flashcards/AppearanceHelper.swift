@@ -17,13 +17,17 @@ enum Appearance {
         
         let navBarTitleFont = UIFont(name: "AvenirNext-Medium", size: 42.0)!
         let navBarTitleFontMetrics = UIFontMetrics(forTextStyle: .title1).scaledFont(for: navBarTitleFont)
-        let navBarTitleText = [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font : navBarTitleFontMetrics]
+        let navBarTitleText = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: navBarTitleFontMetrics]
         UINavigationBar.appearance().titleTextAttributes = navBarTitleText
         UINavigationBar.appearance().largeTitleTextAttributes = navBarTitleText
         
         UIBarButtonItem.appearance().tintColor = UIColor.white
-        let barButtonAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        let barButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        let disabledBarButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
+//        button.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blue], for: .disabled)
         UIBarButtonItem.appearance().setTitleTextAttributes(barButtonAttributes, for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes(disabledBarButtonAttributes, for: .disabled)
+        
         
         UITextField.appearance().tintColor = greenColor
         UITextView.appearance().tintColor = greenColor
