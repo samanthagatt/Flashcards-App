@@ -41,8 +41,41 @@
 		228FFCC5215D0C0400D82889 /* SetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228FFCC4215D0C0400D82889 /* SetCollectionViewCell.swift */; };
 		228FFCC7215D58C900D82889 /* AppearanceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228FFCC6215D58C900D82889 /* AppearanceHelper.swift */; };
 		228FFCC9215D62D800D82889 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228FFCC8215D62D800D82889 /* AuthenticationViewController.swift */; };
+		22BE9A0C21891A3300707BDB /* DrawingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22BE9A0A218919F400707BDB /* DrawingKit.framework */; };
+		22BE9A0D21891A3300707BDB /* DrawingKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22BE9A0A218919F400707BDB /* DrawingKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8056EF3DA093F5C883E78784 /* Pods_Flashcards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AB8F3F22409280FCCEA15A /* Pods_Flashcards.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		22BE9A09218919F400707BDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22BE9A05218919F400707BDB /* DrawingKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 22BE99EB2187411000707BDB;
+			remoteInfo = DrawingKit;
+		};
+		22BE9A0E21891A3300707BDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22BE9A05218919F400707BDB /* DrawingKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 22BE99EA2187411000707BDB;
+			remoteInfo = DrawingKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		22BE9A1021891A3300707BDB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				22BE9A0D21891A3300707BDB /* DrawingKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		220EDC1C21569E9F006ABC95 /* Flashcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashcards.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +114,7 @@
 		228FFCC4215D0C0400D82889 /* SetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCollectionViewCell.swift; sourceTree = "<group>"; };
 		228FFCC6215D58C900D82889 /* AppearanceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceHelper.swift; sourceTree = "<group>"; };
 		228FFCC8215D62D800D82889 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
+		22BE9A05218919F400707BDB /* DrawingKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DrawingKit.xcodeproj; path = ../../DrawingKit/DrawingKit/DrawingKit.xcodeproj; sourceTree = "<group>"; };
 		90AB8F3F22409280FCCEA15A /* Pods_Flashcards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flashcards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2C7E74E99AC9317367C38DF /* Pods-Flashcards.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flashcards.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flashcards/Pods-Flashcards.release.xcconfig"; sourceTree = "<group>"; };
 		C6DD4F0E37DB3BE61EB7754D /* Pods-Flashcards.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flashcards.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flashcards/Pods-Flashcards.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22BE9A0C21891A3300707BDB /* DrawingKit.framework in Frameworks */,
 				8056EF3DA093F5C883E78784 /* Pods_Flashcards.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,9 +265,18 @@
 			path = "Collection View Cells";
 			sourceTree = "<group>";
 		};
+		22BE9A06218919F400707BDB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22BE9A0A218919F400707BDB /* DrawingKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		754843C0AB06FE594BF4CEAB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				22BE9A05218919F400707BDB /* DrawingKit.xcodeproj */,
 				90AB8F3F22409280FCCEA15A /* Pods_Flashcards.framework */,
 			);
 			name = Frameworks;
@@ -259,10 +303,12 @@
 				220EDC1921569E9F006ABC95 /* Frameworks */,
 				220EDC1A21569E9F006ABC95 /* Resources */,
 				CA49D8777BFD5330C5CE0A34 /* [CP] Embed Pods Frameworks */,
+				22BE9A1021891A3300707BDB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				22BE9A0F21891A3300707BDB /* PBXTargetDependency */,
 			);
 			name = Flashcards;
 			productName = Flashcards;
@@ -295,12 +341,28 @@
 			mainGroup = 220EDC1321569E9F006ABC95;
 			productRefGroup = 220EDC1D21569E9F006ABC95 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 22BE9A06218919F400707BDB /* Products */;
+					ProjectRef = 22BE9A05218919F400707BDB /* DrawingKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				220EDC1B21569E9F006ABC95 /* Flashcards */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		22BE9A0A218919F400707BDB /* DrawingKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DrawingKit.framework;
+			remoteRef = 22BE9A09218919F400707BDB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		220EDC1A21569E9F006ABC95 /* Resources */ = {
@@ -406,6 +468,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		22BE9A0F21891A3300707BDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DrawingKit;
+			targetProxy = 22BE9A0E21891A3300707BDB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		220EDC2321569E9F006ABC95 /* Main.storyboard */ = {
@@ -547,6 +617,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C6DD4F0E37DB3BE61EB7754D /* Pods-Flashcards.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 84AK8SAYG2;
@@ -566,6 +637,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C2C7E74E99AC9317367C38DF /* Pods-Flashcards.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 84AK8SAYG2;

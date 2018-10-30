@@ -24,7 +24,6 @@ enum Appearance {
         UIBarButtonItem.appearance().tintColor = UIColor.white
         let barButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         let disabledBarButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
-//        button.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blue], for: .disabled)
         UIBarButtonItem.appearance().setTitleTextAttributes(barButtonAttributes, for: .normal)
         UIBarButtonItem.appearance().setTitleTextAttributes(disabledBarButtonAttributes, for: .disabled)
         
