@@ -35,3 +35,9 @@ enum Appearance {
         UITextView.appearance().textColor = UIColor.darkGray
     }
 }
+
+extension UIColor {
+    static var placeholderGray: UIColor {
+        return UIColor(red: 0, green: 0, blue: 0.0980392, alpha: 0.22)
+    }
+}

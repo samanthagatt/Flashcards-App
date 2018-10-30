@@ -23,6 +23,11 @@ class SignUpViewController: UIViewController {
         gradientLayer.colors = [greenColor.cgColor, UIColor.white.cgColor]
         self.view.layer.insertSublayer(gradientLayer, at: 0)
         
+        signUpButton.layer.borderColor = greenColor.cgColor
+        signUpButton.layer.borderWidth = 2.0
+        signUpButton.layer.cornerRadius = signUpButton.frame.height / 2
+        signUpButton.clipsToBounds = true
+        
         passwordTextField.isSecureTextEntry = true
     }
     

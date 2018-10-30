@@ -407,10 +407,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kN3-4b-SE8">
-                                <rect key="frame" x="87.5" y="455.5" width="200" height="41"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="NDE-So-eW2"/>
-                                </constraints>
+                                <rect key="frame" x="98" y="455.5" width="179" height="41"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="21"/>
                                 <state key="normal" title="Flip to back">
                                     <color key="titleColor" red="0.55461273129999999" green="0.80065308550000003" blue="0.58587016530000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -427,6 +424,7 @@
                             <constraint firstItem="ckF-yd-dPo" firstAttribute="width" secondItem="LwH-OC-ey2" secondAttribute="width" multiplier="4/5" id="Zme-9V-SIP"/>
                             <constraint firstItem="kN3-4b-SE8" firstAttribute="top" secondItem="ckF-yd-dPo" secondAttribute="bottom" constant="32" id="iJE-bB-NpM"/>
                             <constraint firstItem="ckF-yd-dPo" firstAttribute="centerX" secondItem="cxD-94-8Rs" secondAttribute="centerX" id="jy3-Tp-ORY"/>
+                            <constraint firstItem="kN3-4b-SE8" firstAttribute="width" secondItem="e3p-km-Y01" secondAttribute="width" multiplier="2/3" id="qqd-rr-i0N"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LwH-OC-ey2"/>
                     </view>

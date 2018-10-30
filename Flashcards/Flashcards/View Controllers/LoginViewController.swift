@@ -23,14 +23,6 @@ class LoginViewController: UIViewController {
         gradientLayer.colors = [greenColor.cgColor, UIColor.white.cgColor]
         self.view.layer.insertSublayer(gradientLayer, at: 0)
         
-        let emailTextFieldBottomBorder = UIView(frame: CGRect(x: 0, y: emailTextField.frame.size.height, width: emailTextField.frame.size.width, height: 2))
-        emailTextFieldBottomBorder.backgroundColor = UIColor.lightGray
-        emailTextField.addSubview(emailTextFieldBottomBorder)
-        
-        let passwordTextFieldBottomBorder = UIView(frame: CGRect(x: 0, y: passwordTextField.frame.size.height, width: passwordTextField.frame.size.width, height: 2))
-        passwordTextFieldBottomBorder.backgroundColor = UIColor.lightGray
-        passwordTextField.addSubview(passwordTextFieldBottomBorder)
-        
         loginButton.layer.borderColor = greenColor.cgColor
         loginButton.layer.borderWidth = 2.0
         loginButton.layer.cornerRadius = loginButton.frame.height / 2
