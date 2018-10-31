@@ -10,12 +10,15 @@ import Foundation
 
 struct CardRep: Codable, Equatable {
     
-    var front: String
-    var back: String
+    var frontText: String
+    var backText: String
     let dateCreated: Date
     var dateUpdated: Date
     var identifier: String
     var parentSetID: String
+    var frontImageURL: URL?
+    var backImageURL: URL?
+    var isImageCard: Bool
 }
 
 
@@ -23,11 +26,12 @@ struct CardRep: Codable, Equatable {
 
 func == (lhs: CardRep, rhs: Card) -> Bool {
     return
-        lhs.front == rhs.front &&
-            lhs.back == rhs.back &&
+        lhs.frontText == rhs.front &&
+            lhs.backText == rhs.back &&
             lhs.dateCreated == rhs.dateCreated &&
             lhs.dateUpdated == rhs.dateUpdated &&
-            lhs.parentSetID == rhs.parentSetID
+            lhs.parentSetID == rhs.parentSetID &&
+            lhs.isImageCard == rhs.isImageCard
 }
 
 func == (lhs: Card, rhs: CardRep) -> Bool {

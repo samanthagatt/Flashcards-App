@@ -78,8 +78,8 @@ class CardController {
     }
     
     func update(_ card: Card, from cardRep: CardRep) {
-        card.front = cardRep.front
-        card.back = cardRep.back
+        card.front = cardRep.frontText
+        card.back = cardRep.backText
         card.parentSetID = cardRep.parentSetID
     }
     

@@ -115,6 +115,7 @@
 		228FFCC6215D58C900D82889 /* AppearanceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceHelper.swift; sourceTree = "<group>"; };
 		228FFCC8215D62D800D82889 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		22BE9A05218919F400707BDB /* DrawingKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DrawingKit.xcodeproj; path = ../../DrawingKit/DrawingKit/DrawingKit.xcodeproj; sourceTree = "<group>"; };
+		22BE9A11218945FA00707BDB /* Flashcards 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Flashcards 2.xcdatamodel"; sourceTree = "<group>"; };
 		90AB8F3F22409280FCCEA15A /* Pods_Flashcards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flashcards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2C7E74E99AC9317367C38DF /* Pods-Flashcards.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flashcards.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flashcards/Pods-Flashcards.release.xcconfig"; sourceTree = "<group>"; };
 		C6DD4F0E37DB3BE61EB7754D /* Pods-Flashcards.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flashcards.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flashcards/Pods-Flashcards.debug.xcconfig"; sourceTree = "<group>"; };
@@ -680,9 +681,10 @@
 		220EDC342159194C006ABC95 /* Flashcards.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				22BE9A11218945FA00707BDB /* Flashcards 2.xcdatamodel */,
 				220EDC352159194C006ABC95 /* Flashcards.xcdatamodel */,
 			);
-			currentVersion = 220EDC352159194C006ABC95 /* Flashcards.xcdatamodel */;
+			currentVersion = 22BE9A11218945FA00707BDB /* Flashcards 2.xcdatamodel */;
 			path = Flashcards.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

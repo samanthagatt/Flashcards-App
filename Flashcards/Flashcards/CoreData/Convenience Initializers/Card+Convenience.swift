@@ -22,6 +22,6 @@ extension Card {
     }
     
     convenience init(fromRep cardRep: CardRep, context: NSManagedObjectContext = CoreDataStack.moc) {
-        self.init(front: cardRep.front, back: cardRep.back, dateCreated: cardRep.dateCreated, identifier: cardRep.identifier, parentSetID: cardRep.parentSetID, context: context)
+        self.init(front: cardRep.frontText, back: cardRep.backText, dateCreated: cardRep.dateCreated, identifier: cardRep.identifier, parentSetID: cardRep.parentSetID, context: context)
     }
 }
