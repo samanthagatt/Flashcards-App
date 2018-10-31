@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DrawingKit
 
 class CardDetailViewController: UIViewController, UITextViewDelegate {
     
@@ -15,7 +16,9 @@ class CardDetailViewController: UIViewController, UITextViewDelegate {
         
         saveButton.isEnabled = false
         
-        cardView.layer.cornerRadius = 10.0
+        let cornerRadius: CGFloat = 10.0
+        canvasView.layer.cornerRadius = cornerRadius
+        cardView.layer.cornerRadius = cornerRadius
         cardView.layer.shadowOffset = CGSize.zero
         cardView.layer.shadowOpacity = 0.5
         cardView.layer.shadowColor = UIColor.black.cgColor
@@ -29,6 +32,15 @@ class CardDetailViewController: UIViewController, UITextViewDelegate {
         flipButton.layer.borderWidth = 3.0
         flipButton.layer.cornerRadius = flipButton.frame.height / 2
         flipButton.clipsToBounds = true
+        
+        guard let card = card else { return }
+        if card.isImageCard {
+            textView.isHidden = true
+            canvasView.isHidden = false
+        } else {
+            canvasView.isHidden = true
+            textView.isHidden = false
+        }
     }
     
     
@@ -45,6 +57,7 @@ class CardDetailViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var flipButton: UIButton!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var canvasView: CanvasView!
     
     
     // MARK: - Actions
@@ -59,6 +72,7 @@ class CardDetailViewController: UIViewController, UITextViewDelegate {
         guard let card = card else { return }
         if textView.text != card.front && textView.text != card.back {
             self.saveCard()
+            saveButton.isEnabled = false
             self.flipCard(card)
         } else {
             flipCard(card)

@@ -31,6 +31,7 @@ class CardCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var frontTextLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
     
     // MARK: - Functions
@@ -42,8 +43,15 @@ class CardCollectionViewCell: UICollectionViewCell {
         cardView.layer.shadowColor = UIColor.black.cgColor
         cardView.layer.shadowRadius = 5.0
         
-        guard let date = card?.dateUpdated else { return }
-        frontTextLabel.text = card?.front
+        guard let card = card, let date = card.dateUpdated else { return }
+        frontTextLabel.text = card.front
         dateLabel.text = dateFormatter.string(from: date)
+        if card.isImageCard {
+            imageView.isHidden = false
+            frontTextLabel.isHidden = true
+        } else {
+            frontTextLabel.isHidden = false
+            imageView.isHidden = true
+        }
     }
 }

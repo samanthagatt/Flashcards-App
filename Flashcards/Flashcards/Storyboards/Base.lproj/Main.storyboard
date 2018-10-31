@@ -312,6 +312,9 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYG-Y1-gJm">
                                                             <rect key="frame" x="0.0" y="0.0" width="298" height="179"/>
                                                             <subviews>
+                                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fkr-ur-S0l">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="298" height="179"/>
+                                                                </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Front text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jnb-Uz-2Yr">
                                                                     <rect key="frame" x="16" y="16" width="266" height="147"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
@@ -323,9 +326,13 @@
                                                             <constraints>
                                                                 <constraint firstItem="Jnb-Uz-2Yr" firstAttribute="top" secondItem="SYG-Y1-gJm" secondAttribute="top" constant="16" id="10I-R3-cJz"/>
                                                                 <constraint firstAttribute="bottom" secondItem="Jnb-Uz-2Yr" secondAttribute="bottom" constant="16" id="1bJ-Jp-sul"/>
+                                                                <constraint firstItem="Fkr-ur-S0l" firstAttribute="centerY" secondItem="SYG-Y1-gJm" secondAttribute="centerY" id="8Gk-Kl-PBt"/>
                                                                 <constraint firstAttribute="width" secondItem="SYG-Y1-gJm" secondAttribute="height" multiplier="5:3" id="9RK-tR-MDT"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Jnb-Uz-2Yr" secondAttribute="trailing" constant="16" id="CPh-ul-bsY"/>
+                                                                <constraint firstItem="Fkr-ur-S0l" firstAttribute="centerX" secondItem="SYG-Y1-gJm" secondAttribute="centerX" id="ZyK-S5-MXy"/>
+                                                                <constraint firstItem="Fkr-ur-S0l" firstAttribute="width" secondItem="SYG-Y1-gJm" secondAttribute="width" id="bx4-Xs-FI1"/>
                                                                 <constraint firstItem="Jnb-Uz-2Yr" firstAttribute="leading" secondItem="SYG-Y1-gJm" secondAttribute="leading" constant="16" id="e3z-pa-AM3"/>
+                                                                <constraint firstItem="Fkr-ur-S0l" firstAttribute="height" secondItem="SYG-Y1-gJm" secondAttribute="height" id="iM1-hY-RNM"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WI1-as-hKq">
@@ -357,6 +364,7 @@
                                     <outlet property="cardView" destination="SYG-Y1-gJm" id="LE2-I6-Q71"/>
                                     <outlet property="dateLabel" destination="WI1-as-hKq" id="rWL-vi-PO2"/>
                                     <outlet property="frontTextLabel" destination="Jnb-Uz-2Yr" id="Thi-iP-cie"/>
+                                    <outlet property="imageView" destination="Fkr-ur-S0l" id="pVN-eV-xDw"/>
                                     <segue destination="H95-wD-OTO" kind="show" identifier="ShowCardDetail" id="amz-00-NeL"/>
                                 </connections>
                             </collectionViewCell>
@@ -389,6 +397,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckF-yd-dPo">
                                 <rect key="frame" x="37.5" y="243.5" width="300" height="180"/>
                                 <subviews>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eGK-Pb-Bin" customClass="CanvasView" customModule="DrawingKit">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="180"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Hello" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="e3p-km-Y01">
                                         <rect key="frame" x="16" y="16" width="268" height="148"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -401,8 +413,12 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="e3p-km-Y01" secondAttribute="trailing" constant="16" id="9Lp-92-BAC"/>
                                     <constraint firstItem="e3p-km-Y01" firstAttribute="top" secondItem="ckF-yd-dPo" secondAttribute="top" constant="16" id="CWe-TS-5hF"/>
+                                    <constraint firstItem="eGK-Pb-Bin" firstAttribute="width" secondItem="ckF-yd-dPo" secondAttribute="width" id="IYk-28-GJH"/>
                                     <constraint firstAttribute="bottom" secondItem="e3p-km-Y01" secondAttribute="bottom" constant="16" id="L2h-5I-6Md"/>
+                                    <constraint firstItem="eGK-Pb-Bin" firstAttribute="centerX" secondItem="ckF-yd-dPo" secondAttribute="centerX" id="PJb-N1-MW0"/>
                                     <constraint firstItem="e3p-km-Y01" firstAttribute="leading" secondItem="ckF-yd-dPo" secondAttribute="leading" constant="16" id="c90-Eg-n37"/>
+                                    <constraint firstItem="eGK-Pb-Bin" firstAttribute="centerY" secondItem="ckF-yd-dPo" secondAttribute="centerY" id="fsZ-iT-3bD"/>
+                                    <constraint firstItem="eGK-Pb-Bin" firstAttribute="height" secondItem="ckF-yd-dPo" secondAttribute="height" id="yNZ-uO-q5i"/>
                                     <constraint firstAttribute="width" secondItem="ckF-yd-dPo" secondAttribute="height" multiplier="5:3" id="zDO-l1-JuW"/>
                                 </constraints>
                             </view>
@@ -436,6 +452,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="canvasView" destination="eGK-Pb-Bin" id="QVA-iN-Cqq"/>
                         <outlet property="cardView" destination="ckF-yd-dPo" id="DCB-RX-Hgg"/>
                         <outlet property="flipButton" destination="kN3-4b-SE8" id="7Ey-5u-oia"/>
                         <outlet property="saveButton" destination="6Gy-m7-g8e" id="0Jn-zs-X15"/>
