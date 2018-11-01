@@ -41,14 +41,43 @@ class CardDetailViewController: UIViewController, UITextViewDelegate {
             canvasView.isHidden = true
             textView.isHidden = false
         }
+        
+//        _ = canvasView.toggleEditIsEnabled()
+        
+        cardController.fetchCardImages(for: card) { (frontImage, backImage, error) in
+            if let error = error {
+                NSLog("Error fetching front and back images: \(error)")
+                return
+            }
+            
+            if let frontImage = frontImage {
+                self.frontImage = frontImage
+            }
+            
+            if let backImage = backImage {
+                self.backImage = backImage
+            }
+        }
     }
     
     
     // MARK: - Properties
     
-    var card: Card?
-    let cardController = CardController()
-    var isFront = true
+    public var card: Card?
+    public let cardController = CardController()
+    
+    
+    // MARK: - Private Properties
+    
+    private var isFront = true
+    private var frontImage: UIImage? {
+        didSet {
+            DispatchQueue.main.async {
+                self.canvasView.startingImage = self.frontImage
+            }
+        }
+    }
+    private var backImage: UIImage?
     
     
     // MARK: -  Outlets
@@ -70,12 +99,18 @@ class CardDetailViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func flip(_ sender: Any) {
         guard let card = card else { return }
-        if textView.text != card.front && textView.text != card.back {
+        switch card.isImageCard {
+        case false:
+            if textView.text != card.front && textView.text != card.back {
+                self.saveCard()
+                saveButton.isEnabled = false
+                self.flipCard(card)
+            } else {
+                self.flipCard(card)
+            }
+        case true:
             self.saveCard()
-            saveButton.isEnabled = false
             self.flipCard(card)
-        } else {
-            flipCard(card)
         }
     }
     
@@ -86,10 +121,21 @@ class CardDetailViewController: UIViewController, UITextViewDelegate {
         guard let card = card else { return }
         let text = textView.text ?? ""
         
-        if isFront {
-            cardController.update(card: card, front: text, context: CoreDataStack.moc)
-        } else if !isFront {
-            cardController.update(card: card, back: text, context: CoreDataStack.moc)
+        switch card.isImageCard {
+        case false:
+            if isFront {
+                cardController.update(card: card, front: text, context: CoreDataStack.moc)
+            } else if !isFront {
+                cardController.update(card: card, back: text, context: CoreDataStack.moc)
+            }
+        case true:
+            guard let image = canvasView.getCurrentImage() else { return }
+            let imageData = image.pngData()
+            if isFront {
+                cardController.update(card: card, frontImageData: imageData, context: CoreDataStack.moc)
+            } else if !isFront {
+                cardController.update(card: card, backImageData: imageData, context: CoreDataStack.moc)
+            }
         }
     }
     

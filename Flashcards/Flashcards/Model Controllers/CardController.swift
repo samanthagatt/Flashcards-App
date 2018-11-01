@@ -77,6 +77,9 @@ class CardController {
                         self.put(card: card)
                         self.saveToPersistentStore(context: context)
                     }
+                } else {
+                    self.put(card: card)
+                    self.saveToPersistentStore(context: context)
                 }
             }
         } else if let backImageData = backImageData {
@@ -330,7 +333,7 @@ class CardController {
                 }
             } else {
                 NSLog("Both front image and back image urls were nil")
-                completion(nil, nil, NSError())
+                completion(nil, nil, nil)
                 return 
             }
         }
