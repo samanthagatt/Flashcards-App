@@ -224,20 +224,6 @@ class CardController {
         }
     }
     
-    /*
-     po error
-     ▿ DecodingError
-     ▿ keyNotFound : 2 elements
-     - .0 : CodingKeys(stringValue: "frontText", intValue: nil)
-     ▿ .1 : Context
-     ▿ codingPath : 1 element
-     ▿ 0 : _DictionaryCodingKey(stringValue: "7580B62C-0CFD-4DE5-B09E-251BCD17A26E", intValue: nil)
-     - stringValue : "7580B62C-0CFD-4DE5-B09E-251BCD17A26E"
-     - intValue : nil
-     - debugDescription : "No value associated with key CodingKeys(stringValue: \"frontText\", intValue: nil) (\"frontText\")."
-     - underlyingError : nil
-     */
-    
     private func storeImage(data: Data, for card: Card, isFront: Bool, completion: @escaping (URL?, Error?) -> Void) {
         guard let storageRef = createStorageRef(for: card, isFront: isFront) else { return }
         
@@ -262,6 +248,90 @@ class CardController {
                 }
                 
                 completion(url, nil)
+            }
+        }
+    }
+    
+    public func fetchCardImages(for card: Card, completion: @escaping (UIImage?, UIImage?, Error?) -> Void) {
+        if let frontURLString = card.frontURLString {
+            
+            guard let url = URL(string: frontURLString) else {
+                NSLog("Stored url string could not be converted to URL")
+                completion(nil, nil, NSError())
+                return
+            }
+            
+            dataLoader.loadData(from: url) { (data, error) in
+                if let error = error {
+                    NSLog("Error fetching front image: \(error)")
+                    completion(nil, nil, error)
+                    return
+                }
+                
+                guard let data = data else {
+                    NSLog("No data returned from front image fetch")
+                    completion(nil, nil, NSError())
+                    return
+                }
+                
+                let frontImage = UIImage(data: data)
+                
+                if let backURLString = card.backURLString {
+                    
+                    guard let url = URL(string: backURLString) else {
+                        NSLog("Stored url string could not be converted to URL")
+                        completion(nil, nil, NSError())
+                        return
+                    }
+                    
+                    self.dataLoader.loadData(from: url) { (data, error) in
+                        if let error = error {
+                            NSLog("Error fetching back image: \(error)")
+                            completion(nil, nil, error)
+                            return
+                        }
+                        
+                        guard let data = data else {
+                            NSLog("No data returned from back image fetch")
+                            completion(nil, nil, NSError())
+                            return
+                        }
+                        
+                        let backImage = UIImage(data: data)
+                        completion(frontImage, backImage, nil)
+                    }
+                } else {
+                    completion(frontImage, nil, nil)
+                }
+            }
+        } else {
+            if let backURLString = card.backURLString {
+                guard let url = URL(string: backURLString) else {
+                    NSLog("Stored url string could not be converted to URL")
+                    completion(nil, nil, NSError())
+                    return
+                }
+                
+                dataLoader.loadData(from: url) { (data, error) in
+                    if let error = error {
+                        NSLog("Error fetching back image: \(error)")
+                        completion(nil, nil, error)
+                        return
+                    }
+                    
+                    guard let data = data else {
+                        NSLog("No data returned from back image fetch")
+                        completion(nil, nil, NSError())
+                        return
+                    }
+                    
+                    let backImage = UIImage(data: data)
+                    completion(nil, backImage, nil)
+                }
+            } else {
+                NSLog("Both front image and back image urls were nil")
+                completion(nil, nil, NSError())
+                return 
             }
         }
     }

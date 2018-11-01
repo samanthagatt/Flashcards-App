@@ -16,7 +16,6 @@ class SetCollectionViewController: UICollectionViewController, NSFetchedResultsC
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // not fetching cards made on other devices
         // TODO: does not delete cards that aren't on server after fetch
         cardController.fetchCards(in: parentOrganizer)
     }
