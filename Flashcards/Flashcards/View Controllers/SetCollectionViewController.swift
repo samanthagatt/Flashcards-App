@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class SetCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate, OrganizerViewController {
+class SetCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate, OrganizerViewController, CreateCardAlertControllerDelegate {
     
     // MARK: - ViewWillAppear
     
@@ -38,8 +38,14 @@ class SetCollectionViewController: UICollectionViewController, NSFetchedResultsC
     // MARK: - Actions
     
     @IBAction func createCard(_ sender: Any) {
-        guard let identifier = self.parentOrganizer?.identifier else { return }
-        cardController.create(parentSetID: identifier, context: CoreDataStack.moc)
+        let storyboard = UIStoryboard(name: "CreateCardAlert", bundle: nil)
+        guard let alert = storyboard.instantiateInitialViewController() as? CreateCardAlertController else { return }
+        alert.providesPresentationContextTransitionStyle = true
+        alert.definesPresentationContext = true
+        alert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        alert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        alert.delegate = self
+        self.present(alert, animated: true, completion: nil)
     }
     
     
@@ -114,6 +120,23 @@ class SetCollectionViewController: UICollectionViewController, NSFetchedResultsC
         cell.card = card
         
         return cell
+    }
+    
+    
+    // MARK: - CreateCardAlertControllerDelegate
+    
+    func createCard(type: CardType) {
+        guard let identifier = self.parentOrganizer?.identifier else { return }
+        
+        var isImageCard: Bool
+        switch type {
+        case .image:
+            isImageCard = true
+        case .text:
+            isImageCard = false
+        }
+        
+        cardController.create(parentSetID: identifier, isImageCard: isImageCard, context: CoreDataStack.moc)
     }
     
     

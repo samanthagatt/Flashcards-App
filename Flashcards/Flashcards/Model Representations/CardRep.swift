@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum CardType: String {
+enum CardType {
     case text
     case image
 }

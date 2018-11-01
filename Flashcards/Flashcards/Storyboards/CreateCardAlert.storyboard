@@ -44,7 +44,7 @@
                                                     <action selector="toggleCardType:" destination="cTN-8g-VqE" eventType="valueChanged" id="gNl-8b-Z1r"/>
                                                 </connections>
                                             </segmentedControl>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yourTextHere" translatesAutoresizingMaskIntoConstraints="NO" id="Wu8-cP-5EZ">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textCard" translatesAutoresizingMaskIntoConstraints="NO" id="Wu8-cP-5EZ">
                                                 <rect key="frame" x="16" y="114.5" width="218" height="166.5"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4ON-Kd-uMS">
@@ -132,6 +132,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="yourTextHere" width="260" height="160"/>
+        <image name="textCard" width="260" height="160"/>
     </resources>
 </document>
