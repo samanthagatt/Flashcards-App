@@ -135,8 +135,8 @@ class CardController {
     }
     
     private func update(_ card: Card, from cardRep: CardRep) {
-        card.front = cardRep.frontText
-        card.back = cardRep.backText
+        card.front = cardRep.front
+        card.back = cardRep.back
         card.parentSetID = cardRep.parentSetID
     }
     
@@ -223,6 +223,20 @@ class CardController {
             }
         }
     }
+    
+    /*
+     po error
+     ▿ DecodingError
+     ▿ keyNotFound : 2 elements
+     - .0 : CodingKeys(stringValue: "frontText", intValue: nil)
+     ▿ .1 : Context
+     ▿ codingPath : 1 element
+     ▿ 0 : _DictionaryCodingKey(stringValue: "7580B62C-0CFD-4DE5-B09E-251BCD17A26E", intValue: nil)
+     - stringValue : "7580B62C-0CFD-4DE5-B09E-251BCD17A26E"
+     - intValue : nil
+     - debugDescription : "No value associated with key CodingKeys(stringValue: \"frontText\", intValue: nil) (\"frontText\")."
+     - underlyingError : nil
+     */
     
     private func storeImage(data: Data, for card: Card, isFront: Bool, completion: @escaping (URL?, Error?) -> Void) {
         guard let storageRef = createStorageRef(for: card, isFront: isFront) else { return }

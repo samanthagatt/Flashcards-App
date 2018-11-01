@@ -15,8 +15,8 @@ enum CardType {
 
 struct CardRep: Codable, Equatable {
     
-    var frontText: String
-    var backText: String
+    var front: String
+    var back: String
     let dateCreated: Date
     var dateUpdated: Date
     var identifier: String
@@ -31,8 +31,8 @@ struct CardRep: Codable, Equatable {
 
 func == (lhs: CardRep, rhs: Card) -> Bool {
     return
-        lhs.frontText == rhs.front &&
-            lhs.backText == rhs.back &&
+        lhs.front == rhs.front &&
+            lhs.back == rhs.back &&
             lhs.dateCreated == rhs.dateCreated &&
             lhs.dateUpdated == rhs.dateUpdated &&
             lhs.parentSetID == rhs.parentSetID &&

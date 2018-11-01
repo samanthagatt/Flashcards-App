@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - ViewDidLoad
     
@@ -29,6 +29,9 @@ class LoginViewController: UIViewController {
         loginButton.clipsToBounds = true
         
         passwordTextField.isSecureTextEntry = true
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
     
@@ -58,5 +61,13 @@ class LoginViewController: UIViewController {
         }
         
         passwordTextField.text = ""
+    }
+    
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

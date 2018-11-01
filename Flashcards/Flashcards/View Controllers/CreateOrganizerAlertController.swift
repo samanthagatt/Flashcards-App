@@ -12,7 +12,7 @@ protocol CreateOrganizerAlertControllerDelegate: class {
     func createOrganizer(type: OrganizerType, title: String)
 }
 
-class CreateOrganizerAlertController: UIViewController {
+class CreateOrganizerAlertController: UIViewController, UITextFieldDelegate {
     
     // MARK: - View controller override functions
     
@@ -20,6 +20,8 @@ class CreateOrganizerAlertController: UIViewController {
         super.viewDidLoad()
         
         alertView.layer.cornerRadius = 15
+        
+        titleTextField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,5 +78,13 @@ class CreateOrganizerAlertController: UIViewController {
             self.alertView.alpha = 1.0
             self.alertView.frame.origin.y = self.alertView.frame.origin.y - 50
         })
+    }
+    
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
