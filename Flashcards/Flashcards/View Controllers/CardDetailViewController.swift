@@ -52,6 +52,10 @@ class CardDetailViewController: UIViewController, UITextViewDelegate {
             
             if let frontImage = frontImage {
                 self.frontImage = frontImage
+                
+                DispatchQueue.main.async {
+                    self.canvasView.startingImage = self.frontImage
+                }
             }
             
             if let backImage = backImage {
@@ -70,13 +74,7 @@ class CardDetailViewController: UIViewController, UITextViewDelegate {
     // MARK: - Private Properties
     
     private var isFront = true
-    private var frontImage: UIImage? {
-        didSet {
-            DispatchQueue.main.async {
-                self.canvasView.startingImage = self.frontImage
-            }
-        }
-    }
+    private var frontImage: UIImage?
     private var backImage: UIImage?
     
     
@@ -133,27 +131,47 @@ class CardDetailViewController: UIViewController, UITextViewDelegate {
             let imageData = image.pngData()
             if isFront {
                 cardController.update(card: card, frontImageData: imageData, context: CoreDataStack.moc)
+                self.frontImage = image
             } else if !isFront {
                 cardController.update(card: card, backImageData: imageData, context: CoreDataStack.moc)
+                self.backImage = image
             }
         }
     }
     
     func flipCard(_ card: Card) {
-        if isFront {
-            UIView.transition(with: cardView, duration: 1.0, options: [.transitionFlipFromRight], animations: {
-                self.textView.text = card.back
-            })
-            isFront = false
-            flipButton.setTitle("Flip to front", for: .normal)
-        } else if textView.text == card.back {
-            UIView.transition(with: cardView, duration: 1.0, options: [.transitionFlipFromRight], animations: {
-                self.textView.text = card.front
-            })
-            isFront = true
-            flipButton.setTitle("Flip to back", for: .normal)
+        
+        switch card.isImageCard {
+        case false:
+            if isFront {
+                UIView.transition(with: cardView, duration: 1.0, options: [.transitionFlipFromRight], animations: {
+                    self.textView.text = card.back
+                })
+                isFront = false
+                flipButton.setTitle("Flip to front", for: .normal)
+            } else if textView.text == card.back {
+                UIView.transition(with: cardView, duration: 1.0, options: [.transitionFlipFromRight], animations: {
+                    self.textView.text = card.front
+                })
+                isFront = true
+                flipButton.setTitle("Flip to back", for: .normal)
+            }
+            textView.resignFirstResponder()
+        case true:
+            if isFront {
+                UIView.transition(with: cardView, duration: 1.0, options: [.transitionFlipFromRight], animations: {
+                    self.canvasView.resetCanvas(with: self.backImage)
+                })
+                isFront = false
+                flipButton.setTitle("Flip to front", for: .normal)
+            } else if !isFront {
+                UIView.transition(with: cardView, duration: 1.0, options: [.transitionFlipFromRight], animations: {
+                    self.canvasView.resetCanvas(with: self.frontImage)
+                })
+                isFront = true
+                flipButton.setTitle("Flip to back", for: .normal)
+            }
         }
-        textView.resignFirstResponder()
     }
     
     
