@@ -45,6 +45,7 @@ class CardController {
         
         // TODO: Come back and evaluate if I should make it a weak refrence to self to reduce risk of retain cycle
         // TODO: Clean up this code, very DRY
+        // TODO: Error handling, if both image data's are not nil, card only gets put to data base if both storages succeed
         if let frontImageData = frontImageData {
             storeImage(data: frontImageData, for: card, isFront: true) { (url, error) in
                 if let error = error {

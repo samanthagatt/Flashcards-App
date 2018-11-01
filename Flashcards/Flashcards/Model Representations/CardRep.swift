@@ -31,7 +31,9 @@ func == (lhs: CardRep, rhs: Card) -> Bool {
             lhs.dateCreated == rhs.dateCreated &&
             lhs.dateUpdated == rhs.dateUpdated &&
             lhs.parentSetID == rhs.parentSetID &&
-            lhs.isImageCard == rhs.isImageCard
+            lhs.isImageCard == rhs.isImageCard &&
+            lhs.frontImageURL?.absoluteString == rhs.frontURLString &&
+            lhs.backImageURL?.absoluteString == rhs.backURLString
 }
 
 func == (lhs: Card, rhs: CardRep) -> Bool {
