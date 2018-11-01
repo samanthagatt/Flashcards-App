@@ -17,6 +17,9 @@ extension Card: Encodable {
         case dateUpdated
         case identifier
         case parentSetID
+        case isImageCard
+        case frontURLString
+        case backURLString
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -28,5 +31,8 @@ extension Card: Encodable {
         try container.encode(dateUpdated, forKey: .dateUpdated)
         try container.encode(identifier, forKey: .identifier)
         try container.encode(parentSetID, forKey: .parentSetID)
+        try container.encode(isImageCard, forKey: .isImageCard)
+        try container.encode(frontURLString, forKey: .frontURLString)
+        try container.encode(backURLString, forKey: .backURLString)
     }
 }

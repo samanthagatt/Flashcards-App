@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import FirebaseAuth
+import FirebaseStorage
 
 class CardController {
     
@@ -26,9 +27,9 @@ class CardController {
     
     // MARK: - CRUD
     
-    func create(front: String = "", back: String = "", dateCreated: Date = Date(), parentSetID: String, context: NSManagedObjectContext) {
+    func create(front: String = "", back: String = "", dateCreated: Date = Date(), parentSetID: String, isImageCard: Bool = false, context: NSManagedObjectContext) {
         
-        let card = Card(front: front, back: back, parentSetID: parentSetID, context: context)
+        let card = Card(front: front, back: back, parentSetID: parentSetID, isImageCard: isImageCard, context: context)
         put(card: card)
         saveToPersistentStore(context: context)
     }
@@ -54,7 +55,7 @@ class CardController {
     
     // MARK: - Core Data
     
-    func saveToPersistentStore(context: NSManagedObjectContext) {
+    private func saveToPersistentStore(context: NSManagedObjectContext) {
         context.performAndWait {
             do {
                 try context.save()
@@ -65,7 +66,7 @@ class CardController {
         }
     }
     
-    func loadSingleCard(id: String, context: NSManagedObjectContext) -> Card? {
+    private func loadSingleCard(id: String, context: NSManagedObjectContext) -> Card? {
         let fetchRequest: NSFetchRequest<Card> = Card.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "identifier == %@", id)
         
@@ -77,13 +78,13 @@ class CardController {
         }
     }
     
-    func update(_ card: Card, from cardRep: CardRep) {
+    private func update(_ card: Card, from cardRep: CardRep) {
         card.front = cardRep.frontText
         card.back = cardRep.backText
         card.parentSetID = cardRep.parentSetID
     }
     
-    func updateCards(from cardReps: [CardRep], context: NSManagedObjectContext) throws {
+    private func updateCards(from cardReps: [CardRep], context: NSManagedObjectContext) throws {
         context.performAndWait {
             for cardRep in cardReps {
                 let card = loadSingleCard(id: cardRep.identifier, context: context)
@@ -102,7 +103,7 @@ class CardController {
     
     // MARK: - Networking
     
-    func createURL(for card: Card? = nil, from parentSet: Organizer? = nil) -> URL? {
+    private func createURL(for card: Card? = nil, from parentSet: Organizer? = nil) -> URL? {
         
         guard let userUID = Auth.auth().currentUser?.uid else { return nil }
         
@@ -131,7 +132,14 @@ class CardController {
         }
     }
     
-    func fetchCards(in set: Organizer?, completion: @escaping (Error?) -> Void = { _ in }) {
+    private func createStorageRef(for card: Card, isFront: Bool) -> StorageReference? {
+        
+        guard let userUID = Auth.auth().currentUser?.uid else { return nil }
+        
+        return Storage.storage().reference().child("users").child(userUID).child("cards").child(card.identifier ?? "noIdentifier").child(isFront ? "front.png" : "back.png")
+    }
+    
+    public func fetchCards(in set: Organizer?, completion: @escaping (Error?) -> Void = { _ in }) {
         
         guard let url = createURL(from: set) else { completion(NSError()); return }
         
@@ -160,7 +168,35 @@ class CardController {
         }
     }
     
-    func put(card: Card, completion: @escaping (Error?) -> Void = { _ in }) {
+    private func storeImage(data: Data, for card: Card, isFront: Bool, completion: @escaping (URL?, Error?) -> Void) {
+        guard let storageRef = createStorageRef(for: card, isFront: isFront) else { return }
+        
+        storageRef.putData(data, metadata: nil) { (_, error) in
+            if let error = error {
+                NSLog("Error storing image: \(error)")
+                completion(nil, error)
+                return
+            }
+            
+            storageRef.downloadURL() { url, error in
+                if let error = error {
+                    NSLog("Error getting url for stored image: \(error)")
+                    completion(nil, error)
+                    return
+                }
+                
+                guard let url = url else {
+                    NSLog("No url returned from storing image")
+                    completion(nil, NSError())
+                    return
+                }
+                
+                completion(url, nil)
+            }
+        }
+    }
+    
+    private func put(card: Card, completion: @escaping (Error?) -> Void = { _ in }) {
         
         guard let url = createURL(for: card) else { completion(NSError()); return }
         
@@ -184,7 +220,7 @@ class CardController {
         }
     }
     
-    func deleteFromServer(card: Card, completion: @escaping (Error?) -> Void = { _ in }) {
+    private func deleteFromServer(card: Card, completion: @escaping (Error?) -> Void = { _ in }) {
         
         guard let url = createURL(for: card) else { completion(NSError()); return }
         
