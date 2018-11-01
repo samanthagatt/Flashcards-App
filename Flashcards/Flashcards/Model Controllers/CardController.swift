@@ -34,7 +34,7 @@ class CardController {
         saveToPersistentStore(context: context)
     }
     
-    func update(card: Card, front: String? = nil, back: String? = nil, context: NSManagedObjectContext) {
+    func update(card: Card, front: String? = nil, back: String? = nil, frontImageData: Data? = nil, backImageData: Data? = nil, context: NSManagedObjectContext) {
         if let front = front {
             card.front = front
         }
@@ -42,8 +42,63 @@ class CardController {
             card.back = back
         }
         card.dateUpdated = Date()
-        put(card: card)
-        saveToPersistentStore(context: context)
+        
+        // TODO: Come back and evaluate if I should make it a weak refrence to self to reduce risk of retain cycle
+        // TODO: Clean up this code, very DRY
+        if let frontImageData = frontImageData {
+            storeImage(data: frontImageData, for: card, isFront: true) { (url, error) in
+                if let error = error {
+                    NSLog("Error storing image: \(error)")
+                    return
+                }
+                
+                guard let urlString = url?.absoluteString else {
+                    NSLog("No url was returned from storing image")
+                    return
+                }
+                
+                card.frontURLString = urlString
+                
+                if let backImageData = backImageData {
+                    self.storeImage(data: backImageData, for: card, isFront: false) { (url, error) in
+                        if let error = error {
+                            NSLog("Error storing image: \(error)")
+                            return
+                        }
+                        
+                        guard let urlString = url?.absoluteString else {
+                            NSLog("No url was returned from storing image")
+                            return
+                        }
+                        
+                        card.backURLString = urlString
+                        
+                        self.put(card: card)
+                        self.saveToPersistentStore(context: context)
+                    }
+                }
+            }
+        } else if let backImageData = backImageData {
+            storeImage(data: backImageData, for: card, isFront: false) { (url, error) in
+                if let error = error {
+                    NSLog("Error storing image: \(error)")
+                    return
+                }
+                
+                guard let urlString = url?.absoluteString else {
+                    NSLog("No url was returned from storing image")
+                    return
+                }
+                
+                card.backURLString = urlString
+                
+                self.put(card: card)
+                self.saveToPersistentStore(context: context)
+            }
+        } else {
+            put(card: card)
+            saveToPersistentStore(context: context)
+        }
     }
     
     func delete(card: Card, context: NSManagedObjectContext) {
