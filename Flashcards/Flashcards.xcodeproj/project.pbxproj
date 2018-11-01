@@ -35,6 +35,8 @@
 		220EDC71215BF6B1006ABC95 /* CreateOrganizerAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC70215BF6B1006ABC95 /* CreateOrganizerAlertController.swift */; };
 		220EDC75215C8466006ABC95 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC74215C8466006ABC95 /* CardCollectionViewCell.swift */; };
 		220EDC77215CEAC0006ABC95 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220EDC76215CEAC0006ABC95 /* CardDetailViewController.swift */; };
+		226BA128218B27CB00EFE489 /* CreateCardAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226BA127218B27CB00EFE489 /* CreateCardAlert.storyboard */; };
+		226BA12A218B2DB100EFE489 /* CreateCardAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226BA129218B2DB100EFE489 /* CreateCardAlertController.swift */; };
 		228FFCBF215D0BC800D82889 /* NoParentGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228FFCBE215D0BC800D82889 /* NoParentGroupCollectionViewCell.swift */; };
 		228FFCC1215D0BED00D82889 /* NoParentSetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228FFCC0215D0BED00D82889 /* NoParentSetCollectionViewCell.swift */; };
 		228FFCC3215D0BF700D82889 /* GroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228FFCC2215D0BF700D82889 /* GroupCollectionViewCell.swift */; };
@@ -108,6 +110,8 @@
 		220EDC70215BF6B1006ABC95 /* CreateOrganizerAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrganizerAlertController.swift; sourceTree = "<group>"; };
 		220EDC74215C8466006ABC95 /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		220EDC76215CEAC0006ABC95 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
+		226BA127218B27CB00EFE489 /* CreateCardAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateCardAlert.storyboard; sourceTree = "<group>"; };
+		226BA129218B2DB100EFE489 /* CreateCardAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCardAlertController.swift; sourceTree = "<group>"; };
 		228FFCBE215D0BC800D82889 /* NoParentGroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoParentGroupCollectionViewCell.swift; sourceTree = "<group>"; };
 		228FFCC0215D0BED00D82889 /* NoParentSetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoParentSetCollectionViewCell.swift; sourceTree = "<group>"; };
 		228FFCC2215D0BF700D82889 /* GroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 				220EDC2321569E9F006ABC95 /* Main.storyboard */,
 				220EDC62215AA69B006ABC95 /* Settings.storyboard */,
 				220EDC6E215BCC76006ABC95 /* CreateOrganizerAlert.storyboard */,
+				226BA127218B27CB00EFE489 /* CreateCardAlert.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				220EDC60215A99CD006ABC95 /* SignUpViewController.swift */,
 				220EDC64215AA83C006ABC95 /* SettingsAlertController.swift */,
 				220EDC70215BF6B1006ABC95 /* CreateOrganizerAlertController.swift */,
+				226BA129218B2DB100EFE489 /* CreateCardAlertController.swift */,
 				220EDC66215AB0A4006ABC95 /* GroupCollectionViewController.swift */,
 				220EDC6A215ACCB7006ABC95 /* SetCollectionViewController.swift */,
 				220EDC76215CEAC0006ABC95 /* CardDetailViewController.swift */,
@@ -375,6 +381,7 @@
 				220EDC6F215BCC76006ABC95 /* CreateOrganizerAlert.storyboard in Resources */,
 				220EDC542159684F006ABC95 /* GoogleService-Info.plist in Resources */,
 				220EDC63215AA69B006ABC95 /* Settings.storyboard in Resources */,
+				226BA128218B27CB00EFE489 /* CreateCardAlert.storyboard in Resources */,
 				220EDC3221590C11006ABC95 /* LoginAndSignUp.storyboard in Resources */,
 				220EDC2521569E9F006ABC95 /* Main.storyboard in Resources */,
 			);
@@ -442,6 +449,7 @@
 				220EDC58215A72EB006ABC95 /* Organizer+Encodable.swift in Sources */,
 				220EDC4B21592B29006ABC95 /* Organizer+Convenience.swift in Sources */,
 				220EDC432159249F006ABC95 /* OrganizerController.swift in Sources */,
+				226BA12A218B2DB100EFE489 /* CreateCardAlertController.swift in Sources */,
 				228FFCC9215D62D800D82889 /* AuthenticationViewController.swift in Sources */,
 				220EDC61215A99CD006ABC95 /* SignUpViewController.swift in Sources */,
 				220EDC51215959CD006ABC95 /* NetworkDataLoader.swift in Sources */,

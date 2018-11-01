@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum CardType: String {
+    case text
+    case image
+}
+
 struct CardRep: Codable, Equatable {
     
     var frontText: String

@@ -28,21 +28,6 @@ class CreateOrganizerAlertController: UIViewController {
         animateView()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        view.layoutIfNeeded()
-                
-        let cancelButtonTopBorder = UIView(frame: CGRect(x: 0, y: 0, width: cancelButton.frame.size.width, height: 1))
-        cancelButtonTopBorder.backgroundColor = UIColor.lightGray
-        let createButtonTopBorder = UIView(frame: CGRect(x: 0, y: 0, width: createButton.frame.size.width, height: 1))
-        createButtonTopBorder.backgroundColor = UIColor.lightGray
-        let createButtonLeftBorder = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: createButton.frame.size.height))
-        createButtonLeftBorder.backgroundColor = UIColor.lightGray
-        cancelButton.addSubview(cancelButtonTopBorder)
-        createButton.addSubview(createButtonTopBorder)
-        createButton.addSubview(createButtonLeftBorder)
-    }
-    
     
     // MARK: - Properties
     
@@ -56,8 +41,6 @@ class CreateOrganizerAlertController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var createButton: UIButton!
     
     
     // MARK: - Actions
@@ -86,7 +69,7 @@ class CreateOrganizerAlertController: UIViewController {
     
     // MARK: - Functions
     
-    func animateView() {
+    private func animateView() {
         alertView.alpha = 0;
         self.alertView.frame.origin.y = self.alertView.frame.origin.y + 50
         UIView.animate(withDuration: 0.4, animations: { () -> Void in
