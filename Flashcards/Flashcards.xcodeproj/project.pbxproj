@@ -159,6 +159,7 @@
 		220EDC1E21569E9F006ABC95 /* Flashcards */ = {
 			isa = PBXGroup;
 			children = (
+				220EDC1F21569E9F006ABC95 /* AppDelegate.swift */,
 				228FFCC6215D58C900D82889 /* AppearanceHelper.swift */,
 				220EDC3721591955006ABC95 /* CoreData */,
 				220EDC3821591966006ABC95 /* Model Representations */,
@@ -167,7 +168,6 @@
 				220EDC5D215A98F9006ABC95 /* View Controllers */,
 				220EDC3321591911006ABC95 /* Storyboards */,
 				220EDC2621569EA1006ABC95 /* Assets.xcassets */,
-				220EDC1F21569E9F006ABC95 /* AppDelegate.swift */,
 				220EDC2821569EA1006ABC95 /* LaunchScreen.storyboard */,
 				220EDC2B21569EA1006ABC95 /* Info.plist */,
 				220EDC532159684F006ABC95 /* GoogleService-Info.plist */,

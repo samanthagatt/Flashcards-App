@@ -8,6 +8,14 @@
 
 import UIKit
 
+/**
+ Handles the general theme of the app
+ 
+ Holds a static function that sets up the general appearance for certain `UIView` should be called in `AppDelegate` when the app finishes loading
+ 
+ - Author: Samantha Gatt
+ */
+
 enum Appearance {
     
     static func setUpColoredTheme() {
